@@ -7,9 +7,9 @@ from tools import build_branch_atlas as b
 
 
 def main():
-    root=b.DOC;summary=json.loads((root/'summary.json').read_text());records=summary['records'];assert len(records)==25
-    assert sum(bool(r['winners']) for r in records)==23
-    counts=dict(branches=25,branches_with_recorded_result=23,branches_without_trained_result=2,architecture_svgs=0,reconstruction_cases=0,reconstruction_pngs=0,evidence_checks=0)
+    root=b.DOC;summary=json.loads((root/'summary.json').read_text());records=summary['records'];assert len(records)==24
+    assert sum(bool(r['winners']) for r in records)==22
+    counts=dict(branches=24,branches_with_recorded_result=22,branches_without_trained_result=2,architecture_svgs=0,reconstruction_cases=0,reconstruction_pngs=0,evidence_checks=0)
     for record in records:
         directory=root/record['id'];assert (directory/'README.md').exists()
         ET.parse(directory/'architecture.svg');counts['architecture_svgs']+=1
@@ -51,7 +51,7 @@ def main():
     for target in re.findall(r'(?:href|src)="([^"]+)"',(root/'index.html').read_text()):
         if not target.startswith(('http:','https:','#')) and not (root/unquote(target)).exists():missing.append(('index.html',target))
     assert not missing,missing
-    assert (root/'index.html').read_text().count('class="branch"')==25
+    assert (root/'index.html').read_text().count('class="branch"')==24
     result=dict(**counts,all_relative_links_valid=True,exact_minima_per_protocol=True,plotted_data_equal_saved_predictions=True,no_synthetic_pilot_in_test_pool=True)
     (b.AUDIT/'validation.json').write_text(json.dumps(result,indent=2))
     (root/'validation.json').write_text(json.dumps(result,indent=2));print(counts)

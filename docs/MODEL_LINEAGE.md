@@ -71,7 +71,6 @@ C. 完整256分钟、唯一Gaussian8192
 | [数量log1p/physical-log输入适配](#log_input) | 完整256分钟 | 唯一[B,64,128]不变 | round012完整2048步控制已完成 |
 | [按档位/真实价格对齐的时间数量输入](#temporal_input) | 完整256分钟 | 唯一[B,64,128]不变 | 候选/预检已完成，正式round014_temporal因FNO优先而暂缓 |
 | [独立Fourier/FNO全模型](#fourier) | 完整256分钟 | 唯一[B,64,128]不变 | 四组训练中；共同检查点见阶段结果表 |
-| [显式稀疏地址：非原生Gaussian诊断](#sparse) | 完整256分钟 | 8192标量预算内含显式窗口地址与数量值；不是纯学习Gaussian内容 | 独立诊断，不能作为原生神经目标达成 |
 
 ## 各分支的目的、实现与证据
 
@@ -385,17 +384,6 @@ C. 完整256分钟、唯一Gaussian8192
 - 代表实验：`recons/recall80_goal_20261027_235344/round_014_spectral_quantity_decoder`。
 - 原说明：`docs/models/FOURIER_STANDALONE.md`, `docs/models/SPECTRAL_QUANTITY_DECODER.md`。
 
-<a id="sparse"></a>
-
-### 显式稀疏地址：非原生Gaussian诊断
-
-- 上游设计：patch4→frame1时间组织。
-- 改动：工程化稀疏内容编码＋神经价格子空间，用于能力/指标诊断。
-- 范围：完整256分钟；8192标量预算内含显式窗口地址与数量值；不是纯学习Gaussian内容。
-- 记录状态：独立诊断，不能作为原生神经目标达成。
-- 结论边界：即使指标极好，也不能与单Gaussian神经压缩作为同一任务直接排名。
-- 源码：`model/autoencoder/sparse_address_vae.py`。
-- 代表实验：`recons/recall80_goal_20261027_235344/sparse_address_diagnostic`。
 
 ## 训练控制单列，不伪装成新模型
 
@@ -440,8 +428,8 @@ FNO表使用所有四组已有的最大共同检查点128步，属于训练中�
 - 低维/离散表示：`continuous`、`vq`、`matrix16`、`joint4096`；注意它们有历史16分钟限制。
 - 当前可复现8192基线：`direct`，详见[BASELINE.md](BASELINE.md)。
 - 当前探索：`log_input`→`fourier`；时间价格对齐输入是独立候选，尚未训练。
-- 单独诊断：`sparse`、缓存拟合、合成移动峰、固定Z/Decoder拟合；不能据此宣布原生模型完成目标。
+- 单独诊断：缓存拟合、合成移动峰、固定Z/Decoder拟合；不能据此宣布原生模型完成目标。
 
-本次索引了119个规范实验计划、25个模型研究分支和44条模型类定义。索引排除public/viewer、源码快照、预检复制目录和此次迁移包，避免重复计算。部分旧计划缺少真实形状审计，JSON中明确留空，不通过目录名补造结果。
+本次索引了117个规范实验计划、24个模型研究分支和43条模型类定义。索引排除public/viewer、源码快照、预检复制目录和此次迁移包，避免重复计算。部分旧计划缺少真实形状审计，JSON中明确留空，不通过目录名补造结果。
 
 [交互HTML谱系](model_lineage.html) · [完整证据和类继承JSON](model_lineage.json)

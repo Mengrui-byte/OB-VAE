@@ -517,23 +517,6 @@
         "docs/models/FOURIER_STANDALONE.md",
         "docs/models/SPECTRAL_QUANTITY_DECODER.md"
       ]
-    },
-    {
-      "id": "sparse",
-      "name": "显式稀疏地址：非原生Gaussian诊断",
-      "parent": "frame1",
-      "window": "完整256分钟",
-      "latent": "8192标量预算内含显式窗口地址与数量值；不是纯学习Gaussian内容",
-      "change": "工程化稀疏内容编码＋神经价格子空间，用于能力/指标诊断",
-      "status": "独立诊断，不能作为原生神经目标达成",
-      "conclusion": "即使指标极好，也不能与单Gaussian神经压缩作为同一任务直接排名。",
-      "code": [
-        "model/autoencoder/sparse_address_vae.py"
-      ],
-      "experiments": [
-        "recons/recall80_goal_20261027_235344/sparse_address_diagnostic"
-      ],
-      "documents": []
     }
   ],
   "experiments": [
@@ -5340,119 +5323,6 @@
       "actual_shape_audits": []
     },
     {
-      "path": "recons/recall80_goal_20261027_235344/sparse_address_diagnostic/plan.json",
-      "sha256": "aa2596d9486fa12f5f6fa90cf635b57e073efe40c4fa21aff3ffbf47196317cf",
-      "name": "sparse_address_diagnostic",
-      "families": [
-        "sparse"
-      ],
-      "title": "8192scalar neuralprice subspace+explicitwindow sparse addresses",
-      "recorded_status": "complete",
-      "window_minutes": 256,
-      "latent_shape": [
-        1,
-        64,
-        128
-      ],
-      "labels": {
-        "dense0": "0窗口地址 · 32价格通道",
-        "m1024": "1024窗口地址 · 24价格通道",
-        "m1536": "1536窗口地址 · 20价格通道",
-        "m2048_off": "2048窗口地址 · 16价格通道 · 禁用稀疏输出",
-        "m2048": "2048窗口地址 · 16价格通道",
-        "m3072": "3072窗口地址 · 8价格通道"
-      },
-      "declared_steps": 0,
-      "source_checkpoint": "Original frame_huber/step4096; same weights forallcases. No SGD updates inthisprobe.",
-      "actual_shape_audits": [
-        {
-          "path": "recons/recall80_goal_20261027_235344/sparse_address_diagnostic/dense0/actual_shape_contract.json",
-          "raw": null,
-          "latent": [
-            1,
-            64,
-            128
-          ],
-          "shared_z": null
-        },
-        {
-          "path": "recons/recall80_goal_20261027_235344/sparse_address_diagnostic/m1024/actual_shape_contract.json",
-          "raw": null,
-          "latent": [
-            1,
-            64,
-            128
-          ],
-          "shared_z": null
-        },
-        {
-          "path": "recons/recall80_goal_20261027_235344/sparse_address_diagnostic/m1536/actual_shape_contract.json",
-          "raw": null,
-          "latent": [
-            1,
-            64,
-            128
-          ],
-          "shared_z": null
-        },
-        {
-          "path": "recons/recall80_goal_20261027_235344/sparse_address_diagnostic/m2048/actual_shape_contract.json",
-          "raw": null,
-          "latent": [
-            1,
-            64,
-            128
-          ],
-          "shared_z": null
-        },
-        {
-          "path": "recons/recall80_goal_20261027_235344/sparse_address_diagnostic/m2048_off/actual_shape_contract.json",
-          "raw": null,
-          "latent": [
-            1,
-            64,
-            128
-          ],
-          "shared_z": null
-        },
-        {
-          "path": "recons/recall80_goal_20261027_235344/sparse_address_diagnostic/m3072/actual_shape_contract.json",
-          "raw": null,
-          "latent": [
-            1,
-            64,
-            128
-          ],
-          "shared_z": null
-        }
-      ]
-    },
-    {
-      "path": "recons/recall80_goal_20261027_235344/sparse_address_probe/plan.json",
-      "sha256": "029f71a28c1273577f8197053046b348417b1a2b398c76ac51cafb4cd4e55c52",
-      "name": "sparse_address_probe",
-      "families": [],
-      "title": "8192scalar neuralprice subspace+explicitwindow sparse addresses",
-      "recorded_status": "cancelled_before_gpu_use_superseded_by_diagnostic_only",
-      "window_minutes": 256,
-      "latent_shape": [
-        1,
-        64,
-        128
-      ],
-      "labels": {
-        "dense0": "0窗口地址 · 32价格通道",
-        "m1024": "1024窗口地址 · 24价格通道",
-        "m1536": "1536窗口地址 · 20价格通道",
-        "m2048_off": "2048窗口地址 · 16价格通道 · 禁用稀疏输出",
-        "m2048": "2048窗口地址 · 16价格通道",
-        "m3072": "3072窗口地址 · 8价格通道"
-      },
-      "declared_steps": 0,
-      "source_checkpoint": "Original frame_huber/step4096; same weights forallcases. No SGD updates inthisprobe.",
-      "actual_shape_audits": []
-    },
-    {
       "path": "recons/recall80_goal_20261027_235344/temporal_quantity_input_after_curvature_20261029/plan.json",
       "sha256": "3c8bc2f2fc8aa43b563707b5f252e75cd62e9eaff92cd65b5bfa542afac1f28f",
       "name": "temporal_quantity_input_after_curvature_20261029",
@@ -5577,13 +5447,6 @@
         "LocalHintOrderBookVAE"
       ],
       "path": "model/autoencoder/shape_mass_vae.py"
-    },
-    {
-      "name": "SparseAddressOrderBookVAE",
-      "bases": [
-        "TimeLayoutOrderBookVAE"
-      ],
-      "path": "model/autoencoder/sparse_address_vae.py"
     },
     {
       "name": "TemporalQuantityInputOrderBookVAE",

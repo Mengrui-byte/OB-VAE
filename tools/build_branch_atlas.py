@@ -54,9 +54,7 @@ def profiles_for(p,key,step):
 
 def weight_for(p,key,step):
     parent=p.parent;paths=[]
-    if 'sparse_address_diagnostic' in str(p) and (parent/'model.pt').is_file():return rel(parent/'model.pt')
     if p.name=='results.json' and re.fullmatch(r'k(4|16)_depth8',key):paths.append(parent/key.split('_')[0]/'final.pt')
-    if 'sparse_address_diagnostic' in str(p):paths.append(parent/'model.pt')
     if p.name=='metrics.jsonl':paths.extend([parent/'best_quantity.pt',parent/'best_val.pt',parent/'last.pt'])
     elif p.name in ['results.json','comparison.json']:paths.extend([parent/key/'final.pt'])
     elif p.name.startswith('depth'):paths.append(parent/'final.pt')
@@ -124,7 +122,7 @@ def scan(node):
                 if not m:continue
                 if a.get('split') in ['train','seen','training']:continue
                 parsed=re.search(r'(?:step|depth)(\d+)',name);step=d.get('step',a.get('step',int(parsed[1]) if parsed else None))
-                if step==0 and node['id']!='sparse':continue
+                if step==0:continue
                 lane=key or p.parent.name
                 if node['id']=='vq' and lane in ['continuous','original','reference']:continue
                 window=16 if node['id'] in ['dual','cross','continuous','vq','matrix16','joint4096'] else 256
@@ -132,7 +130,7 @@ def scan(node):
                     EXCLUDED.append(dict(path=rel(p),reason='Gaussian8192 candidate is not the canonical16 Q1 windows; not ranked as that test protocol'))
                     continue
                 c=dict(family=node['id'],cohort=root,lane=lane,path=rel(p),selector=key or ('result' if 'result' in d else ''),step=step,epoch=None,**m,
-                       window_minutes=window,period=['2025-01-01','2025-04-01'],kind='diagnostic' if node['id']=='sparse' else 'test',
+                       window_minutes=window,period=['2025-01-01','2025-04-01'],kind='test',
                        profile=profiles_for(p,key,step),weight=weight_for(p,key,step),raw=d if not key else a)
                 candidates.append(c)
     # Canonical native largest-common positive endpoints per cohort. Old final and depth records remain valid endpoints.
@@ -205,7 +203,6 @@ ARCH={
 'log_input':[('Observed full256','physical quantity / log1p contrast'),('Original16 + contrast13 channels','zero-initialized input adapter'),('frame1 encoder','same original temporal layout'),('Single Gaussian Z','B x 64 x 128'),('GELU residual + dual decoders','loss curve/strength is a separate factor')],
  'temporal_input':[('Observed full256','current and past window frames'),('Temporal quantity context','lag1/4; exact-price or rank alignment'),('29 original + 6 context channels','zero-initialized 32x6x1 input adapter'),('Single encoder / Gaussian','B x 64 x 128'),('Unchanged GELU and dual decoders','implementation / preflight only; no result')],
 'fourier':[('Observed full256','standalone Fourier package'),('Log-quantity input + frame1 encoder','single Gaussian 64 x 128'),('Dual decoders + original GELU path','same shared Z; no external runtime imports'),('Spectral quantity residual','off / local / 64-bin / 1153-bin FNO'),('Quantity logit correction','complex spectral multipliers + local path'),('Ordered price / nonnegative quantity','ongoing common-checkpoint comparison')],
-'sparse':[('Observed full256','diagnostic content encoder'),('Price latent + explicit sparse content','per-window quantity addresses / values'),('Fixed 8192 scalar allocation','m3072 leaves 8 price channels'),('Neural price + sparse reconstruction','engineered route; not pure Gaussian'),('Diagnostic book','do not compare as native model success')],
 }
 
 
@@ -417,10 +414,10 @@ def render():
             if terminal:
                 e=min(terminal,key=lambda x:x['quantity'])
                 md+=f"\n## 同预算共同终点参考\n\n该分支保留的共同终点评估中，最低挂量误差点为`{e['cohort']}/{e['lane']}`，step={e['step']}，挂量RMSE={e['quantity']:.5f} BTC、价格RMSE={e['price']:.4f} USDT。它与回顾性最低误差检查点是两个选型口径；不同来源或测试协议不能据此直接作因果比较。\n"
-        md+='\n## 所有保留候选与比较边界\n\n![误差可视化](metrics.png)\n\n图中最多展示10个低挂量误差点，只能在相同口径内比较；所有候选均保留在[candidates.json](candidates.json)。0步初始化不参与已训练分支排名；显式稀疏地址诊断单独标明。历史参考/未压缩模型不冒充压缩方案结果；训练拟合、合成移动峰和已见窗口不混入测试排名。历史2025Q1已重复查看，不称独立确认。\n'
+        md+='\n## 所有保留候选与比较边界\n\n![误差可视化](metrics.png)\n\n图中最多展示10个低挂量误差点，只能在相同口径内比较；所有候选均保留在[candidates.json](candidates.json)。0步初始化不参与已训练分支排名；历史参考/未压缩模型不冒充压缩方案结果；训练拟合、合成移动峰和已见窗口不混入测试排名。历史2025Q1已重复查看，不称独立确认。\n'
         (directory/'README.md').write_text(md)
     (DOC/'summary.json').write_text(json.dumps(dict(as_of=NOW,selection_policy='Minimum quantity RMSE per protocol; all positive recorded checkpoints, with maximum-common endpoints reported separately; price/F1/dynamics and all candidates retained; no global capacity ranking.',records=records),ensure_ascii=False,indent=2))
-    index=f'''# 各模型分支最佳已记录结果与结构\n\n截至{NOW}。共{len(NODES)}个研究分支。每个分支给出模型结构SVG/Mermaid、实际检查点配置、各测试口径最佳点、原始指标、权重SHA256及可用的完整2048档重建图。\n\n## 如何理解“最佳”\n\n- 主规则是**同分支、同评估口径下最低挂量RMSE**，并列价格、大单召回/精确率/F1与挂量动态相关；这与当前main为综合F1选型的规则不同。不能把低挂量RMSE理解为整簿已经恢复好。\n- 测试时段、窗口长度、窗口数、有效计数和目标RMS不同的实验分组报告，不构造跨容量/跨口径总冠军。\n- 每个分支查找所有已保存正步数检查点的最低挂量误差，包含中间点；这是回顾性选型，不代表同预算结构改进或独立确认。最大共同端点另外标记并报告；早期epoch历史按真实测试记录选点并核对权重epoch。\n- 若控制组更好，赢家仍明确标成控制，不将其说成新增结构的收益。分支仍在训练时，结果为共同阶段点。\n- **未压缩完整256分钟Cross**与**唯一Gaussian8192**是不同容量；历史16分钟又是不同任务。稀疏地址诊断不是原生Gaussian神经模型。\n- 没有正式测试结果的分支写明“暂无”，只有结构/预检证据；缺少最佳点对应预测时仅绘制指标，不挪用其他权重的订单簿。\n\n## 分支总览\n\n| 分支 | 最小挂量误差代表 | 窗口/测试数 | 价格RMSE USDT | 挂量RMSE BTC | ≥100召回 | 结构/结果 |\n|---|---|---|---:|---:|---:|---|\n'''
+    index=f'''# 各模型分支最佳已记录结果与结构\n\n截至{NOW}。共{len(NODES)}个研究分支。每个分支给出模型结构SVG/Mermaid、实际检查点配置、各测试口径最佳点、原始指标、权重SHA256及可用的完整2048档重建图。\n\n## 如何理解“最佳”\n\n- 主规则是**同分支、同评估口径下最低挂量RMSE**，并列价格、大单召回/精确率/F1与挂量动态相关；这与当前main为综合F1选型的规则不同。不能把低挂量RMSE理解为整簿已经恢复好。\n- 测试时段、窗口长度、窗口数、有效计数和目标RMS不同的实验分组报告，不构造跨容量/跨口径总冠军。\n- 每个分支查找所有已保存正步数检查点的最低挂量误差，包含中间点；这是回顾性选型，不代表同预算结构改进或独立确认。最大共同端点另外标记并报告；早期epoch历史按真实测试记录选点并核对权重epoch。\n- 若控制组更好，赢家仍明确标成控制，不将其说成新增结构的收益。分支仍在训练时，结果为共同阶段点。\n- **未压缩完整256分钟Cross**与**唯一Gaussian8192**是不同容量；历史16分钟又是不同任务。\n- 没有正式测试结果的分支写明“暂无”，只有结构/预检证据；缺少最佳点对应预测时仅绘制指标，不挪用其他权重的订单簿。\n\n## 分支总览\n\n| 分支 | 最小挂量误差代表 | 窗口/测试数 | 价格RMSE USDT | 挂量RMSE BTC | ≥100召回 | 结构/结果 |\n|---|---|---|---:|---:|---:|---|\n'''
     for n,r in zip(NODES,records):
         if r['winners']:
             c=r['winners'][0]['candidate'];index+=f"| {n['name']} | {c['lane']} | {c['window_minutes']}分钟×{c['windows']} | {c['price']:.4f} | {c['quantity']:.5f} | {('未记录' if c['recall'] is None else format(c['recall'],'.2%'))} | [详细页]({n['id']}/README.md) |\n"
@@ -428,11 +425,11 @@ def render():
     index+='\n候选范围以谱系中的代表实验为起点，并补入相同模型家族的后续损失/数据/精度控制；例如LocalHint的round001–003、RegionalPhase的round007–011、Direct的强度短对照，以及Unified8192的损失/数据量控制。只有原始测试口径清楚的结果进入排名。\n'
     index+='\n## 资料与复现\n\n[完整谱系](../MODEL_LINEAGE.md) · [机器可读结果索引](summary.json)。所有源指标与模型代码历史文件保持不变；图表直接读取已保存预测，本次不训练、不读取保留集、不重新做全量测试。原项目目录在本机为`/home/mengrui/e2e_strategy/OBreconstuction`。\n'
     index+='\n## 重建文档\n\n在可访问原实验的机器上，安装`pip install -e \".[reports]\"`，设置`OBVAE_SOURCE=/path/to/OBreconstuction`后运行`python tools/build_branch_atlas.py --render`。脚本只读取保存结果和权重元数据，不训练或重新评价测试集。\n'
-    index += '\n## 当前8192主线共享骨干\n\n这部分适用于Unified/frame1及其后续紧凑模型，不套用到历史Global/Local、V4/V8或稀疏地址诊断：\n\n- 输入特征通常为基础4通道、双侧差分6通道、六尺度负LoG6通道；新增输入适配另列。空间卷积以四次stride2把2048档降到128个粗区域，主通道64/128/192/256；同帧买卖侧Cross-Attention后汇总。\n- patch4按4帧打包后在64个时间token上处理；frame1在256帧上做时间注意力，每帧32个Gaussian坐标重排为64×128。两者只有一个Gaussian；β=0/不采样的实验是确定性重建，不等于已验证先验生成质量。\n- 两个Decoder读取同一个Z，先还原每分钟256维特征，再产生双侧128区域×16维种子。空间Decoder四级nearest上采样与卷积，主通道192/128/64/32。\n- 价格使用mid、正spread和正gap累加；挂量经q0·Softplus保持非负，并可使用预测价格几何条件。首帧mid锚点、mask/tick/相对时间是元数据，不是Encoder特征跳接。\n- 细档位残差、形状/总量、直接MLP、全窗注意力及FNO都是这个共同骨干上的独立研究方向；实际启用开关、数值策略和历史配置见各分支权重JSON。\n'
+    index += '\n## 当前8192主线共享骨干\n\n这部分适用于Unified/frame1及其后续紧凑模型，不套用到历史Global/Local、V4/V8：\n\n- 输入特征通常为基础4通道、双侧差分6通道、六尺度负LoG6通道；新增输入适配另列。空间卷积以四次stride2把2048档降到128个粗区域，主通道64/128/192/256；同帧买卖侧Cross-Attention后汇总。\n- patch4按4帧打包后在64个时间token上处理；frame1在256帧上做时间注意力，每帧32个Gaussian坐标重排为64×128。两者只有一个Gaussian；β=0/不采样的实验是确定性重建，不等于已验证先验生成质量。\n- 两个Decoder读取同一个Z，先还原每分钟256维特征，再产生双侧128区域×16维种子。空间Decoder四级nearest上采样与卷积，主通道192/128/64/32。\n- 价格使用mid、正spread和正gap累加；挂量经q0·Softplus保持非负，并可使用预测价格几何条件。首帧mid锚点、mask/tick/相对时间是元数据，不是Encoder特征跳接。\n- 细档位残差、形状/总量、直接MLP、全窗注意力及FNO都是这个共同骨干上的独立研究方向；实际启用开关、数值策略和历史配置见各分支权重JSON。\n'
     (DOC/'README.md').write_text(index)
     enrich_markdown(records)
     write_html(records)
-    print('COMPLETE',len(records),sum(bool(r['winners']) for r in records),'branches with result',flush=True)
+    print('COMPLETE',len(records),sum(bool(r["winners"]) for r in records),'branches with result',flush=True)
 
 
 def write_html(records):
@@ -456,7 +453,7 @@ def write_html(records):
             detail+=f'<p><a href="{n["id"]}/{w["evidence"]}">原始指标证据</a> · <a href="{n["id"]}/best_{i}_checkpoint.json">实际检查点配置与权重哈希</a></p>'
         detail+='</details>';parts.append(detail)
     page='''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>各模型分支最佳结果与结构</title><style>*{box-sizing:border-box}body{margin:0;background:#f1f6f9;color:#183345;font:15px/1.8 system-ui,sans-serif}main{max-width:1350px;margin:auto;padding:30px 20px}h1{font-size:31px}h2{font-size:22px}a{color:#146e98}.grid{display:grid;grid-template-columns:1fr 1.2fr;gap:25px}img{width:100%;height:auto}.reconstruction{margin-top:20px}.callout{background:#fff3da;padding:16px;border-left:4px solid #be862b}.branch{padding:22px;background:white;border:1px solid #dce6ed;border-radius:12px;margin:20px 0}summary{cursor:pointer;font-size:19px;font-weight:650}summary small{display:block;font-size:13px;font-weight:400;color:#5c7483}input{padding:10px;font:inherit;width:100%;border:1px solid #bdd0dc;border-radius:6px}.scroll{overflow:auto}table{width:100%;border-collapse:collapse}td,th{padding:8px;text-align:right;border-bottom:1px solid #dce6ed}.note{font-size:12px;color:#5c7483}@media(max-width:800px){.grid{grid-template-columns:1fr}main{padding:15px 10px}.branch{padding:15px}}</style></head><body><main><h1>每个模型分支的最佳已记录结果与结构</h1>'''
-    page+=f'<p>截至{esc(NOW)} · 25个研究分支 · 23个有历史重建结果 · 2个仅预检/审计。</p><p class="callout">最佳按同评估口径内挂量RMSE定义，回顾性选取已保存检查点；价格、大单和动态指标同时保留。16分钟/256分钟、不同测试窗口数及不同容量不能混排。稀疏地址属于工程诊断。当前main的综合F1基线选择是另一种口径。</p><p><a href="README.md">完整Markdown总表</a> · <a href="summary.json">机器可读汇总</a></p><input id="search" placeholder="搜索模型分支">'+''.join(parts)
+    page+=f'<p>截至{esc(NOW)} · {len(records)}个研究分支 · {sum(bool(r["winners"]) for r in records)}个有历史重建结果 · {sum(not bool(r["winners"]) for r in records)}个仅预检/审计。</p><p class="callout">最佳按同评估口径内挂量RMSE定义，回顾性选取已保存检查点；价格、大单和动态指标同时保留。16分钟/256分钟、不同测试窗口数及不同容量不能混排。当前main的综合F1基线选择是另一种口径。</p><p><a href="README.md">完整Markdown总表</a> · <a href="summary.json">机器可读汇总</a></p><input id="search" placeholder="搜索模型分支">'+''.join(parts)
     page+='''</main><script>document.getElementById('search').addEventListener('input',function(){let q=this.value.toLowerCase();document.querySelectorAll('.branch').forEach(e=>e.hidden=!e.dataset.search.toLowerCase().includes(q));});</script></body></html>'''
     (DOC/'index.html').write_text(page)
 
