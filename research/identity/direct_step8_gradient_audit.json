@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "input_weight_gradient_L2": 0.001525413361378014,
+  "output_weight_gradient_L2": 0.05015827715396881,
+  "scope": "Post global clipping, before Adam; first input gradient0 is expected for zero last layer."
+}

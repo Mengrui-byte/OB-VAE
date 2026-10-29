@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "input": [
+    1,
+    256,
+    2,
+    2048,
+    2
+  ],
+  "mu": [
+    1,
+    64,
+    128
+  ],
+  "logvar": [
+    1,
+    64,
+    128
+  ],
+  "z": [
+    1,
+    64,
+    128
+  ],
+  "output": [
+    1,
+    256,
+    2,
+    2048
+  ],
+  "quantity_seed": [
+    1,
+    256,
+    2,
+    128,
+    16
+  ],
+  "shared_z": true,
+  "decode_only_exact": true,
+  "posterior_count": 1,
+  "teacher_not_used": true
+}

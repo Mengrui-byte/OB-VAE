@@ -1,0 +1,12 @@
+{
+  "gelu512.pt": {
+    "sha256": "f4c74345cb8886ab62d09613f9313b6cb26013c7530853933838f7b43dcdabc2",
+    "bytes": 82906763,
+    "role": "inference model; training state deliberately omitted"
+  },
+  "identity512.pt": {
+    "sha256": "c22ad72f55bf980bd34a070b0b3015d6e9d0bea34e8594682c4dfbee22896836",
+    "bytes": 82907915,
+    "role": "inference model; training state deliberately omitted"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "step": 512,
+  "rows": [
+    {
+      "lane": "identity",
+      "user_criteria_pass": false,
+      "quality_guard_pass": false,
+      "equal_window_count": true,
+      "score": 0.7682242990654206,
+      "recall100": 0.7682242990654206,
+      "precision100": 0.46598639455782315,
+      "false_positives": 471,
+      "price_rmse": 30.33501195158303,
+      "price_limit": 82.17456597783033,
+      "mid_delta_rmse": 11.468103337705292,
+      "mid_delta_limit": 22.040599589131354,
+      "quantity_rmse": 2.1169361578334063,
+      "quantity_limit": 2.3973941907786807,
+      "note": "Developmentgateonly. Completionadditionally requiresactual8192/no-bypassarchitectureaudit andfrozen-candidateconfirmation; trainingfitcannotcount.",
+      "pass": false
+    },
+    {
+      "lane": "gelu",
+      "user_criteria_pass": false,
+      "quality_guard_pass": false,
+      "equal_window_count": true,
+      "score": 0.7738317757009345,
+      "recall100": 0.7738317757009345,
+      "precision100": 0.47206385404789053,
+      "false_positives": 463,
+      "price_rmse": 30.33501195158303,
+      "price_limit": 82.17456597783033,
+      "mid_delta_rmse": 11.468103337705292,
+      "mid_delta_limit": 22.040599589131354,
+      "quantity_rmse": 2.112681977457651,
+      "quantity_limit": 2.3973941907786807,
+      "note": "Developmentgateonly. Completionadditionally requiresactual8192/no-bypassarchitectureaudit andfrozen-candidateconfirmation; trainingfitcannotcount.",
+      "pass": false
+    }
+  ],
+  "frozen_weights_and_historical_Adam_exact": true,
+  "native_price_exact": true,
+  "sampler_and_exposures_exact": true,
+  "only_hidden_activation_changes": true
+}

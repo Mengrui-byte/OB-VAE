@@ -1,0 +1,4 @@
+{
+  "error": "Initial test setup used project-relative paths with the staged repository as cwd; files were placed in an unintended nested staging directory. No model execution succeeded and no source experiment was changed.",
+  "fix": "Moved the single new test module to repository tests, removed empty accidental directories, used explicit working directories."
+}

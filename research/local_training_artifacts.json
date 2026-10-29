@@ -1,0 +1,18 @@
+{
+  "source.pt": {
+    "bytes": 141361472,
+    "sha256": "9b8178e118e0b2b5416435abd6d95d3e6f8fffe3b94d01acad8b844deea01e7b"
+  },
+  "teacher.pt": {
+    "bytes": 19772480,
+    "sha256": "766753e00bdc73a2b92fb3de011485abce6aa7f89ec14cde5c2e16f33728fcbd"
+  },
+  "gelu512_training.pt": {
+    "bytes": 248399472,
+    "sha256": "56ce8bbcb791367ea7ed07fe2bda969d8ec121e5c6510f881bc2571520ecc7df"
+  },
+  "identity512_training.pt": {
+    "bytes": 248399472,
+    "sha256": "ba55fe6236b02e127807092eed6bf6f775b6106682b3d0801c7561f32ba3a702"
+  }
+}

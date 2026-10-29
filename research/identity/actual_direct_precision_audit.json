@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "actual_dtypes": {
+    "encoder_mu": "torch.float32",
+    "price": "torch.float32",
+    "quantity": "torch.float32",
+    "direct_input": "torch.float32",
+    "direct_output": "torch.float32"
+  }
+}

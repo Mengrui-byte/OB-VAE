@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "actual_full256_unique8192Z": true,
+  "full16_native_source_replay_exact": true,
+  "same_source_and_extra_weights": true,
+  "same3Adam_plus_empty_fourth": true,
+  "first_batch_old_relative_objective_exact": true,
+  "direct_gradients_and_actual_FP32": true,
+  "only_declared_hidden_activation_changes": true,
+  "independent_test_used": false
+}

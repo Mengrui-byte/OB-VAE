@@ -1,0 +1,408 @@
+{
+  "result": {
+    "windows": 32,
+    "metrics": {
+      "price_usdt": {
+        "count": 33554432,
+        "rmse": 21.76635770714006,
+        "mae": 15.0852876908579,
+        "target_rms": 46232.10879314855,
+        "prediction_rms": 46235.047189792356,
+        "correlation": 0.9999994646617009,
+        "centered_amplitude_ratio": 0.9999917828742041,
+        "skill_vs_zero": 0.9999997783416392
+      },
+      "quantity_btc": {
+        "count": 33554432,
+        "rmse": 9.329202262848499,
+        "mae": 1.6462722983191775,
+        "target_rms": 8.459735373076718,
+        "prediction_rms": 9.043027228789711,
+        "correlation": 0.42133446065081537,
+        "centered_amplitude_ratio": 1.0694610690033246,
+        "skill_vs_zero": -0.216117285710705
+      },
+      "spatial_slope_1_levels_usdt_per_level": {
+        "count": 33538048,
+        "rmse": 0.09670134283368524,
+        "mae": 0.05597623961254497,
+        "target_rms": 0.1719239904690065,
+        "prediction_rms": 0.1431767320097817,
+        "correlation": 0.24551261117058937,
+        "centered_amplitude_ratio": 0.3784122773210768,
+        "skill_vs_zero": 0.6836323678110283
+      },
+      "spatial_slope_1_within_frame_variation": {
+        "count": 33538048,
+        "rmse": 0.09577456121973867,
+        "mae": 0.0566619688385245,
+        "target_rms": 0.09482481450618441,
+        "prediction_rms": 0.029948769931004343,
+        "correlation": 0.12604512120791792,
+        "centered_amplitude_ratio": 0.3158326234221223,
+        "skill_vs_zero": -0.020131923416387698
+      },
+      "spatial_slope_16_levels_usdt_per_level": {
+        "count": 33292288,
+        "rmse": 0.03767435113044558,
+        "mae": 0.026075064366073923,
+        "target_rms": 0.14678719990722552,
+        "prediction_rms": 0.14301458047614593,
+        "correlation": 0.567373562007731,
+        "centered_amplitude_ratio": 0.8629044346925429,
+        "skill_vs_zero": 0.9341258248389979
+      },
+      "spatial_slope_16_within_frame_variation": {
+        "count": 33292288,
+        "rmse": 0.03528799829266956,
+        "mae": 0.02499878970505408,
+        "target_rms": 0.03304823181919823,
+        "prediction_rms": 0.02954907831349383,
+        "correlation": 0.3686931922190092,
+        "centered_amplitude_ratio": 0.8941197966400223,
+        "skill_vs_zero": -0.1401384466447526
+      },
+      "spatial_slope_64_levels_usdt_per_level": {
+        "count": 32505856,
+        "rmse": 0.029243764210936662,
+        "mae": 0.02050376482800439,
+        "target_rms": 0.14503895930792304,
+        "prediction_rms": 0.14185193614483493,
+        "correlation": 0.6787888319647777,
+        "centered_amplitude_ratio": 0.9170416453820416,
+        "skill_vs_zero": 0.9593465696569888
+      },
+      "spatial_slope_64_within_frame_variation": {
+        "count": 32505856,
+        "rmse": 0.026097495228278988,
+        "mae": 0.018908142427809967,
+        "target_rms": 0.02613500596017032,
+        "prediction_rms": 0.026421257551159958,
+        "correlation": 0.506895100916715,
+        "centered_amplitude_ratio": 1.0109528037386286,
+        "skill_vs_zero": 0.0028684755592620625
+      },
+      "spatial_slope_256_levels_usdt_per_level": {
+        "count": 29360128,
+        "rmse": 0.02245771744286543,
+        "mae": 0.015342996119297887,
+        "target_rms": 0.14456935725358613,
+        "prediction_rms": 0.14006343486174494,
+        "correlation": 0.7833516225423142,
+        "centered_amplitude_ratio": 0.8477902580659364,
+        "skill_vs_zero": 0.9758688107105558
+      },
+      "spatial_slope_256_within_frame_variation": {
+        "count": 29360128,
+        "rmse": 0.017892799514855125,
+        "mae": 0.012719918554846584,
+        "target_rms": 0.022824325763002765,
+        "prediction_rms": 0.02013647365981302,
+        "correlation": 0.6595662001464456,
+        "centered_amplitude_ratio": 0.8822373930735499,
+        "skill_vs_zero": 0.38544511221604205
+      },
+      "temporal_price_1_minutes_usdt_per_minute": {
+        "count": 33423360,
+        "rmse": 9.939544555686135,
+        "mae": 6.82221627559859,
+        "target_rms": 28.97097022466902,
+        "prediction_rms": 29.96115394467724,
+        "correlation": 0.9436556619366786,
+        "centered_amplitude_ratio": 1.0341797377882556,
+        "skill_vs_zero": 0.8822917534748836
+      },
+      "temporal_mid_1_minutes_usdt_per_minute": {
+        "count": 8160,
+        "rmse": 7.4965634731599575,
+        "mae": 5.291516531352342,
+        "target_rms": 31.114031113142115,
+        "prediction_rms": 30.557583135048947,
+        "correlation": 0.9706086300652996,
+        "centered_amplitude_ratio": 0.9821167034394261,
+        "skill_vs_zero": 0.9419487091001052
+      },
+      "temporal_shape_1_minutes_after_mid_removal": {
+        "count": 33423360,
+        "rmse": 6.925612143731585,
+        "mae": 4.206675897326541,
+        "target_rms": 5.786775771327907,
+        "prediction_rms": 5.059965979005026,
+        "correlation": 0.18998612451218627,
+        "centered_amplitude_ratio": 0.8744016072726972,
+        "skill_vs_zero": -0.43232978525481114
+      },
+      "temporal_log_quantity_1_minutes": {
+        "count": 33423360,
+        "rmse": 0.8698919676613033,
+        "mae": 0.527955713791431,
+        "target_rms": 0.8499383548236277,
+        "prediction_rms": 0.30008274875289975,
+        "correlation": 0.10925784109656074,
+        "centered_amplitude_ratio": 0.3530641271501097,
+        "skill_vs_zero": -0.04750423046666907
+      },
+      "temporal_price_4_minutes_usdt_per_minute": {
+        "count": 33030144,
+        "rmse": 3.327420218143543,
+        "mae": 2.2500631565994946,
+        "target_rms": 14.555283484530767,
+        "prediction_rms": 15.316876543264375,
+        "correlation": 0.9764708329110188,
+        "centered_amplitude_ratio": 1.0523271300993176,
+        "skill_vs_zero": 0.9477394512523907
+      },
+      "temporal_mid_4_minutes_usdt_per_minute": {
+        "count": 8064,
+        "rmse": 2.169178060216621,
+        "mae": 1.5356053930816105,
+        "target_rms": 15.308213996019948,
+        "prediction_rms": 15.43135785802692,
+        "correlation": 0.9900734272287368,
+        "centered_amplitude_ratio": 1.0080462568734365,
+        "skill_vs_zero": 0.9799210334122662
+      },
+      "temporal_shape_4_minutes_after_mid_removal": {
+        "count": 33030144,
+        "rmse": 2.4730292533487788,
+        "mae": 1.4808321139295608,
+        "target_rms": 2.094498213119194,
+        "prediction_rms": 1.7604453077011368,
+        "correlation": 0.185802596718029,
+        "centered_amplitude_ratio": 0.8405106830123856,
+        "skill_vs_zero": -0.39411473961842325
+      },
+      "temporal_log_quantity_4_minutes": {
+        "count": 33030144,
+        "rmse": 0.21832510471638564,
+        "mae": 0.13332283780452706,
+        "target_rms": 0.21299008272660414,
+        "prediction_rms": 0.07642557843769907,
+        "correlation": 0.10873007070801975,
+        "centered_amplitude_ratio": 0.35882221152926463,
+        "skill_vs_zero": -0.05072384889586212
+      },
+      "temporal_price_8_minutes_usdt_per_minute": {
+        "count": 32505856,
+        "rmse": 1.940108832166248,
+        "mae": 1.2882297397019338,
+        "target_rms": 10.53928067761719,
+        "prediction_rms": 11.029715807187369,
+        "correlation": 0.9848469468571811,
+        "centered_amplitude_ratio": 1.0465365973575593,
+        "skill_vs_zero": 0.9661132245912959
+      },
+      "temporal_mid_8_minutes_usdt_per_minute": {
+        "count": 7936,
+        "rmse": 1.2024595316235842,
+        "mae": 0.8385436150166589,
+        "target_rms": 10.943222543120047,
+        "prediction_rms": 11.078387949561195,
+        "correlation": 0.9941135968337013,
+        "centered_amplitude_ratio": 1.0123527875003677,
+        "skill_vs_zero": 0.987926019332939
+      },
+      "temporal_shape_8_minutes_after_mid_removal": {
+        "count": 32505856,
+        "rmse": 1.4474792068282363,
+        "mae": 0.8553036744399864,
+        "target_rms": 1.268920433679328,
+        "prediction_rms": 0.9839971808257887,
+        "correlation": 0.19349174336151553,
+        "centered_amplitude_ratio": 0.775466483517572,
+        "skill_vs_zero": -0.30123544755871934
+      },
+      "temporal_log_quantity_8_minutes": {
+        "count": 32505856,
+        "rmse": 0.10929090795496862,
+        "mae": 0.06688582806844268,
+        "target_rms": 0.10655012615262376,
+        "prediction_rms": 0.038537211744524735,
+        "correlation": 0.10880553172231208,
+        "centered_amplitude_ratio": 0.36168129579462494,
+        "skill_vs_zero": -0.05210753617122976
+      },
+      "rigid_initial_book_price_baseline": {
+        "count": 33554432,
+        "rmse": 13.094360828977758,
+        "mae": 7.628743161156308,
+        "target_rms": 46232.10879314855,
+        "prediction_rms": 46232.657455189634,
+        "correlation": 0.999999804902778,
+        "centered_amplitude_ratio": 1.0000818128170463,
+        "skill_vs_zero": 0.9999999197802689
+      }
+    },
+    "mid_direction": {
+      "1": {
+        "correct": 7181,
+        "nonzero_changes": 8071,
+        "accuracy": 0.8897286581588403
+      },
+      "4": {
+        "correct": 7478,
+        "nonzero_changes": 8050,
+        "accuracy": 0.928944099378882
+      },
+      "8": {
+        "correct": 7531,
+        "nonzero_changes": 7927,
+        "accuracy": 0.9500441528951684
+      }
+    },
+    "tail_levels": 31822,
+    "tail_log_rmse": 2.9155110859096256,
+    "tail_quantity_rmse": 156.36324586665967,
+    "tail_target_mean": 195.74091546688783,
+    "tail_prediction_mean": 89.7659632824721,
+    "target_max": 1254.1219482421875,
+    "prediction_max": 1199.38232421875,
+    "thresholds": {
+      "10": {
+        "tp": 28245,
+        "fp": 76668,
+        "fn": 618508,
+        "precision": 0.26922307054416517,
+        "recall": 0.04367200461381702
+      },
+      "100": {
+        "tp": 11106,
+        "fp": 23505,
+        "fn": 20716,
+        "precision": 0.320880644881685,
+        "recall": 0.3490038338256552
+      }
+    },
+    "evaluation_precision": "fp32",
+    "window_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "quantity_strata": [
+      {
+        "lower_BTC": 0.0,
+        "upper_BTC": 0.01,
+        "count": 8840387,
+        "MAE_BTC": 0.8723240763825946,
+        "RMSE_BTC": 4.828528342507662,
+        "target_RMS_BTC": 0.00423128763055218,
+        "normalized_RMSE": 1141.1486913919728,
+        "log1p_RMSE": 0.6114055581402358,
+        "target_mean_BTC": 0.0035421114003585438,
+        "prediction_mean_BTC": 0.8758661784542637,
+        "quantity_mass_ratio": 247.27234111428731,
+        "within20percent": 5.655860993415786e-07,
+        "within_factor2": 2.1492271774979985e-06
+      },
+      {
+        "lower_BTC": 0.01,
+        "upper_BTC": 0.1,
+        "count": 8879510,
+        "MAE_BTC": 0.9930900959784156,
+        "RMSE_BTC": 6.417816232470389,
+        "target_RMS_BTC": 0.04729245365263125,
+        "normalized_RMSE": 135.70486910258492,
+        "log1p_RMSE": 0.6400494567351213,
+        "target_mean_BTC": 0.039867551015891824,
+        "prediction_mean_BTC": 1.0329564430338973,
+        "quantity_mass_ratio": 25.909703924932458,
+        "within20percent": 5.14668039114771e-05,
+        "within_factor2": 0.0009945368607051515
+      },
+      {
+        "lower_BTC": 0.1,
+        "upper_BTC": 1.0,
+        "count": 9376099,
+        "MAE_BTC": 1.0564461628139594,
+        "RMSE_BTC": 8.730868848707157,
+        "target_RMS_BTC": 0.4395940957384852,
+        "normalized_RMSE": 19.861205901867155,
+        "log1p_RMSE": 0.563337147098477,
+        "target_mean_BTC": 0.36703329536664253,
+        "prediction_mean_BTC": 1.3463564112835285,
+        "quantity_mass_ratio": 3.6682132882211826,
+        "within20percent": 0.09360438706971844,
+        "within_factor2": 0.32667359847629596
+      },
+      {
+        "lower_BTC": 1.0,
+        "upper_BTC": 10.0,
+        "count": 5811683,
+        "MAE_BTC": 2.1603311452745317,
+        "RMSE_BTC": 8.423532702235015,
+        "target_RMS_BTC": 3.6206928577468784,
+        "normalized_RMSE": 2.326497450401495,
+        "log1p_RMSE": 0.7279735186867343,
+        "target_mean_BTC": 3.0121510050077243,
+        "prediction_mean_BTC": 1.5909344124094416,
+        "quantity_mass_ratio": 0.5281721964684044,
+        "within20percent": 0.13269409222767312,
+        "within_factor2": 0.4159450885397569
+      },
+      {
+        "lower_BTC": 10.0,
+        "upper_BTC": 100.0,
+        "count": 614931,
+        "MAE_BTC": 20.58911246290034,
+        "RMSE_BTC": 26.852724508249736,
+        "target_RMS_BTC": 27.70679504077486,
+        "normalized_RMSE": 0.9691746904949408,
+        "log1p_RMSE": 2.1326762769375462,
+        "target_mean_BTC": 22.557350833052023,
+        "prediction_mean_BTC": 2.70337129020884,
+        "quantity_mass_ratio": 0.11984436072376643,
+        "within20percent": 0.0074398591061436165,
+        "within_factor2": 0.018374419243785075
+      },
+      {
+        "lower_BTC": 100.0,
+        "upper_BTC": null,
+        "count": 31822,
+        "MAE_BTC": 112.7681763136649,
+        "RMSE_BTC": 156.36324586665967,
+        "target_RMS_BTC": 241.1993532266339,
+        "normalized_RMSE": 0.648273901960835,
+        "log1p_RMSE": 2.9155110859096256,
+        "target_mean_BTC": 195.74091546688783,
+        "prediction_mean_BTC": 89.7659632824721,
+        "quantity_mass_ratio": 0.45859580797586086,
+        "within20percent": 0.31849035258626107,
+        "within_factor2": 0.3774118534347307
+      }
+    ],
+    "quantity_strata_schema_version": 2,
+    "quantity_strata_membership": "float32 target boundaries, identical to Torch training; error accumulation float64"
+  },
+  "additional_steps": 512,
+  "source_steps": 25088
+}

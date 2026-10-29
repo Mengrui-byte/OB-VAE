@@ -1,0 +1,79 @@
+{
+  "state": "complete",
+  "lower_BTC": [
+    0.0,
+    0.01,
+    0.1,
+    1.0,
+    10.0,
+    100.0
+  ],
+  "counts": [
+    2531173,
+    2186595,
+    2184039,
+    1338165,
+    142615,
+    6021
+  ],
+  "RMS_scales_BTC": [
+    0.0044779047307967985,
+    0.0472840202098522,
+    0.4412717188339758,
+    3.522815580004404,
+    24.89547481913624,
+    215.94657900798126
+  ],
+  "training_indices": [
+    0,
+    878,
+    1757,
+    2636,
+    3515,
+    4394,
+    5273,
+    6152
+  ],
+  "scale_floor_BTC": 0.0001,
+  "base_weight": 0.014272049452476506,
+  "weight_calibration_locked": true,
+  "neural_forward_calls": 16,
+  "optimizer_updates": 0,
+  "scope": "Eight fixed training windows only; BF16 neural forward and FP32 loss, zero optimizer updates, no development calibration.",
+  "source_checkpoint_sha256": "05781cc2febf7b26a2efae4031d2de6ef29fd4906fd54f3580c8a1e366262610",
+  "scale_origin_relative": "../quantity_strata_preparation_v2/quantity_calibration.json",
+  "base_mu_gradient_RMS": 3.2046087779681725,
+  "raw_stratified_mu_gradient_RMS": 224.53739308001798,
+  "per_window_gradient_cosines": [
+    0.47797021971108106,
+    0.1296317756389195,
+    0.38404200563031415,
+    0.25445114137486907,
+    0.4922782083485199,
+    0.6009305799401732,
+    0.30896741415887785,
+    -0.06317446030149915
+  ],
+  "student_forward_calls": 8,
+  "teacher_feature_extractions": 8,
+  "source_model_and_teacher_unchanged": true,
+  "actual_raw": [
+    1,
+    256,
+    2,
+    2048,
+    2
+  ],
+  "posterior": [
+    1,
+    64,
+    128
+  ],
+  "output": [
+    1,
+    256,
+    2,
+    2048
+  ],
+  "shared_single_Z": true
+}

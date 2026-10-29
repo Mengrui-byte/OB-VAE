@@ -1,0 +1,4 @@
+{
+  "error": "Two imported tests referenced the original goal controller and a broad test module excluded from the portable baseline.",
+  "fix": "Kept all numerical assertions; routed baseline schema checks to a dedicated portable validator and copied only the raw-batch fixture."
+}

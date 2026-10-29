@@ -1,0 +1,74 @@
+{
+  "train": [
+    "2022-01-01",
+    "2025-01-01"
+  ],
+  "model_config": {
+    "levels": 2048,
+    "quantity_scale": 7.517722085208762,
+    "activation_checkpointing": true
+  },
+  "normalization": {
+    "price_scale": 104.2454906668734,
+    "quantity_scale": 7.517722085208762,
+    "tick_size": 0.01,
+    "fit_windows": 64,
+    "fit_split": "64 selected training windows only,2022-2024",
+    "valid_values": 67108864,
+    "mean_quantity": 1.2229372905278826,
+    "median_gap_ticks": 10.15625,
+    "median_spread_ticks": 9.9609375
+  },
+  "window_size": 256,
+  "stride": 256,
+  "input_shape": [
+    1,
+    256,
+    2,
+    2048,
+    2
+  ],
+  "latent_shape": [
+    1,
+    64,
+    128
+  ],
+  "output_shape": [
+    1,
+    256,
+    2,
+    2048
+  ],
+  "seed": 42,
+  "batch_size": 1,
+  "accumulation": 4,
+  "lr": 0.0001,
+  "clip_grad": 1.0,
+  "steps": 512,
+  "objective": {
+    "price_weight": 1.0,
+    "quantity_weight": 1.0,
+    "log_weight": 1.0,
+    "pair_weight": 0.25,
+    "topk": 16,
+    "shape_weight": 1.0,
+    "mass_weight": 1.0,
+    "w1_weight": 0.5099078269962694,
+    "multiscale_weight": 1.0099852172963266,
+    "multiscale_groups": [
+      8,
+      64
+    ]
+  },
+  "fixed_relative_weight": 0.13141036760364427,
+  "beta": 0.0,
+  "sample": false,
+  "frozen_modules": [
+    "encoder",
+    "price_decoder"
+  ],
+  "test_period": [
+    "2025-01-01",
+    "2025-04-01"
+  ]
+}
