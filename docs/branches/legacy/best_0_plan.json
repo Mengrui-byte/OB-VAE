@@ -1,0 +1,73 @@
+{
+  "run_id": "btc_norm_ab_spatial16x64_20261018_173307",
+  "created": "2026-10-18T17:33:07.854401+08:00",
+  "status": "prepared",
+  "wait_session": "btc_ddp4_bs256_s64_linear_rms_20261018_152715",
+  "npz_dir": "/mnt/Data/mengrui/2048_snapshot_dataset/.training/btc_ddp4_bs256_s64_linear_rms_20261018_152715",
+  "hypothesis": "A first-minute midpoint residual improves order-book reconstruction compared with absolute price RMS under identical valid-level masking.",
+  "execution_order": [
+    "window-anchor",
+    "absolute"
+  ],
+  "epochs_per_arm": 30,
+  "total_epochs_budget": 60,
+  "seed": 42,
+  "gpu_ids": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "train": [
+    "2023-01-01",
+    "2025-01-01"
+  ],
+  "validation": [
+    "2025-01-01",
+    "2025-02-01"
+  ],
+  "window_size": 256,
+  "stride": 64,
+  "batch_size_global": 256,
+  "batch_size_per_rank": 64,
+  "model_architecture": "ae_spatial_pool_v3",
+  "latent_shape_per_sample": [
+    16,
+    64
+  ],
+  "bottleneck": "shared per-time spatial attention pooling; preserves all16 time positions; no token-channel flattening",
+  "latent_elements_per_sample": 1024,
+  "lr": 0.0001,
+  "precision": "bf16",
+  "activation_checkpointing": true,
+  "mask_invalid_levels": true,
+  "quantity_normalization": "unique valid training-minute RMS, shared by both arms",
+  "loss": "valid-level MSE, price and quantity weighted equally after scaling",
+  "comparison_metrics": [
+    "price_rmse_usdt",
+    "quantity_rmse",
+    "near_10_price_rmse_usdt",
+    "spread_rmse_usdt",
+    "adjacent_gap_rmse_usdt"
+  ],
+  "anchor_side_information": "one float32 per window (4 bytes), retained for inverse",
+  "limitations": [
+    "single seed; no robustness claim",
+    "BF16 retained to isolate normalization; sub-tick precision is not established"
+  ],
+  "source_sha256": {
+    "train.py": "6f4cd1a473e533053d7c5287ffb31b3da234c04e09cec3578c4df43b7d7af1d9",
+    "util/dataset.py": "0e6bbc816fd4cee745762ebf841521f1b37ed1e70c8f3bc70d06b522ec22496e",
+    "util/scaling.py": "9ddd8db0e5a1f3f5d3d5353a75bba449370ccc55c10669f5e68515fd7a9890f1",
+    "util/export_parallel.py": "1a8ea225cb8db0d9e44fb8c25cb2ea5877e41d1669510566c01a916ff35ea72a",
+    "util/normalization.py": "3781f96cafd7e69444802a343e6452aa931d4273bb9107fdd68e34e91ee43162",
+    "model/conv.py": "784caf1149ec2258e9e6b16b682b68be973a1b64c93c3134155b13017a64e520",
+    "model/encoder.py": "7cac73ead6ecbb2af0afb65c9501a94fb2be23e5d404fb8bc63d453504f90305",
+    "model/decoder.py": "b1c8aade42e700faa316244b302955950191b9e0828bd2fc071309ed491429d2",
+    "model/ae.py": "ff4ebe650294a554cf71d13ce549dbaf9c9ee9cbeddee83f448b4bccdb89dec0",
+    "runs/train.sh": "7ea24869efc150b2e358f3024c3c710cc1bb27471e0993bd5a8c70087b24ca8c",
+    "runs/train_btc_normalization_pair.sh": "a16465d546af64e0c26d2ff3af947e2e8c179ae2e1c64122825e2db865ea2833",
+    "tools/compare_normalization.py": "d4aa84c4e388591fd54349d78fc2ce7cc417359164f30c0bea3da3909bab7758",
+    "tools/cache_normalization_scales.py": "a5e0698d9e03f1ef3b480397ef2b314e50fb543414b452b9691655d3de6a93bf"
+  }
+}

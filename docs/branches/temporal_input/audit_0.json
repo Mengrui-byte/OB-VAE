@@ -1,0 +1,237 @@
+{
+  "state": "passed_full256_feature_only_CPU",
+  "records": [
+    {
+      "split": "seen_training",
+      "original_index": 0,
+      "alignment": "rank",
+      "raw_shape": [
+        1,
+        256,
+        2,
+        2048,
+        2
+      ],
+      "context_shape": [
+        512,
+        6,
+        2048
+      ],
+      "raw_vs_normalized_exact_matching_equal": true,
+      "context_sha256": "7728cc9b3cc3740496edea2945cedb3752e6e4be235b4b383fed439951fad6ee"
+    },
+    {
+      "split": "seen_training",
+      "original_index": 0,
+      "alignment": "price",
+      "raw_shape": [
+        1,
+        256,
+        2,
+        2048,
+        2
+      ],
+      "context_shape": [
+        512,
+        6,
+        2048
+      ],
+      "raw_vs_normalized_exact_matching_equal": true,
+      "context_sha256": "7724ba9378ee4accd26e2954e20e538bc0dc9b44aa50ffbe2b0c71e62e7ccb8b"
+    },
+    {
+      "split": "seen_training",
+      "original_index": 2636,
+      "alignment": "rank",
+      "raw_shape": [
+        1,
+        256,
+        2,
+        2048,
+        2
+      ],
+      "context_shape": [
+        512,
+        6,
+        2048
+      ],
+      "raw_vs_normalized_exact_matching_equal": true,
+      "context_sha256": "617e1d9520f6ccedad2a3adf04effe95694b66a381873dee5a0cb5edc65037b6"
+    },
+    {
+      "split": "seen_training",
+      "original_index": 2636,
+      "alignment": "price",
+      "raw_shape": [
+        1,
+        256,
+        2,
+        2048,
+        2
+      ],
+      "context_shape": [
+        512,
+        6,
+        2048
+      ],
+      "raw_vs_normalized_exact_matching_equal": true,
+      "context_sha256": "30dbdd5f95c619d9c0b64ee1e5aa9bf8314c9f6893440a98b47e84d5f52d8699"
+    },
+    {
+      "split": "seen_training",
+      "original_index": 6152,
+      "alignment": "rank",
+      "raw_shape": [
+        1,
+        256,
+        2,
+        2048,
+        2
+      ],
+      "context_shape": [
+        512,
+        6,
+        2048
+      ],
+      "raw_vs_normalized_exact_matching_equal": true,
+      "context_sha256": "dbce74e5c6615544228551b1fa10308414f5be1578f0a8e5e3e7e6f6812e0a6c"
+    },
+    {
+      "split": "seen_training",
+      "original_index": 6152,
+      "alignment": "price",
+      "raw_shape": [
+        1,
+        256,
+        2,
+        2048,
+        2
+      ],
+      "context_shape": [
+        512,
+        6,
+        2048
+      ],
+      "raw_vs_normalized_exact_matching_equal": true,
+      "context_sha256": "0cbd69487a6806de0b267eec2fb65b2f982d018723908e293d70fd2e0fc3572a"
+    },
+    {
+      "split": "development",
+      "original_index": 0,
+      "alignment": "rank",
+      "raw_shape": [
+        1,
+        256,
+        2,
+        2048,
+        2
+      ],
+      "context_shape": [
+        512,
+        6,
+        2048
+      ],
+      "raw_vs_normalized_exact_matching_equal": true,
+      "context_sha256": "2410e8511ed345c8cd95cdf35c7fdba55aebb807664146f60cbdbb73c7b7c122"
+    },
+    {
+      "split": "development",
+      "original_index": 0,
+      "alignment": "price",
+      "raw_shape": [
+        1,
+        256,
+        2,
+        2048,
+        2
+      ],
+      "context_shape": [
+        512,
+        6,
+        2048
+      ],
+      "raw_vs_normalized_exact_matching_equal": true,
+      "context_sha256": "a503cc155fb73760036d9c604e341e21322a144891a35e92e26fec4e10361cbf"
+    },
+    {
+      "split": "development",
+      "original_index": 235,
+      "alignment": "rank",
+      "raw_shape": [
+        1,
+        256,
+        2,
+        2048,
+        2
+      ],
+      "context_shape": [
+        512,
+        6,
+        2048
+      ],
+      "raw_vs_normalized_exact_matching_equal": true,
+      "context_sha256": "159f2387dd5918b717e4fa1a5a7ea3a5e726773a0127af4b929cf0e000260623"
+    },
+    {
+      "split": "development",
+      "original_index": 235,
+      "alignment": "price",
+      "raw_shape": [
+        1,
+        256,
+        2,
+        2048,
+        2
+      ],
+      "context_shape": [
+        512,
+        6,
+        2048
+      ],
+      "raw_vs_normalized_exact_matching_equal": true,
+      "context_sha256": "f0ac1416611ed62d17eadb7e7f546928eb21cc795ab0bd4d6326af4e1655b529"
+    },
+    {
+      "split": "development",
+      "original_index": 505,
+      "alignment": "rank",
+      "raw_shape": [
+        1,
+        256,
+        2,
+        2048,
+        2
+      ],
+      "context_shape": [
+        512,
+        6,
+        2048
+      ],
+      "raw_vs_normalized_exact_matching_equal": true,
+      "context_sha256": "59c5322d55b844aedcc43fff386060863cd3b6cfbed8ea1faaa9585685a45e71"
+    },
+    {
+      "split": "development",
+      "original_index": 505,
+      "alignment": "price",
+      "raw_shape": [
+        1,
+        256,
+        2,
+        2048,
+        2
+      ],
+      "context_shape": [
+        512,
+        6,
+        2048
+      ],
+      "raw_vs_normalized_exact_matching_equal": true,
+      "context_sha256": "94101f2b6eae5741c4f1905ca80587e9b13a229a3724b2bb98677f5e83e4d0d2"
+    }
+  ],
+  "neural_model_forwards": 0,
+  "optimizer_updates": 0,
+  "independent_test_used": false,
+  "scope": "Full2048 feature shape, finite values, and raw-vs-canonical-normalized matching. Full2048 neural forward/backward remains pending GPU availability."
+}

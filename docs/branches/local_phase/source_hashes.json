@@ -1,0 +1,5 @@
+{
+  "model/autoencoder/local_phase_vae.py": "c9910a5d02a531f9b850fb7aa1672b2f7166233b0ca050f0f80e886a0eaf36fb",
+  "model/autoencoder/regional_phase_vae.py": "f1fe9c1eb99667647cb93f2a78cf0ab871bb0636ca63c4b2878772f9ec9d6d50",
+  "model/autoencoder/shape_mass_vae.py": "b16da8c29878da0a81dd924f32ff83f504e3b1ab94445586b1f2f118f98ce7f1"
+}

@@ -1,0 +1,170 @@
+{
+  "train": [
+    "2022-01-01",
+    "2025-01-01"
+  ],
+  "development": [
+    "2025-01-01",
+    "2025-04-01"
+  ],
+  "independent_test_untouched": [
+    "2025-04-01",
+    "2025-07-01"
+  ],
+  "normalization": {
+    "price_scale": 104.2454906668734,
+    "quantity_scale": 7.517722085208762,
+    "tick_size": 0.01,
+    "fit_windows": 64,
+    "fit_split": "64 selected training windows only,2022-2024",
+    "valid_values": 67108864,
+    "mean_quantity": 1.2229372905278826,
+    "median_gap_ticks": 10.15625,
+    "median_spread_ticks": 9.9609375
+  },
+  "model_config": {
+    "levels": 2048,
+    "quantity_scale": 7.517722085208762,
+    "activation_checkpointing": true
+  },
+  "objective": {
+    "price_weight": 1.0,
+    "quantity_weight": 1.0,
+    "log_weight": 1.0,
+    "pair_weight": 0.25,
+    "topk": 16,
+    "shape_weight": 1.0,
+    "mass_weight": 1.0,
+    "w1_weight": 0.5099078269962694,
+    "multiscale_weight": 1.0099852172963266,
+    "multiscale_groups": [
+      8,
+      64
+    ]
+  },
+  "window_size": 256,
+  "stride": 256,
+  "input_shape": [
+    1,
+    256,
+    2,
+    2048,
+    2
+  ],
+  "latent_shape": [
+    1,
+    64,
+    128
+  ],
+  "output_shape": [
+    1,
+    256,
+    2,
+    2048
+  ],
+  "fit_windows": 1024,
+  "seen_windows": 8,
+  "evaluation_windows": 16,
+  "batch_size": 1,
+  "accumulation": 4,
+  "steps": 2048,
+  "checkpoints": [
+    128,
+    512,
+    1024,
+    2048
+  ],
+  "max_seconds": 14400,
+  "lr": 0.0001,
+  "weight_decay": 0.0,
+  "clip_grad": 1.0,
+  "beta": 0.0,
+  "sample": false,
+  "loss_mode": "shape_mass",
+  "add_wasserstein": false,
+  "add_multiscale": false,
+  "precision": "BF16 neural training/FP32 loss; FP32 evaluation; TF32 disabled",
+  "primary": "Raw quantity RMSE and exact-location100BTC precision/recall/false positives at fixed2048 endpoint; retain all checkpoints and report10BTC,dynamics,fineKL/W1 and price preservation. No posthoc metric replacement.",
+  "selection": "Exploratory seed42 comparison on reused2025Q1 development, not independent-test evidence.2025Q2 and2026 untouched.",
+  "parent": "/home/mengrui/e2e_strategy/OBreconstuction/recons/phase_detail_20261026_210157",
+  "experiment": "2x2 Encoder training x within-region direct quantity readout",
+  "seed": 42,
+  "labels": {
+    "frozen_off": "\u51bb\u7ed3Encoder\u00b7\u539fDecoder",
+    "frozen_independent": "\u51bb\u7ed3Encoder\u00b7\u9010\u6863\u4fee\u6b63",
+    "joint_off": "\u89e3\u51bbEncoder\u00b7\u539fDecoder",
+    "joint_independent": "\u89e3\u51bbEncoder\u00b7\u9010\u6863\u4fee\u6b63"
+  },
+  "lanes": {
+    "frozen_off": {
+      "detail_mode": "off",
+      "train_encoder": false,
+      "freeze": [
+        "encoder",
+        "price_decoder"
+      ]
+    },
+    "frozen_independent": {
+      "detail_mode": "independent",
+      "train_encoder": false,
+      "freeze": [
+        "encoder",
+        "price_decoder"
+      ]
+    },
+    "joint_off": {
+      "detail_mode": "off",
+      "train_encoder": true,
+      "freeze": [
+        "price_decoder"
+      ]
+    },
+    "joint_independent": {
+      "detail_mode": "independent",
+      "train_encoder": true,
+      "freeze": [
+        "price_decoder"
+      ]
+    }
+  },
+  "freeze": [
+    "price_decoder"
+  ],
+  "inline_evaluation": true,
+  "gpu_workers": [
+    [
+      2,
+      "frozen_off"
+    ],
+    [
+      3,
+      "frozen_independent"
+    ],
+    [
+      4,
+      "joint_off"
+    ],
+    [
+      5,
+      "joint_independent"
+    ]
+  ],
+  "source_checkpoint": "probability_shape_20261026_181628/baseline/step1024.pt",
+  "initialization": "All4 restart the SAME predeclared original checkpoint, identical originalAdam states and sampler seed42. Do not start from the previous2048 endpoints. New detail head zero with freshAdam state. Frozen controls are rerun with this exact source and evaluation pipeline.",
+  "factors": [
+    "Encoder trainable vs frozen",
+    "quantity detail_mode off vs independent"
+  ],
+  "control_contract": "Within each pair change one factor; all4 share original source weights+Adam, indices/order, seed42,2048updates,batch1accum4,AdamW1e-4,clip1,oldshape_mass objective andnormalization. PriceDecoder weights/buffers fixed, but gradients through it toZ retained. No geometry detach andno true-price condition.",
+  "price_preservation": "Frozen PriceDecoder weights do NOT imply fixed price outputs when Encoder changes Z. Price reconstruction andTop16price remain inobjective; report priceRMSE against BOTH source andmatched off group. Do not label quantity gains as unqualified improvements if price degrades.",
+  "comparison": "Primary: joint_independent vs joint_off. Encoder effect: joint_off vs frozen_off and joint_independent vs frozen_independent. Interaction: detail benefit underjoint minusdetail benefit underfrozen. Fixed2048endpoint, allcheckpoints retained; seed42 only, no cross-seedvariance.",
+  "next_stage": "If no useful improvement, separately investigate synthetic moving peaks andfixedDecoder/per-window latent optimization; do not infer irreversible information loss from a null readout result.",
+  "authorization": "User continued after proposed paired Encoder-unfreeze experiment. Bounded2048updates percase,4hoursmax,GPUs2\u20135 only.",
+  "report": {
+    "title": "Encoder\u51bb\u7ed3/\u89e3\u51bb \u00d7 \u539fDecoder/\u9010\u6863\u4fee\u6b63",
+    "scope": "\u56db\u7ec42\u00d72\u5bf9\u7167\uff1b\u4ef7\u683cDecoder\u53c2\u6570\u59cb\u7ec8\u51bb\u7ed3\u3002",
+    "introduction": "\u56db\u7ec4\u4ece\u4e0e\u4e0a\u4e00\u8f6e\u76f8\u540c\u7684\u539f\u59cb\u8d77\u70b9\u91cd\u65b0\u8bad\u7ec3\u3002Encoder\u51bb\u7ed3/\u89e3\u51bb\uff0c\u4e0e\u6570\u91cf\u539f\u8def\u5f84/\u9010\u6863\u4fee\u6b63\u7ec4\u62102\u00d72\u3002\u76f8\u540c1024\u8bad\u7ec3\u7a97\u3001seed42\u3001\u6709\u6548batch4\u30012048\u66f4\u65b0\u548cshape_mass\u635f\u5931\u3002\u6ca1\u6709\u4ece\u4e0a\u8f6e\u5404\u7ec4\u7ec8\u70b9\u7eed\u8bad\u3002",
+    "hardware": "GPU2\u20135\u5404\u8bad\u7ec3\u4e00\u7ec4\uff1b\u5404\u5361\u4f7f\u7528\u76f8\u540cFP32\u8bc4\u4f30\u4ee3\u7801\u751f\u6210\u6307\u6807\u548c\u9010\u6863\u6302\u5355\u56fe\u3002",
+    "future": "Encoder\u89e3\u51bb\u4f1a\u6539\u53d8Z\uff0c\u5c3d\u7ba1\u4ef7\u683cDecoder\u53c2\u6570\u56fa\u5b9a\uff0c\u4ef7\u683c\u8f93\u51fa\u4ecd\u53ef\u80fd\u53d8\u5316\u3002\u4fdd\u7559\u539f\u4ef7\u683c\u635f\u5931\uff0c\u8054\u5408\u62a5\u544a\u4ef7\u91cf\u53d6\u820d\u3002\u5408\u6210\u5cf0\u4e0e\u76f4\u63a5\u4f18\u5316\u7a97\u53e3latent\u5c5e\u4e8e\u540e\u7eed\u72ec\u7acb\u5b9e\u9a8c\u3002"
+  }
+}

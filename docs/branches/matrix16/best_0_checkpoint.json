@@ -1,0 +1,28 @@
+{
+  "available": true,
+  "path": "checkpoints/frame_matrix_e2e_resume_20261025_234027/e2e_fast/step2048.pt",
+  "sha256": "c537e3adce11c6f8df0524543aa74ba6861d7fc9f301c1ed78e04c8cd5a4ad25",
+  "bytes": 225343917,
+  "configs": {
+    "model_config": {
+      "levels": 2048,
+      "quantity_scale": 1.0,
+      "global_dim": 64,
+      "local_dim": 16,
+      "causal": false,
+      "gap_activation": "softplus",
+      "detach_price": false,
+      "fix_first_mid": true
+    },
+    "frame_matrix_config": {
+      "matrix_dim": 1024,
+      "codec_kind": "nonlinear",
+      "codec_hidden": 512,
+      "codec_seed": 42
+    },
+    "step": 2048,
+    "state_tensor_count": 324,
+    "state_scalars": 18744780
+  },
+  "saved_step_matches": true
+}

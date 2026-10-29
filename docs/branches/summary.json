@@ -1,0 +1,4109 @@
+{
+  "as_of": "2026-10-29T13:59:27.603099+08:00",
+  "selection_policy": "Minimum quantity RMSE per protocol; all positive recorded checkpoints, with maximum-common endpoints reported separately; price/F1/dynamics and all candidates retained; no global capacity ranking.",
+  "records": [
+    {
+      "id": "legacy",
+      "name": "早期MLP/卷积AE与1024瓶颈",
+      "candidates": 23,
+      "protocols": 1,
+      "winners": [
+        {
+          "candidate": {
+            "family": "legacy",
+            "cohort": "checkpoints/btc_norm_ab_spatial16x64_20261018_173307",
+            "lane": "window-anchor",
+            "path": "checkpoints/btc_norm_ab_spatial16x64_20261018_173307/window-anchor/metrics.jsonl",
+            "selector": "line:23:validation",
+            "step": 1472,
+            "epoch": 23,
+            "price": 123.87979572105962,
+            "quantity": 2.1561557242873923,
+            "recall": null,
+            "precision": null,
+            "F1": null,
+            "dynamics": null,
+            "windows": 694,
+            "count": 727684864,
+            "target_rms": null,
+            "indices": null,
+            "threshold100": {},
+            "window_minutes": 256,
+            "period": [
+              "2025-01-01",
+              "2025-02-01"
+            ],
+            "kind": "test_history",
+            "profile": null,
+            "weight": "checkpoints/btc_norm_ab_spatial16x64_20261018_173307/window-anchor/best_val.pt",
+            "protocol": "[256, [\"2025-01-01\", \"2025-02-01\"], 694, 727684864, null]"
+          },
+          "checkpoint": {
+            "available": true,
+            "path": "checkpoints/btc_norm_ab_spatial16x64_20261018_173307/window-anchor/best_val.pt",
+            "sha256": "399af87db3b701a25b7129717e5f9467efaa79610716bc416be60e5727911047",
+            "bytes": 15954973,
+            "configs": {
+              "epoch": 23,
+              "model_config": {
+                "architecture": "ae_spatial_pool_v3",
+                "latent_dim": 64,
+                "bottleneck": "per-time spatial attention pooling; no temporal mixing or token-channel flattening",
+                "latent_shape_per_sample": [
+                  16,
+                  64
+                ]
+              },
+              "state_tensor_count": 106,
+              "state_scalars": 1318658
+            },
+            "epoch_and_saved_quantity_metric_match": true
+          },
+          "profile": null,
+          "evidence": "best_0_evidence.json"
+        }
+      ],
+      "status": "recorded_results"
+    },
+    {
+      "id": "local_queries",
+      "name": "局部查询V4与数量短路V5",
+      "candidates": 49,
+      "protocols": 1,
+      "winners": [
+        {
+          "candidate": {
+            "family": "local_queries",
+            "cohort": "checkpoints/btc_patch_quantity_v5_20261018_205710",
+            "lane": "window-anchor",
+            "path": "checkpoints/btc_patch_quantity_v5_20261018_205710/window-anchor/metrics.jsonl",
+            "selector": "line:18:validation",
+            "step": 1152,
+            "epoch": 18,
+            "price": 115.59164655404958,
+            "quantity": 2.149565250862072,
+            "recall": null,
+            "precision": null,
+            "F1": null,
+            "dynamics": null,
+            "windows": 694,
+            "count": 727684864,
+            "target_rms": null,
+            "indices": null,
+            "threshold100": {},
+            "window_minutes": 256,
+            "period": [
+              "2025-01-01",
+              "2025-02-01"
+            ],
+            "kind": "test_history",
+            "profile": null,
+            "weight": "checkpoints/btc_patch_quantity_v5_20261018_205710/window-anchor/best_quantity.pt",
+            "protocol": "[256, [\"2025-01-01\", \"2025-02-01\"], 694, 727684864, null]"
+          },
+          "checkpoint": {
+            "available": true,
+            "path": "checkpoints/btc_patch_quantity_v5_20261018_205710/window-anchor/best_quantity.pt",
+            "sha256": "d0fbbbba232d15c48583230624bdb55502c04f3cf760b88e4e242114ce5f3c65",
+            "bytes": 17905443,
+            "configs": {
+              "epoch": 18,
+              "model_config": {
+                "architecture": "ae_local_queries_patch_residual_v5",
+                "latent_dim": 64,
+                "spatial_queries": 8,
+                "features_per_query": 8,
+                "spatial_regions": "2 sides x 4 contiguous depth bands",
+                "decoder": "local region projection and spatial-query cross-attention",
+                "bottleneck": "per-time local spatial attention; no temporal mixing or input token-channel flattening",
+                "latent_shape_per_sample": [
+                  16,
+                  64
+                ],
+                "quantity_mode": "patch-residual",
+                "quantity_decoder": "baseline plus zero-initialized short patch decoder from latent-expanded features; no input bypass"
+              },
+              "state_tensor_count": 116,
+              "state_scalars": 1479971
+            },
+            "epoch_and_saved_quantity_metric_match": true
+          },
+          "profile": null,
+          "evidence": "best_0_evidence.json"
+        }
+      ],
+      "status": "recorded_results"
+    },
+    {
+      "id": "peak_geometry",
+      "name": "峰特征V7/价格几何V8",
+      "candidates": 96,
+      "protocols": 2,
+      "winners": [
+        {
+          "candidate": {
+            "family": "peak_geometry",
+            "cohort": "checkpoints/btc_v8_corrected_2022_2024_val2025q1_20261021_142435",
+            "lane": "model",
+            "path": "checkpoints/btc_v8_corrected_2022_2024_val2025q1_20261021_142435/model/metrics.jsonl",
+            "selector": "line:6:validation",
+            "step": 576,
+            "epoch": 6,
+            "price": 181.61103522250852,
+            "quantity": 2.6000949630819856,
+            "recall": null,
+            "precision": null,
+            "F1": null,
+            "dynamics": null,
+            "windows": 2022,
+            "count": 2120220672,
+            "target_rms": null,
+            "indices": null,
+            "threshold100": {},
+            "window_minutes": 256,
+            "period": [
+              "2025-01-01",
+              "2025-04-01"
+            ],
+            "kind": "test_history",
+            "profile": null,
+            "weight": "checkpoints/btc_v8_corrected_2022_2024_val2025q1_20261021_142435/model/best_quantity.pt",
+            "protocol": "[256, [\"2025-01-01\", \"2025-04-01\"], 2022, 2120220672, null]"
+          },
+          "checkpoint": {
+            "available": true,
+            "path": "checkpoints/btc_v8_corrected_2022_2024_val2025q1_20261021_142435/model/best_quantity.pt",
+            "sha256": "dfeb9edbf52a1fe5122fb1b3b0947a6d003cca7bf075d9068fbcf8faca5c6159",
+            "bytes": 16431011,
+            "configs": {
+              "epoch": 6,
+              "model_config": {
+                "architecture": "ae_peak_geometry_v8",
+                "latent_dim": 64,
+                "spatial_queries": 8,
+                "features_per_query": 8,
+                "spatial_regions": "2 sides x 4 contiguous depth bands",
+                "decoder": "local region projection and spatial-query cross-attention",
+                "bottleneck": "per-time local spatial attention; no temporal mixing or input token-channel flattening",
+                "latent_shape_per_sample": [
+                  16,
+                  64
+                ],
+                "quantity_mode": "patch-residual",
+                "quantity_decoder": "main full-latent decoder plus patch residual from 32 peak latent features; no raw input bypass",
+                "conv_order": "alternating",
+                "encoder_convolutions": "S0,T0,S1,T1,S2,T2,S3,T3,S4",
+                "decoder_convolutions": "inverse S4,T3,S3,T2,S2,T1,S1,T0,S0",
+                "temporal_stage_channels": [
+                  32,
+                  64,
+                  96,
+                  128
+                ],
+                "decoder_temporal_stage_channels": [
+                  128,
+                  96,
+                  64,
+                  32
+                ],
+                "peak_mode": "none",
+                "book_structure": "price-aligned",
+                "local_peak_slots": 4,
+                "peak_placement": "encoder-only metadata merged after each spatial stride; all 2048 levels per side",
+                "peak_selection": "native local maxima q>=left and q>right; strongest K per merged cell; no price NMS",
+                "peak_descriptors": [
+                  "relative_price_to_cell_center",
+                  "original_scaled_quantity",
+                  "native_rank_offset",
+                  "present"
+                ],
+                "background_descriptors": [
+                  "mean_price",
+                  "mean_quantity",
+                  "unselected_quantity_per_valid_level",
+                  "valid_fraction"
+                ],
+                "temporal_alignment": "nearest past feature cell by price; zero outside observed range; no future or cross-side matches",
+                "temporal_geometry": "stride anchors 2*j+1; final 16*j+15; raw descriptors at anchor only",
+                "latent_layout": "8 local regions x (4 background + 4 peak features); 32+32 learned features per time",
+                "limitations": "nearest cell alignment is not individual order tracking; selected input peaks are not guaranteed reconstructed peaks"
+              },
+              "state_tensor_count": 168,
+              "state_scalars": 1351669
+            },
+            "epoch_and_saved_quantity_metric_match": true
+          },
+          "profile": null,
+          "evidence": "best_0_evidence.json"
+        },
+        {
+          "candidate": {
+            "family": "peak_geometry",
+            "cohort": "checkpoints/btc_peak_v7_20261018_235000",
+            "lane": "zero",
+            "path": "checkpoints/btc_peak_v7_20261018_235000/zero/metrics.jsonl",
+            "selector": "line:30:validation",
+            "step": 1920,
+            "epoch": 30,
+            "price": 108.53717600244843,
+            "quantity": 2.1483627410244908,
+            "recall": null,
+            "precision": null,
+            "F1": null,
+            "dynamics": null,
+            "windows": 694,
+            "count": 727684864,
+            "target_rms": null,
+            "indices": null,
+            "threshold100": {},
+            "window_minutes": 256,
+            "period": [
+              "2025-01-01",
+              "2025-02-01"
+            ],
+            "kind": "test_history",
+            "profile": null,
+            "weight": "checkpoints/btc_peak_v7_20261018_235000/zero/best_quantity.pt",
+            "protocol": "[256, [\"2025-01-01\", \"2025-02-01\"], 694, 727684864, null]"
+          },
+          "checkpoint": {
+            "available": true,
+            "path": "checkpoints/btc_peak_v7_20261018_235000/zero/best_quantity.pt",
+            "sha256": "1aedd187690878cab0e8a2362079c229126f417eb577da7400df005acf52b59e",
+            "bytes": 14140323,
+            "configs": {
+              "epoch": 30,
+              "model_config": {
+                "architecture": "ae_peak_features_v7",
+                "latent_dim": 64,
+                "spatial_queries": 8,
+                "features_per_query": 8,
+                "spatial_regions": "2 sides x 4 contiguous depth bands",
+                "decoder": "local region projection and spatial-query cross-attention",
+                "bottleneck": "per-time local spatial attention; no temporal mixing or input token-channel flattening",
+                "latent_shape_per_sample": [
+                  16,
+                  64
+                ],
+                "quantity_mode": "patch-residual",
+                "quantity_decoder": "baseline plus zero-initialized short patch decoder from latent-expanded features; no input bypass",
+                "conv_order": "alternating",
+                "encoder_convolutions": "S0,T0,S1,T1,S2,T2,S3,T3,S4",
+                "decoder_convolutions": "inverse S4,T3,S3,T2,S2,T1,S1,T0,S0",
+                "temporal_stage_channels": [
+                  32,
+                  64,
+                  96,
+                  128
+                ],
+                "decoder_temporal_stage_channels": [
+                  128,
+                  96,
+                  64,
+                  32
+                ],
+                "peak_mode": "zero",
+                "peak_features": [
+                  "selected",
+                  "original_scaled_quantity",
+                  "original_scaled_price",
+                  "clipped_half_height_width_over9"
+                ],
+                "peak_placement": "input native2048 levels, before first spatial downsampling",
+                "peak_regions_per_side": 4,
+                "peak_per_region": 8,
+                "peak_candidates": 32,
+                "peak_radius_bps": 0.5,
+                "peak_sigma": 0.5,
+                "peak_score_decay": "exp(-max(1-distance_bps/radius,0)^2/sigma)",
+                "peak_input_projection": "zero initial extra input weights; original price/quantity channels preserved"
+              },
+              "state_tensor_count": 116,
+              "state_scalars": 1166115
+            },
+            "epoch_and_saved_quantity_metric_match": true
+          },
+          "profile": null,
+          "evidence": "best_1_evidence.json"
+        }
+      ],
+      "status": "recorded_results"
+    },
+    {
+      "id": "dual",
+      "name": "Global/Local双Decoder VAE",
+      "candidates": 4,
+      "protocols": 1,
+      "winners": [
+        {
+          "candidate": {
+            "family": "dual",
+            "cohort": "checkpoints/dual_12h_20261024_004600",
+            "lane": "volume_s42",
+            "path": "checkpoints/dual_12h_20261024_004600/runs/volume_s42/latest_evaluation.json",
+            "selector": "result",
+            "step": 1200,
+            "epoch": null,
+            "price": 8.437965260691286,
+            "quantity": 0.7462335462004455,
+            "recall": 0.922945205479452,
+            "precision": 0.9556737588652482,
+            "F1": 0.9390243902439024,
+            "dynamics": 0.9785045397975948,
+            "windows": 256,
+            "count": 16777216,
+            "target_rms": 2.566980915583372,
+            "indices": [
+              0,
+              31,
+              63,
+              95,
+              127,
+              158,
+              190,
+              222,
+              254,
+              285,
+              317,
+              349,
+              381,
+              412,
+              444,
+              476,
+              508,
+              539,
+              571,
+              603,
+              635,
+              666,
+              698,
+              730,
+              762,
+              794,
+              825,
+              857,
+              889,
+              921,
+              952,
+              984,
+              1016,
+              1048,
+              1079,
+              1111,
+              1143,
+              1175,
+              1206,
+              1238,
+              1270,
+              1302,
+              1333,
+              1365,
+              1397,
+              1429,
+              1460,
+              1492,
+              1524,
+              1556,
+              1588,
+              1619,
+              1651,
+              1683,
+              1715,
+              1746,
+              1778,
+              1810,
+              1842,
+              1873,
+              1905,
+              1937,
+              1969,
+              2000,
+              2032,
+              2064,
+              2096,
+              2127,
+              2159,
+              2191,
+              2223,
+              2255,
+              2286,
+              2318,
+              2350,
+              2382,
+              2413,
+              2445,
+              2477,
+              2509,
+              2540,
+              2572,
+              2604,
+              2636,
+              2667,
+              2699,
+              2731,
+              2763,
+              2794,
+              2826,
+              2858,
+              2890,
+              2921,
+              2953,
+              2985,
+              3017,
+              3049,
+              3080,
+              3112,
+              3144,
+              3176,
+              3207,
+              3239,
+              3271,
+              3303,
+              3334,
+              3366,
+              3398,
+              3430,
+              3461,
+              3493,
+              3525,
+              3557,
+              3588,
+              3620,
+              3652,
+              3684,
+              3716,
+              3747,
+              3779,
+              3811,
+              3843,
+              3874,
+              3906,
+              3938,
+              3970,
+              4001,
+              4033,
+              4065,
+              4097,
+              4128,
+              4160,
+              4192,
+              4224,
+              4255,
+              4287,
+              4319,
+              4351,
+              4382,
+              4414,
+              4446,
+              4478,
+              4510,
+              4541,
+              4573,
+              4605,
+              4637,
+              4668,
+              4700,
+              4732,
+              4764,
+              4795,
+              4827,
+              4859,
+              4891,
+              4922,
+              4954,
+              4986,
+              5018,
+              5049,
+              5081,
+              5113,
+              5145,
+              5177,
+              5208,
+              5240,
+              5272,
+              5304,
+              5335,
+              5367,
+              5399,
+              5431,
+              5462,
+              5494,
+              5526,
+              5558,
+              5589,
+              5621,
+              5653,
+              5685,
+              5716,
+              5748,
+              5780,
+              5812,
+              5843,
+              5875,
+              5907,
+              5939,
+              5971,
+              6002,
+              6034,
+              6066,
+              6098,
+              6129,
+              6161,
+              6193,
+              6225,
+              6256,
+              6288,
+              6320,
+              6352,
+              6383,
+              6415,
+              6447,
+              6479,
+              6510,
+              6542,
+              6574,
+              6606,
+              6638,
+              6669,
+              6701,
+              6733,
+              6765,
+              6796,
+              6828,
+              6860,
+              6892,
+              6923,
+              6955,
+              6987,
+              7019,
+              7050,
+              7082,
+              7114,
+              7146,
+              7177,
+              7209,
+              7241,
+              7273,
+              7304,
+              7336,
+              7368,
+              7400,
+              7432,
+              7463,
+              7495,
+              7527,
+              7559,
+              7590,
+              7622,
+              7654,
+              7686,
+              7717,
+              7749,
+              7781,
+              7813,
+              7844,
+              7876,
+              7908,
+              7940,
+              7971,
+              8003,
+              8035,
+              8067,
+              8099
+            ],
+            "threshold100": {
+              "tp": 1078,
+              "fp": 50,
+              "fn": 90,
+              "precision": 0.9556737588652482,
+              "recall": 0.922945205479452
+            },
+            "window_minutes": 16,
+            "period": [
+              "2025-01-01",
+              "2025-04-01"
+            ],
+            "kind": "test",
+            "profile": "checkpoints/dual_12h_20261024_004600/reconstruction_20261024_111849/profiles.npz",
+            "weight": "checkpoints/dual_12h_20261024_004600/runs/volume_s42/evaluation_step_0001200.pt",
+            "protocol": "[16, [\"2025-01-01\", \"2025-04-01\"], 256, 16777216, 2.5669809]"
+          },
+          "checkpoint": {
+            "available": true,
+            "path": "checkpoints/dual_12h_20261024_004600/runs/volume_s42/evaluation_step_0001200.pt",
+            "sha256": "ef82f8384b19f9fe03a18d4a81732ee99c94261681b6dddfad0cd8791dddce96",
+            "bytes": 19576632,
+            "configs": {
+              "model_config": {
+                "levels": 2048,
+                "quantity_scale": 1.0,
+                "global_dim": 64,
+                "local_dim": 16,
+                "causal": false,
+                "gap_activation": "softplus",
+                "detach_price": false,
+                "fix_first_mid": true
+              },
+              "epoch": 4,
+              "state_tensor_count": 289,
+              "state_scalars": 4861004
+            }
+          },
+          "profile": {
+            "source": "checkpoints/dual_12h_20261024_004600/reconstruction_20261024_111849/profiles.npz",
+            "source_sha256": "f0d9f1a759c45245eee28fbdfc8b15ffd9d4b6bf4dad9c686f04627b2adf478e",
+            "prediction_key": "volume",
+            "source_shape": [
+              3,
+              16,
+              2,
+              2048,
+              2
+            ],
+            "selected_source_case": 0,
+            "minutes": [
+              0,
+              8,
+              15
+            ],
+            "indices": [
+              0,
+              5229,
+              63
+            ],
+            "images": [
+              "best_0_btc.png",
+              "best_0_log.png",
+              "best_0_price.png"
+            ],
+            "full2048depth": true,
+            "not_population_evaluation": true
+          },
+          "evidence": "best_0_evidence.json"
+        }
+      ],
+      "status": "recorded_results"
+    },
+    {
+      "id": "cross",
+      "name": "Cross融合与价量双塔",
+      "candidates": 8,
+      "protocols": 1,
+      "winners": [
+        {
+          "candidate": {
+            "family": "cross",
+            "cohort": "checkpoints/dual_fusion_20261024_113046_retry1",
+            "lane": "cross",
+            "path": "checkpoints/dual_fusion_20261024_113046_retry1/strict_fp32/cross/final_evaluation.json",
+            "selector": "result",
+            "step": 96,
+            "epoch": null,
+            "price": 8.409297266837141,
+            "quantity": 0.5884550327210252,
+            "recall": 0.9737302977232924,
+            "precision": 0.9328859060402684,
+            "F1": 0.9528706083976007,
+            "dynamics": 0.9787140123959943,
+            "windows": 128,
+            "count": 8388608,
+            "target_rms": 2.534430514151362,
+            "indices": [
+              0,
+              63,
+              127,
+              191,
+              255,
+              318,
+              382,
+              446,
+              510,
+              573,
+              637,
+              701,
+              765,
+              829,
+              892,
+              956,
+              1020,
+              1084,
+              1147,
+              1211,
+              1275,
+              1339,
+              1402,
+              1466,
+              1530,
+              1594,
+              1658,
+              1721,
+              1785,
+              1849,
+              1913,
+              1976,
+              2040,
+              2104,
+              2168,
+              2232,
+              2295,
+              2359,
+              2423,
+              2487,
+              2550,
+              2614,
+              2678,
+              2742,
+              2805,
+              2869,
+              2933,
+              2997,
+              3061,
+              3124,
+              3188,
+              3252,
+              3316,
+              3379,
+              3443,
+              3507,
+              3571,
+              3634,
+              3698,
+              3762,
+              3826,
+              3890,
+              3953,
+              4017,
+              4081,
+              4145,
+              4208,
+              4272,
+              4336,
+              4400,
+              4464,
+              4527,
+              4591,
+              4655,
+              4719,
+              4782,
+              4846,
+              4910,
+              4974,
+              5037,
+              5101,
+              5165,
+              5229,
+              5293,
+              5356,
+              5420,
+              5484,
+              5548,
+              5611,
+              5675,
+              5739,
+              5803,
+              5866,
+              5930,
+              5994,
+              6058,
+              6122,
+              6185,
+              6249,
+              6313,
+              6377,
+              6440,
+              6504,
+              6568,
+              6632,
+              6696,
+              6759,
+              6823,
+              6887,
+              6951,
+              7014,
+              7078,
+              7142,
+              7206,
+              7269,
+              7333,
+              7397,
+              7461,
+              7525,
+              7588,
+              7652,
+              7716,
+              7780,
+              7843,
+              7907,
+              7971,
+              8035,
+              8099
+            ],
+            "threshold100": {
+              "tp": 556,
+              "fp": 40,
+              "fn": 15,
+              "precision": 0.9328859060402684,
+              "recall": 0.9737302977232924
+            },
+            "window_minutes": 16,
+            "period": [
+              "2025-01-01",
+              "2025-04-01"
+            ],
+            "kind": "test",
+            "profile": "checkpoints/dual_fusion_20261024_113046_retry1/strict_fp32/cross/profiles.npz",
+            "weight": "checkpoints/dual_fusion_20261024_113046_retry1/cross/final.pt",
+            "protocol": "[16, [\"2025-01-01\", \"2025-04-01\"], 128, 8388608, 2.5344305]"
+          },
+          "checkpoint": {
+            "available": true,
+            "path": "checkpoints/dual_fusion_20261024_113046_retry1/cross/final.pt",
+            "sha256": "3553ad1088a835923ffaa47dbe49f4a08a488437352fbe6a976bab653f410651",
+            "bytes": 59292073,
+            "configs": {
+              "model_config": {
+                "levels": 2048,
+                "quantity_scale": 1.0,
+                "global_dim": 64,
+                "local_dim": 16,
+                "causal": false,
+                "gap_activation": "softplus",
+                "detach_price": false,
+                "fix_first_mid": true
+              },
+              "fusion_variant": "cross",
+              "step": 96,
+              "state_tensor_count": 313,
+              "state_scalars": 4906316
+            },
+            "saved_step_matches": true
+          },
+          "profile": {
+            "source": "checkpoints/dual_fusion_20261024_113046_retry1/strict_fp32/cross/profiles.npz",
+            "source_sha256": "175d870789e3ea2ab93557b3d9ca2a257e776603ec612f11b3c45015f364b43a",
+            "prediction_key": "prediction",
+            "source_shape": [
+              3,
+              16,
+              2,
+              2048,
+              2
+            ],
+            "selected_source_case": 0,
+            "minutes": [
+              0,
+              8,
+              15
+            ],
+            "indices": null,
+            "images": [
+              "best_0_btc.png",
+              "best_0_log.png",
+              "best_0_price.png"
+            ],
+            "full2048depth": true,
+            "not_population_evaluation": true
+          },
+          "evidence": "best_0_evidence.json"
+        }
+      ],
+      "status": "recorded_results"
+    },
+    {
+      "id": "continuous",
+      "name": "连续窗口状态、PCA与学习逆映射",
+      "candidates": 13,
+      "protocols": 1,
+      "winners": [
+        {
+          "candidate": {
+            "family": "continuous",
+            "cohort": "checkpoints/pca_state_20261024_222656",
+            "lane": "d512",
+            "path": "checkpoints/pca_state_20261024_222656/d512/final_evaluation.json",
+            "selector": "result",
+            "step": 256,
+            "epoch": null,
+            "price": 8.17867523968655,
+            "quantity": 2.5012836723784964,
+            "recall": 0.0,
+            "precision": null,
+            "F1": 0.0,
+            "dynamics": 0.039796086390727674,
+            "windows": 128,
+            "count": 8388608,
+            "target_rms": 2.534430514151362,
+            "indices": [
+              0,
+              63,
+              127,
+              191,
+              255,
+              318,
+              382,
+              446,
+              510,
+              573,
+              637,
+              701,
+              765,
+              829,
+              892,
+              956,
+              1020,
+              1084,
+              1147,
+              1211,
+              1275,
+              1339,
+              1402,
+              1466,
+              1530,
+              1594,
+              1658,
+              1721,
+              1785,
+              1849,
+              1913,
+              1976,
+              2040,
+              2104,
+              2168,
+              2232,
+              2295,
+              2359,
+              2423,
+              2487,
+              2550,
+              2614,
+              2678,
+              2742,
+              2805,
+              2869,
+              2933,
+              2997,
+              3061,
+              3124,
+              3188,
+              3252,
+              3316,
+              3379,
+              3443,
+              3507,
+              3571,
+              3634,
+              3698,
+              3762,
+              3826,
+              3890,
+              3953,
+              4017,
+              4081,
+              4145,
+              4208,
+              4272,
+              4336,
+              4400,
+              4464,
+              4527,
+              4591,
+              4655,
+              4719,
+              4782,
+              4846,
+              4910,
+              4974,
+              5037,
+              5101,
+              5165,
+              5229,
+              5293,
+              5356,
+              5420,
+              5484,
+              5548,
+              5611,
+              5675,
+              5739,
+              5803,
+              5866,
+              5930,
+              5994,
+              6058,
+              6122,
+              6185,
+              6249,
+              6313,
+              6377,
+              6440,
+              6504,
+              6568,
+              6632,
+              6696,
+              6759,
+              6823,
+              6887,
+              6951,
+              7014,
+              7078,
+              7142,
+              7206,
+              7269,
+              7333,
+              7397,
+              7461,
+              7525,
+              7588,
+              7652,
+              7716,
+              7780,
+              7843,
+              7907,
+              7971,
+              8035,
+              8099
+            ],
+            "threshold100": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 571,
+              "precision": null,
+              "recall": 0.0
+            },
+            "window_minutes": 16,
+            "period": [
+              "2025-01-01",
+              "2025-04-01"
+            ],
+            "kind": "test",
+            "profile": "checkpoints/pca_state_20261024_222656/d512/profiles.npz",
+            "weight": "checkpoints/pca_state_20261024_222656/d512/final.pt",
+            "protocol": "[16, [\"2025-01-01\", \"2025-04-01\"], 128, 8388608, 2.5344305]"
+          },
+          "checkpoint": {
+            "available": true,
+            "path": "checkpoints/pca_state_20261024_222656/d512/final.pt",
+            "sha256": "67cf684ad1b91b402b855cf918aabe2788e95918a0e2e1b030bd0b8710577306",
+            "bytes": 147939459,
+            "configs": {
+              "model_config": {
+                "levels": 2048,
+                "quantity_scale": 1.0,
+                "global_dim": 64,
+                "local_dim": 16,
+                "causal": false,
+                "gap_activation": "softplus",
+                "detach_price": false,
+                "fix_first_mid": true
+              },
+              "fusion_variant": "cross",
+              "step": 256,
+              "pca_state_config": {
+                "state_dim": 512,
+                "global_components": 93,
+                "window_size": 16,
+                "pca_seed": 42
+              },
+              "state_tensor_count": 319,
+              "state_scalars": 32594252
+            },
+            "saved_step_matches": true
+          },
+          "profile": {
+            "source": "checkpoints/pca_state_20261024_222656/d512/profiles.npz",
+            "source_sha256": "a6f45251060444f8184682136f19dd39ef287fb2d1341ef8c486ea1a85758326",
+            "prediction_key": "prediction",
+            "source_shape": [
+              3,
+              16,
+              2,
+              2048,
+              2
+            ],
+            "selected_source_case": 0,
+            "minutes": [
+              0,
+              8,
+              15
+            ],
+            "indices": [
+              0,
+              5229,
+              63
+            ],
+            "images": [
+              "best_0_btc.png",
+              "best_0_log.png",
+              "best_0_price.png"
+            ],
+            "full2048depth": true,
+            "not_population_evaluation": true
+          },
+          "evidence": "best_0_evidence.json"
+        }
+      ],
+      "status": "recorded_results"
+    },
+    {
+      "id": "vq",
+      "name": "VQ/RQ、小码本与配对矩阵",
+      "candidates": 70,
+      "protocols": 2,
+      "winners": [
+        {
+          "candidate": {
+            "family": "vq",
+            "cohort": "recons/local8_k4_vs_k16_20261026",
+            "lane": "k16_depth8",
+            "path": "recons/local8_k4_vs_k16_20261026/results.json",
+            "selector": "k16_depth8",
+            "step": null,
+            "epoch": null,
+            "price": 18.83622353416625,
+            "quantity": 1.5786632937928728,
+            "recall": 0.3607705779334501,
+            "precision": 0.8956521739130435,
+            "F1": 0.5143570536828964,
+            "dynamics": 0.7445385278107564,
+            "windows": 128,
+            "count": 8388608,
+            "target_rms": 2.534430514151362,
+            "indices": null,
+            "threshold100": {
+              "tp": 206,
+              "fp": 24,
+              "fn": 365,
+              "recall": 0.3607705779334501,
+              "precision": 0.8956521739130435
+            },
+            "window_minutes": 16,
+            "period": [
+              "2025-01-01",
+              "2025-04-01"
+            ],
+            "kind": "test",
+            "profile": "recons/local8_k4_vs_k16_20261026/k16/profiles.npz",
+            "weight": "recons/local8_k4_vs_k16_20261026/k16/final.pt",
+            "protocol": "[16, [\"2025-01-01\", \"2025-04-01\"], 128, 8388608, 2.5344305]"
+          },
+          "checkpoint": {
+            "available": true,
+            "path": "recons/local8_k4_vs_k16_20261026/k16/final.pt",
+            "sha256": "95207d655d3d139842e8eefabd8725c412adbc54aa8c2ee75f41cb793a77a955",
+            "bytes": 20057587,
+            "configs": {
+              "model_config": {
+                "levels": 2048,
+                "quantity_scale": 1.0,
+                "global_dim": 64,
+                "local_dim": 16,
+                "causal": false,
+                "gap_activation": "softplus",
+                "detach_price": false,
+                "fix_first_mid": true
+              },
+              "local_paired_config": {
+                "quant_window": 16,
+                "quant_levels": 8,
+                "quant_size": 16
+              },
+              "state_tensor_count": 320,
+              "state_scalars": 4985261
+            }
+          },
+          "profile": {
+            "source": "recons/local8_k4_vs_k16_20261026/k16/profiles.npz",
+            "source_sha256": "e8a1e0ee8e33fe8a17005f3621440d7aaba07e6374a03626284f1e88ef0efaeb",
+            "prediction_key": "prediction",
+            "source_shape": [
+              3,
+              16,
+              2,
+              2048,
+              2
+            ],
+            "selected_source_case": 0,
+            "minutes": [
+              0,
+              8,
+              15
+            ],
+            "indices": [
+              0,
+              4017,
+              8099
+            ],
+            "images": [
+              "best_0_btc.png",
+              "best_0_log.png",
+              "best_0_price.png"
+            ],
+            "full2048depth": true,
+            "not_population_evaluation": true
+          },
+          "evidence": "best_0_evidence.json"
+        },
+        {
+          "candidate": {
+            "family": "vq",
+            "cohort": "recons/local8_k4_vs_k16_20261026",
+            "lane": "k16_depth7",
+            "path": "recons/local8_k4_vs_k16_20261026/results.json",
+            "selector": "k16_depth7",
+            "step": null,
+            "epoch": null,
+            "price": 11.547266086917094,
+            "quantity": 1.8540544996675294,
+            "recall": 0.17142857142857143,
+            "precision": 0.8571428571428571,
+            "F1": 0.2857142857142857,
+            "dynamics": 0.709949495654251,
+            "windows": 16,
+            "count": 1048576,
+            "target_rms": 2.5999663297760303,
+            "indices": null,
+            "threshold100": {
+              "tp": 18,
+              "fp": 3,
+              "fn": 87,
+              "recall": 0.17142857142857143,
+              "precision": 0.8571428571428571
+            },
+            "window_minutes": 16,
+            "period": [
+              "2025-01-01",
+              "2025-04-01"
+            ],
+            "kind": "test",
+            "profile": null,
+            "weight": null,
+            "protocol": "[16, [\"2025-01-01\", \"2025-04-01\"], 16, 1048576, 2.5999663]"
+          },
+          "checkpoint": {
+            "available": false,
+            "reason": "No exact saved checkpoint identified; no later checkpoint substituted"
+          },
+          "profile": null,
+          "evidence": "best_1_evidence.json"
+        }
+      ],
+      "status": "recorded_results"
+    },
+    {
+      "id": "matrix16",
+      "name": "每帧矩阵压缩与端到端残差深度",
+      "candidates": 64,
+      "protocols": 1,
+      "winners": [
+        {
+          "candidate": {
+            "family": "matrix16",
+            "cohort": "checkpoints/frame_matrix_e2e_resume_20261025_234027",
+            "lane": "e2e_fast",
+            "path": "checkpoints/frame_matrix_e2e_resume_20261025_234027/e2e_fast/step2048_evaluation.json",
+            "selector": "result",
+            "step": 2048,
+            "epoch": null,
+            "price": 17.357396589139523,
+            "quantity": 0.9126154120475792,
+            "recall": 0.8023529411764706,
+            "precision": 0.9715099715099715,
+            "F1": 0.8788659793814433,
+            "dynamics": 0.7277391014024205,
+            "windows": 64,
+            "count": 4194304,
+            "target_rms": 2.664346384089304,
+            "indices": [
+              0,
+              128,
+              257,
+              385,
+              514,
+              642,
+              771,
+              899,
+              1028,
+              1157,
+              1285,
+              1414,
+              1542,
+              1671,
+              1799,
+              1928,
+              2056,
+              2185,
+              2314,
+              2442,
+              2571,
+              2699,
+              2828,
+              2956,
+              3085,
+              3213,
+              3342,
+              3470,
+              3599,
+              3728,
+              3856,
+              3985,
+              4113,
+              4242,
+              4370,
+              4499,
+              4628,
+              4756,
+              4885,
+              5013,
+              5142,
+              5270,
+              5399,
+              5527,
+              5656,
+              5784,
+              5913,
+              6042,
+              6170,
+              6299,
+              6427,
+              6556,
+              6684,
+              6813,
+              6941,
+              7070,
+              7199,
+              7327,
+              7456,
+              7584,
+              7713,
+              7841,
+              7970,
+              8099
+            ],
+            "threshold100": {
+              "tp": 341,
+              "fp": 10,
+              "fn": 84,
+              "precision": 0.9715099715099715,
+              "recall": 0.8023529411764706
+            },
+            "window_minutes": 16,
+            "period": [
+              "2025-01-01",
+              "2025-04-01"
+            ],
+            "kind": "test",
+            "profile": "checkpoints/frame_matrix_e2e_resume_20261025_234027/e2e_fast/profiles.npz",
+            "weight": "checkpoints/frame_matrix_e2e_resume_20261025_234027/e2e_fast/step2048.pt",
+            "common_endpoint_step": 2048,
+            "is_common_endpoint": true,
+            "protocol": "[16, [\"2025-01-01\", \"2025-04-01\"], 64, 4194304, 2.6643464]"
+          },
+          "checkpoint": {
+            "available": true,
+            "path": "checkpoints/frame_matrix_e2e_resume_20261025_234027/e2e_fast/step2048.pt",
+            "sha256": "c537e3adce11c6f8df0524543aa74ba6861d7fc9f301c1ed78e04c8cd5a4ad25",
+            "bytes": 225343917,
+            "configs": {
+              "model_config": {
+                "levels": 2048,
+                "quantity_scale": 1.0,
+                "global_dim": 64,
+                "local_dim": 16,
+                "causal": false,
+                "gap_activation": "softplus",
+                "detach_price": false,
+                "fix_first_mid": true
+              },
+              "frame_matrix_config": {
+                "matrix_dim": 1024,
+                "codec_kind": "nonlinear",
+                "codec_hidden": 512,
+                "codec_seed": 42
+              },
+              "step": 2048,
+              "state_tensor_count": 324,
+              "state_scalars": 18744780
+            },
+            "saved_step_matches": true
+          },
+          "profile": {
+            "source": "checkpoints/frame_matrix_e2e_resume_20261025_234027/e2e_fast/profiles.npz",
+            "source_sha256": "a0778896b4daa94e1a6e22d3ed4a54a3a9fd4198ad43f556c12e2e1c5f53c22a",
+            "prediction_key": "prediction",
+            "source_shape": [
+              3,
+              16,
+              2,
+              2048,
+              2
+            ],
+            "selected_source_case": 0,
+            "minutes": [
+              0,
+              8,
+              15
+            ],
+            "indices": [
+              0,
+              5229,
+              63
+            ],
+            "images": [
+              "best_0_btc.png",
+              "best_0_log.png",
+              "best_0_price.png"
+            ],
+            "full2048depth": true,
+            "not_population_evaluation": true
+          },
+          "evidence": "best_0_evidence.json"
+        }
+      ],
+      "status": "recorded_results"
+    },
+    {
+      "id": "joint4096",
+      "name": "Global/Local统一连续4096 PCA",
+      "candidates": 5,
+      "protocols": 1,
+      "winners": [
+        {
+          "candidate": {
+            "family": "joint4096",
+            "cohort": "recons/joint4096_morphology_20261026",
+            "lane": "compressed4096",
+            "path": "recons/joint4096_morphology_20261026/dice_morphology/compressed4096/final_evaluation.json",
+            "selector": "",
+            "step": 128,
+            "epoch": null,
+            "price": 12.180206551120309,
+            "quantity": 2.4780751081214305,
+            "recall": 0.0,
+            "precision": null,
+            "F1": 0.0,
+            "dynamics": 0.20704657311565489,
+            "windows": 128,
+            "count": 8388608,
+            "target_rms": 2.534430514151362,
+            "indices": null,
+            "threshold100": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 571,
+              "recall": 0.0,
+              "precision": null
+            },
+            "window_minutes": 16,
+            "period": [
+              "2025-01-01",
+              "2025-04-01"
+            ],
+            "kind": "test",
+            "profile": "recons/joint4096_morphology_20261026/dice_morphology/compressed4096/development_step128_128windows_profiles.npz",
+            "weight": "recons/joint4096_morphology_20261026/dice_morphology/compressed4096/final.pt",
+            "protocol": "[16, [\"2025-01-01\", \"2025-04-01\"], 128, 8388608, 2.5344305]"
+          },
+          "checkpoint": {
+            "available": true,
+            "path": "recons/joint4096_morphology_20261026/dice_morphology/compressed4096/final.pt",
+            "sha256": "5d691d441fcfebf5e16701bd6aadb9ad2c7d06070807e3c4ff4ed9e821cc749f",
+            "bytes": 37107147,
+            "configs": {
+              "model_config": {
+                "levels": 2048,
+                "quantity_scale": 1.0,
+                "global_dim": 64,
+                "local_dim": 16,
+                "causal": false,
+                "gap_activation": "softplus",
+                "detach_price": false,
+                "fix_first_mid": true
+              },
+              "step": 128,
+              "lane": "compressed4096",
+              "joint_pca_config": {
+                "state_dim": 4096,
+                "window_size": 16
+              },
+              "state_tensor_count": 313,
+              "state_scalars": 4906316
+            },
+            "saved_step_matches": true
+          },
+          "profile": {
+            "source": "recons/joint4096_morphology_20261026/dice_morphology/compressed4096/development_step128_128windows_profiles.npz",
+            "source_sha256": "4a77d88e015cd89429562071463aaec3d075700bba659b8cd44c642327c3a036",
+            "prediction_key": "prediction",
+            "source_shape": [
+              3,
+              16,
+              2,
+              2048,
+              2
+            ],
+            "selected_source_case": 0,
+            "minutes": [
+              0,
+              8,
+              15
+            ],
+            "indices": [
+              0,
+              4017,
+              8099
+            ],
+            "images": [
+              "best_0_btc.png",
+              "best_0_log.png",
+              "best_0_price.png"
+            ],
+            "full2048depth": true,
+            "not_population_evaluation": true
+          },
+          "evidence": "best_0_evidence.json"
+        }
+      ],
+      "status": "recorded_results"
+    },
+    {
+      "id": "full256",
+      "name": "恢复完整256分钟：Cross参考/矩阵压缩",
+      "candidates": 20,
+      "protocols": 1,
+      "winners": [
+        {
+          "candidate": {
+            "family": "full256",
+            "cohort": "checkpoints/dual256_20261026_090533",
+            "lane": "reference",
+            "path": "checkpoints/dual256_20261026_090533/reference/step512_evaluation.json",
+            "selector": "result",
+            "step": 512,
+            "epoch": null,
+            "price": 8.873583700664142,
+            "quantity": 0.1986065943225472,
+            "recall": 0.9383177570093458,
+            "precision": 0.9785575048732943,
+            "F1": 0.9580152671755725,
+            "dynamics": 0.9781368996014048,
+            "windows": 16,
+            "count": 16777216,
+            "target_rms": 2.2170200567880882,
+            "indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "threshold100": {
+              "tp": 502,
+              "fp": 11,
+              "fn": 33,
+              "precision": 0.9785575048732943,
+              "recall": 0.9383177570093458
+            },
+            "window_minutes": 256,
+            "period": [
+              "2025-01-01",
+              "2025-04-01"
+            ],
+            "kind": "test",
+            "profile": "checkpoints/dual256_20261026_090533/reference/step512_profiles.npz",
+            "weight": "checkpoints/dual256_20261026_090533/reference/step512.pt",
+            "common_endpoint_step": 512,
+            "is_common_endpoint": true,
+            "protocol": "[256, [\"2025-01-01\", \"2025-04-01\"], 16, 16777216, 2.2170201]"
+          },
+          "checkpoint": {
+            "available": true,
+            "path": "checkpoints/dual256_20261026_090533/reference/step512.pt",
+            "sha256": "ba310dfc02262f3b1ce528e69e44ae5d48530ded1bf3ac5006a44902b61f1927",
+            "bytes": 59298229,
+            "configs": {
+              "model_config": {
+                "levels": 2048,
+                "quantity_scale": 1.0,
+                "global_dim": 64,
+                "local_dim": 16,
+                "causal": false,
+                "gap_activation": "softplus",
+                "detach_price": false,
+                "fix_first_mid": true
+              },
+              "window_matrix_config": {
+                "window_size": 256,
+                "matrix_rows": 16,
+                "matrix_dim": 1024,
+                "frame_dim": 256,
+                "codec_kind": "nonlinear",
+                "codec_depth": 0,
+                "codec_hidden": 512,
+                "branch_mode": "shared",
+                "compress": false,
+                "activation_checkpoint": true
+              },
+              "step": 512,
+              "state_tensor_count": 313,
+              "state_scalars": 4906316
+            },
+            "saved_step_matches": true
+          },
+          "profile": {
+            "source": "checkpoints/dual256_20261026_090533/reference/step512_profiles.npz",
+            "source_sha256": "68c7a6125d9d18e63247cd6a121e78c721dfdced859bc3692bf7415c777dfd2e",
+            "prediction_key": "prediction",
+            "source_shape": [
+              3,
+              256,
+              2,
+              2048,
+              2
+            ],
+            "selected_source_case": 0,
+            "minutes": [
+              0,
+              128,
+              255
+            ],
+            "indices": [
+              0,
+              235,
+              505
+            ],
+            "images": [
+              "best_0_btc.png",
+              "best_0_log.png",
+              "best_0_price.png"
+            ],
+            "full2048depth": true,
+            "not_population_evaluation": true
+          },
+          "evidence": "best_0_evidence.json"
+        }
+      ],
+      "status": "recorded_results"
+    },
+    {
+      "id": "merge",
+      "name": "Global并入Local的敏感性/融合",
+      "candidates": 12,
+      "protocols": 1,
+      "winners": [
+        {
+          "candidate": {
+            "family": "merge",
+            "cohort": "checkpoints/merge_global_local_256_20261026_105211",
+            "lane": "local",
+            "path": "checkpoints/merge_global_local_256_20261026_105211/local/step256_evaluation.json",
+            "selector": "result",
+            "step": 256,
+            "epoch": null,
+            "price": 16.868965717485274,
+            "quantity": 0.18591227050392287,
+            "recall": 0.9457943925233645,
+            "precision": 0.9806201550387597,
+            "F1": 0.9628924833491912,
+            "dynamics": 0.9783244633904198,
+            "windows": 16,
+            "count": 16777216,
+            "target_rms": 2.2170200567880882,
+            "indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "threshold100": {
+              "tp": 506,
+              "fp": 10,
+              "fn": 29,
+              "precision": 0.9806201550387597,
+              "recall": 0.9457943925233645
+            },
+            "window_minutes": 256,
+            "period": [
+              "2025-01-01",
+              "2025-04-01"
+            ],
+            "kind": "test",
+            "profile": "checkpoints/merge_global_local_256_20261026_105211/local/step256_profiles.npz",
+            "weight": "checkpoints/merge_global_local_256_20261026_105211/local/step256.pt",
+            "common_endpoint_step": 256,
+            "is_common_endpoint": true,
+            "protocol": "[256, [\"2025-01-01\", \"2025-04-01\"], 16, 16777216, 2.2170201]"
+          },
+          "checkpoint": {
+            "available": true,
+            "path": "checkpoints/merge_global_local_256_20261026_105211/local/step256.pt",
+            "sha256": "b7dc73aa6856dc4021bef5f4051e89591331ba2c09090705cbf30d4494df5a40",
+            "bytes": 59650805,
+            "configs": {
+              "model_config": {
+                "levels": 2048,
+                "quantity_scale": 1.0,
+                "global_dim": 64,
+                "local_dim": 16,
+                "causal": false,
+                "gap_activation": "softplus",
+                "detach_price": false,
+                "fix_first_mid": true
+              },
+              "global_local_merge_config": {
+                "merge_mode": "local",
+                "window_size": 256,
+                "readout_bands": 4,
+                "hidden": 128,
+                "activation_checkpoint": true
+              },
+              "step": 256,
+              "state_tensor_count": 317,
+              "state_scalars": 4935180
+            },
+            "saved_step_matches": true
+          },
+          "profile": {
+            "source": "checkpoints/merge_global_local_256_20261026_105211/local/step256_profiles.npz",
+            "source_sha256": "cd7caf445cf7b440a2e8c30430b0e1f19d33b840d200f28243f0783bfd087177",
+            "prediction_key": "prediction",
+            "source_shape": [
+              3,
+              256,
+              2,
+              2048,
+              2
+            ],
+            "selected_source_case": 0,
+            "minutes": [
+              0,
+              128,
+              255
+            ],
+            "indices": [
+              0,
+              235,
+              505
+            ],
+            "images": [
+              "best_0_btc.png",
+              "best_0_log.png",
+              "best_0_price.png"
+            ],
+            "full2048depth": true,
+            "not_population_evaluation": true
+          },
+          "evidence": "best_0_evidence.json"
+        }
+      ],
+      "status": "recorded_results"
+    },
+    {
+      "id": "gaussian8192",
+      "name": "从头训练的唯一Gaussian8192",
+      "candidates": 128,
+      "protocols": 1,
+      "winners": [
+        {
+          "candidate": {
+            "family": "gaussian8192",
+            "cohort": "recons/probability_shape_20261026_181628",
+            "lane": "both",
+            "path": "recons/probability_shape_20261026_181628/both/step2048_evaluation.json",
+            "selector": "result",
+            "step": 2048,
+            "epoch": null,
+            "price": 81.75239707666967,
+            "quantity": 2.1795174044280996,
+            "recall": 0.0,
+            "precision": null,
+            "F1": 0.0,
+            "dynamics": 0.0002458608671718427,
+            "windows": 16,
+            "count": 16777216,
+            "target_rms": 2.2170200567880882,
+            "indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "threshold100": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 535,
+              "precision": null,
+              "recall": 0.0
+            },
+            "window_minutes": 256,
+            "period": [
+              "2025-01-01",
+              "2025-04-01"
+            ],
+            "kind": "test",
+            "profile": "recons/probability_shape_20261026_181628/both/step2048_profiles.npz",
+            "weight": "recons/probability_shape_20261026_181628/both/step2048.pt",
+            "common_endpoint_step": 2048,
+            "is_common_endpoint": true,
+            "protocol": "[256, [\"2025-01-01\", \"2025-04-01\"], 16, 16777216, 2.2170201]"
+          },
+          "checkpoint": {
+            "available": true,
+            "path": "recons/probability_shape_20261026_181628/both/step2048.pt",
+            "sha256": "f7699d4ff127170c6d7b150bf45878bed9d493fa85544dd92512a74dcedf6cd9",
+            "bytes": 140158182,
+            "configs": {
+              "unified_vae_config": {
+                "levels": 2048,
+                "quantity_scale": 7.517722085208762,
+                "activation_checkpointing": true
+              },
+              "step": 2048,
+              "lane": "both",
+              "gradient_route_config": {
+                "detach_quantity_latent": false,
+                "detach_quantity_geometry": false
+              },
+              "state_tensor_count": 240,
+              "state_scalars": 11651542
+            },
+            "saved_step_matches": true
+          },
+          "profile": {
+            "source": "recons/probability_shape_20261026_181628/both/step2048_profiles.npz",
+            "source_sha256": "b0e0362968e8fdf0f91a4a647d380fcf2609ffd1a35a2206690fa87e89648c62",
+            "prediction_key": "prediction",
+            "source_shape": [
+              3,
+              256,
+              2,
+              2048,
+              2
+            ],
+            "selected_source_case": 0,
+            "minutes": [
+              0,
+              128,
+              255
+            ],
+            "indices": [
+              0,
+              235,
+              505
+            ],
+            "images": [
+              "best_0_btc.png",
+              "best_0_log.png",
+              "best_0_price.png"
+            ],
+            "full2048depth": true,
+            "not_population_evaluation": true
+          },
+          "evidence": "best_0_evidence.json"
+        }
+      ],
+      "status": "recorded_results"
+    },
+    {
+      "id": "phase",
+      "name": "区域内16档直接细节/空间上采样路径",
+      "candidates": 40,
+      "protocols": 1,
+      "winners": [
+        {
+          "candidate": {
+            "family": "phase",
+            "cohort": "recons/phase_encoder_20261026_231213",
+            "lane": "joint_independent",
+            "path": "recons/phase_encoder_20261026_231213/joint_independent/step2048_evaluation.json",
+            "selector": "result",
+            "step": 2048,
+            "epoch": null,
+            "price": 62.50153454400185,
+            "quantity": 2.179526088554775,
+            "recall": 0.0,
+            "precision": null,
+            "F1": 0.0,
+            "dynamics": 0.0007861081388118862,
+            "windows": 16,
+            "count": 16777216,
+            "target_rms": 2.2170200567880882,
+            "indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "threshold100": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 535,
+              "precision": null,
+              "recall": 0.0
+            },
+            "window_minutes": 256,
+            "period": [
+              "2025-01-01",
+              "2025-04-01"
+            ],
+            "kind": "test",
+            "profile": "recons/phase_encoder_20261026_231213/joint_independent/step2048_profiles.npz",
+            "weight": "recons/phase_encoder_20261026_231213/joint_independent/step2048.pt",
+            "common_endpoint_step": 2048,
+            "is_common_endpoint": true,
+            "protocol": "[256, [\"2025-01-01\", \"2025-04-01\"], 16, 16777216, 2.2170201]"
+          },
+          "checkpoint": {
+            "available": true,
+            "path": "recons/phase_encoder_20261026_231213/joint_independent/step2048.pt",
+            "sha256": "d1d98e373208edac2208626746ac709cd475a8934e11e86e85448e1dd49b9412",
+            "bytes": 140223038,
+            "configs": {
+              "unified_vae_config": {
+                "levels": 2048,
+                "quantity_scale": 7.517722085208762,
+                "activation_checkpointing": true
+              },
+              "phase_decoder_config": {
+                "detail_mode": "independent"
+              },
+              "step": 2048,
+              "lane": "joint_independent",
+              "state_tensor_count": 242,
+              "state_scalars": 11655654
+            },
+            "saved_step_matches": true
+          },
+          "profile": {
+            "source": "recons/phase_encoder_20261026_231213/joint_independent/step2048_profiles.npz",
+            "source_sha256": "1dcca0e8e6f7b62501d1be6bc7559df38e6a453a86e87158eb635bb50cc42d15",
+            "prediction_key": "prediction",
+            "source_shape": [
+              3,
+              256,
+              2,
+              2048,
+              2
+            ],
+            "selected_source_case": 0,
+            "minutes": [
+              0,
+              128,
+              255
+            ],
+            "indices": [
+              0,
+              235,
+              505
+            ],
+            "images": [
+              "best_0_btc.png",
+              "best_0_log.png",
+              "best_0_price.png"
+            ],
+            "full2048depth": true,
+            "not_population_evaluation": true
+          },
+          "evidence": "best_0_evidence.json"
+        }
+      ],
+      "status": "recorded_results"
+    },
+    {
+      "id": "peak_region",
+      "name": "峰辅助、坐标查询与区域Gaussian组织",
+      "candidates": 25,
+      "protocols": 1,
+      "winners": [
+        {
+          "candidate": {
+            "family": "peak_region",
+            "cohort": "recons/decoder_isolation_20261027_105856",
+            "lane": "original_warm",
+            "path": "recons/decoder_isolation_20261027_105856/original_warm/step128_evaluation.json",
+            "selector": "result",
+            "step": 128,
+            "epoch": null,
+            "price": 78.05316613089347,
+            "quantity": 2.1798136691055277,
+            "recall": 0.0,
+            "precision": null,
+            "F1": 0.0,
+            "dynamics": 8.338115711435722e-05,
+            "windows": 16,
+            "count": 16777216,
+            "target_rms": 2.2170200567880882,
+            "indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "threshold100": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 535,
+              "precision": null,
+              "recall": 0.0
+            },
+            "window_minutes": 256,
+            "period": [
+              "2025-01-01",
+              "2025-04-01"
+            ],
+            "kind": "test",
+            "profile": "recons/decoder_isolation_20261027_105856/original_warm/step128_profiles.npz",
+            "weight": "recons/decoder_isolation_20261027_105856/original_warm/step128.pt",
+            "common_endpoint_step": 128,
+            "is_common_endpoint": true,
+            "protocol": "[256, [\"2025-01-01\", \"2025-04-01\"], 16, 16777216, 2.2170201]"
+          },
+          "checkpoint": {
+            "available": true,
+            "path": "recons/decoder_isolation_20261027_105856/original_warm/step128.pt",
+            "sha256": "3b8be3b6bd3d0750c57c9e5326041e454f3f6c6b7e71b5be15a910f858fa2658",
+            "bytes": 140171942,
+            "configs": {
+              "unified_vae_config": {
+                "levels": 2048,
+                "quantity_scale": 7.517722085208762,
+                "activation_checkpointing": true
+              },
+              "step": 128,
+              "lane": "original_warm",
+              "state_tensor_count": 240,
+              "state_scalars": 11651542
+            },
+            "saved_step_matches": true
+          },
+          "profile": {
+            "source": "recons/decoder_isolation_20261027_105856/original_warm/step128_profiles.npz",
+            "source_sha256": "4f6f96eaad9aa2020abc2be95d19d7d03abc2e1d6cdef455f1201f027299bae4",
+            "prediction_key": "prediction",
+            "source_shape": [
+              3,
+              256,
+              2,
+              2048,
+              2
+            ],
+            "selected_source_case": 0,
+            "minutes": [
+              0,
+              128,
+              255
+            ],
+            "indices": [
+              0,
+              235,
+              505
+            ],
+            "images": [
+              "best_0_btc.png",
+              "best_0_log.png",
+              "best_0_price.png"
+            ],
+            "full2048depth": true,
+            "not_population_evaluation": true
+          },
+          "evidence": "best_0_evidence.json"
+        }
+      ],
+      "status": "recorded_results"
+    },
+    {
+      "id": "frame1",
+      "name": "patch4→frame1时间组织",
+      "candidates": 20,
+      "protocols": 1,
+      "winners": [
+        {
+          "candidate": {
+            "family": "frame1",
+            "cohort": "recons/time_logit_20261027_124432",
+            "lane": "frame_huber",
+            "path": "recons/time_logit_20261027_124432/frame_huber/step4096_evaluation.json",
+            "selector": "result",
+            "step": 4096,
+            "epoch": null,
+            "price": 74.70415088893665,
+            "quantity": 2.179449264344255,
+            "recall": 0.0,
+            "precision": null,
+            "F1": 0.0,
+            "dynamics": 0.006303124766758303,
+            "windows": 16,
+            "count": 16777216,
+            "target_rms": 2.2170200567880882,
+            "indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "threshold100": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 535,
+              "precision": null,
+              "recall": 0.0
+            },
+            "window_minutes": 256,
+            "period": [
+              "2025-01-01",
+              "2025-04-01"
+            ],
+            "kind": "test",
+            "profile": "recons/time_logit_20261027_124432/frame_huber/step4096_profiles.npz",
+            "weight": "recons/time_logit_20261027_124432/frame_huber/step4096.pt",
+            "common_endpoint_step": 4096,
+            "is_common_endpoint": true,
+            "protocol": "[256, [\"2025-01-01\", \"2025-04-01\"], 16, 16777216, 2.2170201]"
+          },
+          "checkpoint": {
+            "available": true,
+            "path": "recons/time_logit_20261027_124432/frame_huber/step4096.pt",
+            "sha256": "df02bc4c2fd9a171b17f7dbb53b9370cef8992dd41216692c2b71dd8c0c46763",
+            "bytes": 141173862,
+            "configs": {
+              "unified_vae_config": {
+                "levels": 2048,
+                "quantity_scale": 7.517722085208762,
+                "activation_checkpointing": true
+              },
+              "time_layout_config": {
+                "layout": "frame1",
+                "frame_ffn": 1536
+              },
+              "step": 4096,
+              "lane": "frame_huber",
+              "state_tensor_count": 240,
+              "state_scalars": 11735830
+            },
+            "saved_step_matches": true
+          },
+          "profile": {
+            "source": "recons/time_logit_20261027_124432/frame_huber/step4096_profiles.npz",
+            "source_sha256": "94ad0acbb32ddb418b41d51f3070d6622af4a74448bd3578b130aef047213f11",
+            "prediction_key": "prediction",
+            "source_shape": [
+              3,
+              256,
+              2,
+              2048,
+              2
+            ],
+            "selected_source_case": 0,
+            "minutes": [
+              0,
+              128,
+              255
+            ],
+            "indices": [
+              0,
+              235,
+              505
+            ],
+            "images": [
+              "best_0_btc.png",
+              "best_0_log.png",
+              "best_0_price.png"
+            ],
+            "full2048depth": true,
+            "not_population_evaluation": true
+          },
+          "evidence": "best_0_evidence.json"
+        }
+      ],
+      "status": "recorded_results"
+    },
+    {
+      "id": "hint",
+      "name": "Local教师蒸馏与挂量增强",
+      "candidates": 64,
+      "protocols": 1,
+      "winners": [
+        {
+          "candidate": {
+            "family": "hint",
+            "cohort": "recons/recall80_goal_20261027_235344/round_002_fp_rule",
+            "lane": "smooth",
+            "path": "recons/recall80_goal_20261027_235344/round_002_fp_rule/smooth/step2048_development.json",
+            "selector": "result",
+            "step": 2048,
+            "epoch": null,
+            "price": 43.92477044135727,
+            "quantity": 1.9115583094857667,
+            "recall": 0.6560747663551402,
+            "precision": 0.5101744186046512,
+            "F1": 0.5739983646770237,
+            "dynamics": 0.1322448561799769,
+            "windows": 16,
+            "count": 16777216,
+            "target_rms": 2.2170200567880882,
+            "indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "threshold100": {
+              "tp": 351,
+              "fp": 337,
+              "fn": 184,
+              "precision": 0.5101744186046512,
+              "recall": 0.6560747663551402
+            },
+            "window_minutes": 256,
+            "period": [
+              "2025-01-01",
+              "2025-04-01"
+            ],
+            "kind": "test",
+            "profile": "recons/recall80_goal_20261027_235344/round_002_fp_rule/smooth/step2048_profiles.npz",
+            "weight": "recons/recall80_goal_20261027_235344/round_002_fp_rule/smooth/step2048.pt",
+            "common_endpoint_step": 2048,
+            "is_common_endpoint": true,
+            "protocol": "[256, [\"2025-01-01\", \"2025-04-01\"], 16, 16777216, 2.2170201]"
+          },
+          "checkpoint": {
+            "available": true,
+            "path": "recons/recall80_goal_20261027_235344/round_002_fp_rule/smooth/step2048.pt",
+            "sha256": "6ecdb1ad0766aa858d2a0c24e3a1f8a2dfb4e491cee9e7c72b6cbb191af36ed9",
+            "bytes": 141203668,
+            "configs": {
+              "unified_vae_config": {
+                "levels": 2048,
+                "quantity_scale": 7.517722085208762,
+                "activation_checkpointing": true
+              },
+              "local_hint_config": {
+                "layout": "frame1",
+                "frame_ffn": 1536
+              },
+              "step": 2048,
+              "lane": "smooth",
+              "hint_loss_config": {
+                "state": "complete",
+                "channel_mean": [
+                  0.9250172972679138,
+                  1.8531343936920166,
+                  1.5194728374481201,
+                  1.7943356037139893,
+                  -1.4503252506256104,
+                  2.4705286026000977,
+                  0.3860763907432556,
+                  1.8132270574569702,
+                  -0.06249728426337242,
+                  -0.31646180152893066,
+                  -0.07554971426725388,
+                  -0.5030801892280579,
+                  -0.9876208305358887,
+                  0.712155818939209,
+                  -0.4036191403865814,
+                  0.38522931933403015
+                ],
+                "channel_scale": [
+                  0.9728396534919739,
+                  1.4675811529159546,
+                  1.2437142133712769,
+                  2.314589500427246,
+                  1.4124771356582642,
+                  7.2413859367370605,
+                  1.2508740425109863,
+                  3.029496192932129,
+                  1.713751196861267,
+                  3.252234697341919,
+                  1.3342822790145874,
+                  1.5868194103240967,
+                  1.2489420175552368,
+                  2.3378970623016357,
+                  1.362396240234375,
+                  1.2974568605422974
+                ],
+                "amplitude_bounds": [
+                  106.1989974975586,
+                  492.50299072265625
+                ],
+                "hint_weight": 0.00014210892251719886,
+                "teacher_sha256": "542758346c8ed763dc4c04738eb7e9a0080c5959a164acefd4e7dff981dd19c6",
+                "training_indices": [
+                  0,
+                  872,
+                  1755,
+                  2639,
+                  3515,
+                  4394,
+                  5266,
+                  6152
+                ],
+                "base_mu_gradient_rms": 0.7122394079445133,
+                "raw_hint_mu_gradient_rms": 1252.9815076500806,
+                "ratio": 0.25,
+                "teacher_hash_unchanged": true,
+                "scope": "8 preselected trainingwindows only, nooptimizerupdates/nodevelopmentcalibration; teacherownnormalizer, FP32teacher/BF16student.",
+                "tail_weight": 0.04034386474777693,
+                "mid_weight": 0.8240454165997028,
+                "new_weights_state": "locked",
+                "new_gradient_rms": {
+                  "pre_guard_loss": 3.519685725838934,
+                  "tail_positive_huber": 87.2421556001989,
+                  "tail_false_positive_huber": 110.53622288473561,
+                  "tail_balanced": 152.3454995859868,
+                  "mid_protection": 4.271227841254646
+                },
+                "new_weight_scope": "8preselectedtrainwindows only; nooptimizerupdate; equalinitialmuheadgradientRMS1.0; notdevelopment-selected.",
+                "positive_fp_gradient_cosine": 0.17617753477665446,
+                "scope_new_weights": "8fixedtrainingwindows,positive-onlymu-gradientRMS1xbaseandmidRMS1xbase;commonall4,nooptimizerupdate/noQ2."
+              },
+              "state_tensor_count": 242,
+              "state_scalars": 11736102
+            },
+            "saved_step_matches": true
+          },
+          "profile": {
+            "source": "recons/recall80_goal_20261027_235344/round_002_fp_rule/smooth/step2048_profiles.npz",
+            "source_sha256": "641a706b8a284bb36d280788d2c4f950dd32d539cc2427ceb7d93b900627d7fa",
+            "prediction_key": "prediction",
+            "source_shape": [
+              3,
+              256,
+              2,
+              2048,
+              2
+            ],
+            "selected_source_case": 0,
+            "minutes": [
+              0,
+              128,
+              255
+            ],
+            "indices": [
+              0,
+              235,
+              505
+            ],
+            "images": [
+              "best_0_btc.png",
+              "best_0_log.png",
+              "best_0_price.png"
+            ],
+            "full2048depth": true,
+            "not_population_evaluation": true
+          },
+          "evidence": "best_0_evidence.json"
+        }
+      ],
+      "status": "recorded_results"
+    },
+    {
+      "id": "local_phase",
+      "name": "共享/分区域形状与总量头",
+      "candidates": 116,
+      "protocols": 1,
+      "winners": [
+        {
+          "candidate": {
+            "family": "local_phase",
+            "cohort": "recons/recall80_goal_20261027_235344/round_008_auxiliary",
+            "lane": "quarter",
+            "path": "recons/recall80_goal_20261027_235344/round_008_auxiliary/quarter/step512_development.json",
+            "selector": "result",
+            "step": 512,
+            "epoch": null,
+            "price": 52.06147016273854,
+            "quantity": 1.957826890345902,
+            "recall": 0.6317757009345795,
+            "precision": 0.4740532959326788,
+            "F1": 0.5416666666666666,
+            "dynamics": 0.13941769308199353,
+            "windows": 16,
+            "count": 16777216,
+            "target_rms": 2.2170200567880882,
+            "indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "threshold100": {
+              "tp": 338,
+              "fp": 375,
+              "fn": 197,
+              "precision": 0.4740532959326788,
+              "recall": 0.6317757009345795
+            },
+            "window_minutes": 256,
+            "period": [
+              "2025-01-01",
+              "2025-04-01"
+            ],
+            "kind": "test",
+            "profile": "recons/recall80_goal_20261027_235344/round_008_auxiliary/quarter/step512_profiles.npz",
+            "weight": "recons/recall80_goal_20261027_235344/round_008_auxiliary/quarter/step512.pt",
+            "common_endpoint_step": 2048,
+            "is_common_endpoint": false,
+            "protocol": "[256, [\"2025-01-01\", \"2025-04-01\"], 16, 16777216, 2.2170201]"
+          },
+          "checkpoint": {
+            "available": true,
+            "path": "recons/recall80_goal_20261027_235344/round_008_auxiliary/quarter/step512.pt",
+            "sha256": "c489631d9fbe641bbfaf5c0c54c579da27349247a47b28c7e368294a43076d0c",
+            "bytes": 141361472,
+            "configs": {
+              "unified_vae_config": {
+                "levels": 2048,
+                "quantity_scale": 7.517722085208762,
+                "activation_checkpointing": true
+              },
+              "local_hint_config": {
+                "layout": "frame1",
+                "frame_ffn": 1536
+              },
+              "step": 512,
+              "lane": "quarter",
+              "hint_loss_config": {
+                "state": "complete",
+                "channel_mean": [
+                  0.9250172972679138,
+                  1.8531343936920166,
+                  1.5194728374481201,
+                  1.7943356037139893,
+                  -1.4503252506256104,
+                  2.4705286026000977,
+                  0.3860763907432556,
+                  1.8132270574569702,
+                  -0.06249728426337242,
+                  -0.31646180152893066,
+                  -0.07554971426725388,
+                  -0.5030801892280579,
+                  -0.9876208305358887,
+                  0.712155818939209,
+                  -0.4036191403865814,
+                  0.38522931933403015
+                ],
+                "channel_scale": [
+                  0.9728396534919739,
+                  1.4675811529159546,
+                  1.2437142133712769,
+                  2.314589500427246,
+                  1.4124771356582642,
+                  7.2413859367370605,
+                  1.2508740425109863,
+                  3.029496192932129,
+                  1.713751196861267,
+                  3.252234697341919,
+                  1.3342822790145874,
+                  1.5868194103240967,
+                  1.2489420175552368,
+                  2.3378970623016357,
+                  1.362396240234375,
+                  1.2974568605422974
+                ],
+                "amplitude_bounds": [
+                  106.1989974975586,
+                  492.50299072265625
+                ],
+                "hint_weight": 0.00014210892251719886,
+                "teacher_sha256": "542758346c8ed763dc4c04738eb7e9a0080c5959a164acefd4e7dff981dd19c6",
+                "training_indices": [
+                  0,
+                  872,
+                  1755,
+                  2639,
+                  3515,
+                  4394,
+                  5266,
+                  6152
+                ],
+                "base_mu_gradient_rms": 0.7122394079445133,
+                "raw_hint_mu_gradient_rms": 1252.9815076500806,
+                "ratio": 0.25,
+                "teacher_hash_unchanged": true,
+                "scope": "8 preselected trainingwindows only, nooptimizerupdates/nodevelopmentcalibration; teacherownnormalizer, FP32teacher/BF16student.",
+                "tail_weight": 0.04034386474777693,
+                "mid_weight": 0.8240454165997028,
+                "new_weights_state": "locked",
+                "new_gradient_rms": {
+                  "pre_guard_loss": 3.519685725838934,
+                  "tail_positive_huber": 87.2421556001989,
+                  "tail_false_positive_huber": 110.53622288473561,
+                  "tail_balanced": 152.3454995859868,
+                  "mid_protection": 4.271227841254646
+                },
+                "new_weight_scope": "8preselectedtrainwindows only; nooptimizerupdate; equalinitialmuheadgradientRMS1.0; notdevelopment-selected.",
+                "positive_fp_gradient_cosine": 0.17617753477665446,
+                "scope_new_weights": "8fixedtrainingwindows,positive-onlymu-gradientRMS1xbaseandmidRMS1xbase;commonall4,nooptimizerupdate/noQ2."
+              },
+              "regional_phase_config": {
+                "layout": "frame1",
+                "frame_ffn": 1536,
+                "use_shape": false,
+                "use_mass": false,
+                "readout_kernel": "linear"
+              },
+              "stratified_quantity_loss_config": {
+                "lower_BTC": [
+                  0.0,
+                  0.01,
+                  0.1,
+                  1.0,
+                  10.0,
+                  100.0
+                ],
+                "scales_BTC": [
+                  0.0044779047307967985,
+                  0.0472840202098522,
+                  0.4412717188339758,
+                  3.522815580004404,
+                  24.89547481913624,
+                  215.94657900798126
+                ],
+                "weight": 0.0,
+                "multiplier": 0.0
+              },
+              "mid_lowpass_loss_config": {
+                "weight": 5.167638744317654,
+                "multiplier": 0.25,
+                "kind": "mid_lowpass",
+                "chunks": [
+                  16,
+                  64,
+                  256
+                ]
+              },
+              "state_tensor_count": 246,
+              "state_scalars": 11773094
+            },
+            "saved_step_matches": true
+          },
+          "profile": {
+            "source": "recons/recall80_goal_20261027_235344/round_008_auxiliary/quarter/step512_profiles.npz",
+            "source_sha256": "3398f79f202f50793cf51344fb31158d381d515d689bd35d64a16d2036ab1ab4",
+            "prediction_key": "prediction",
+            "source_shape": [
+              3,
+              256,
+              2,
+              2048,
+              2
+            ],
+            "selected_source_case": 0,
+            "minutes": [
+              0,
+              128,
+              255
+            ],
+            "indices": [
+              0,
+              235,
+              505
+            ],
+            "images": [
+              "best_0_btc.png",
+              "best_0_log.png",
+              "best_0_price.png"
+            ],
+            "full2048depth": true,
+            "not_population_evaluation": true
+          },
+          "evidence": "best_0_evidence.json"
+        }
+      ],
+      "status": "recorded_results"
+    },
+    {
+      "id": "fine_encoder",
+      "name": "细粒度Encoder旁路特征适配",
+      "candidates": 16,
+      "protocols": 1,
+      "winners": [
+        {
+          "candidate": {
+            "family": "fine_encoder",
+            "cohort": "recons/recall80_goal_20261027_235344/round_006_fine_phase",
+            "lane": "linear",
+            "path": "recons/recall80_goal_20261027_235344/round_006_fine_phase/linear/step512_development.json",
+            "selector": "result",
+            "step": 512,
+            "epoch": null,
+            "price": 58.64513860587152,
+            "quantity": 2.103530852563711,
+            "recall": 0.6990654205607477,
+            "precision": 0.4447086801426873,
+            "F1": 0.5436046511627907,
+            "dynamics": 0.1284189443113003,
+            "windows": 16,
+            "count": 16777216,
+            "target_rms": 2.2170200567880882,
+            "indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "threshold100": {
+              "tp": 374,
+              "fp": 467,
+              "fn": 161,
+              "precision": 0.4447086801426873,
+              "recall": 0.6990654205607477
+            },
+            "window_minutes": 256,
+            "period": [
+              "2025-01-01",
+              "2025-04-01"
+            ],
+            "kind": "test",
+            "profile": "recons/recall80_goal_20261027_235344/round_006_fine_phase/linear/step512_profiles.npz",
+            "weight": "recons/recall80_goal_20261027_235344/round_006_fine_phase/linear/step512.pt",
+            "common_endpoint_step": 2048,
+            "is_common_endpoint": false,
+            "protocol": "[256, [\"2025-01-01\", \"2025-04-01\"], 16, 16777216, 2.2170201]"
+          },
+          "checkpoint": {
+            "available": true,
+            "path": "recons/recall80_goal_20261027_235344/round_006_fine_phase/linear/step512.pt",
+            "sha256": "357faea89efd69dbc7f4282b18dc064549baa578d7b51df1d6d79d7e032c258c",
+            "bytes": 153999452,
+            "configs": {
+              "unified_vae_config": {
+                "levels": 2048,
+                "quantity_scale": 7.517722085208762,
+                "activation_checkpointing": true
+              },
+              "local_hint_config": {
+                "layout": "frame1",
+                "frame_ffn": 1536
+              },
+              "step": 512,
+              "lane": "linear",
+              "hint_loss_config": {
+                "state": "complete",
+                "channel_mean": [
+                  0.9250172972679138,
+                  1.8531343936920166,
+                  1.5194728374481201,
+                  1.7943356037139893,
+                  -1.4503252506256104,
+                  2.4705286026000977,
+                  0.3860763907432556,
+                  1.8132270574569702,
+                  -0.06249728426337242,
+                  -0.31646180152893066,
+                  -0.07554971426725388,
+                  -0.5030801892280579,
+                  -0.9876208305358887,
+                  0.712155818939209,
+                  -0.4036191403865814,
+                  0.38522931933403015
+                ],
+                "channel_scale": [
+                  0.9728396534919739,
+                  1.4675811529159546,
+                  1.2437142133712769,
+                  2.314589500427246,
+                  1.4124771356582642,
+                  7.2413859367370605,
+                  1.2508740425109863,
+                  3.029496192932129,
+                  1.713751196861267,
+                  3.252234697341919,
+                  1.3342822790145874,
+                  1.5868194103240967,
+                  1.2489420175552368,
+                  2.3378970623016357,
+                  1.362396240234375,
+                  1.2974568605422974
+                ],
+                "amplitude_bounds": [
+                  106.1989974975586,
+                  492.50299072265625
+                ],
+                "hint_weight": 0.00014210892251719886,
+                "teacher_sha256": "542758346c8ed763dc4c04738eb7e9a0080c5959a164acefd4e7dff981dd19c6",
+                "training_indices": [
+                  0,
+                  872,
+                  1755,
+                  2639,
+                  3515,
+                  4394,
+                  5266,
+                  6152
+                ],
+                "base_mu_gradient_rms": 0.7122394079445133,
+                "raw_hint_mu_gradient_rms": 1252.9815076500806,
+                "ratio": 0.25,
+                "teacher_hash_unchanged": true,
+                "scope": "8 preselected trainingwindows only, nooptimizerupdates/nodevelopmentcalibration; teacherownnormalizer, FP32teacher/BF16student.",
+                "tail_weight": 0.04034386474777693,
+                "mid_weight": 0.8240454165997028,
+                "new_weights_state": "locked",
+                "new_gradient_rms": {
+                  "pre_guard_loss": 3.519685725838934,
+                  "tail_positive_huber": 87.2421556001989,
+                  "tail_false_positive_huber": 110.53622288473561,
+                  "tail_balanced": 152.3454995859868,
+                  "mid_protection": 4.271227841254646
+                },
+                "new_weight_scope": "8preselectedtrainwindows only; nooptimizerupdate; equalinitialmuheadgradientRMS1.0; notdevelopment-selected.",
+                "positive_fp_gradient_cosine": 0.17617753477665446,
+                "scope_new_weights": "8fixedtrainingwindows,positive-onlymu-gradientRMS1xbaseandmidRMS1xbase;commonall4,nooptimizerupdate/noQ2."
+              },
+              "fine_phase_config": {
+                "layout": "frame1",
+                "frame_ffn": 1536,
+                "fine_enabled": true,
+                "fine_transform": "linear",
+                "fine_hidden": 256
+              },
+              "state_tensor_count": 248,
+              "state_scalars": 12801350
+            },
+            "saved_step_matches": true
+          },
+          "profile": {
+            "source": "recons/recall80_goal_20261027_235344/round_006_fine_phase/linear/step512_profiles.npz",
+            "source_sha256": "5ff5f359f408c8dd5fd9922c8a3bede3ff272da73d081efba6447766d96d5916",
+            "prediction_key": "prediction",
+            "source_shape": [
+              3,
+              256,
+              2,
+              2048,
+              2
+            ],
+            "selected_source_case": 0,
+            "minutes": [
+              0,
+              128,
+              255
+            ],
+            "indices": [
+              0,
+              235,
+              505
+            ],
+            "images": [
+              "best_0_btc.png",
+              "best_0_log.png",
+              "best_0_price.png"
+            ],
+            "full2048depth": true,
+            "not_population_evaluation": true
+          },
+          "evidence": "best_0_evidence.json"
+        }
+      ],
+      "status": "recorded_results"
+    },
+    {
+      "id": "paired_readout",
+      "name": "保价logit/配对响应读出",
+      "candidates": 42,
+      "protocols": 1,
+      "winners": [
+        {
+          "candidate": {
+            "family": "paired_readout",
+            "cohort": "recons/recall80_goal_20261027_235344/decoder_readout_pilot",
+            "lane": "both",
+            "path": "recons/recall80_goal_20261027_235344/decoder_readout_pilot/both/step128_development.json",
+            "selector": "result",
+            "step": 128,
+            "epoch": null,
+            "price": 66.03862285813554,
+            "quantity": 2.008673785533191,
+            "recall": 0.5831775700934579,
+            "precision": 0.4508670520231214,
+            "F1": 0.508557457212714,
+            "dynamics": 0.09789720171707449,
+            "windows": 16,
+            "count": 16777216,
+            "target_rms": 2.2170200567880882,
+            "indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "threshold100": {
+              "tp": 312,
+              "fp": 380,
+              "fn": 223,
+              "precision": 0.4508670520231214,
+              "recall": 0.5831775700934579
+            },
+            "window_minutes": 256,
+            "period": [
+              "2025-01-01",
+              "2025-04-01"
+            ],
+            "kind": "test",
+            "profile": "recons/recall80_goal_20261027_235344/decoder_readout_pilot/both/step128_profiles.npz",
+            "weight": "recons/recall80_goal_20261027_235344/decoder_readout_pilot/both/step128.pt",
+            "common_endpoint_step": 256,
+            "is_common_endpoint": false,
+            "protocol": "[256, [\"2025-01-01\", \"2025-04-01\"], 16, 16777216, 2.2170201]"
+          },
+          "checkpoint": {
+            "available": true,
+            "path": "recons/recall80_goal_20261027_235344/decoder_readout_pilot/both/step128.pt",
+            "sha256": "0cd894724cc4faf14c5bad770def6f2fc973bc21534996647058ee0fa2b11f35",
+            "bytes": 141201686,
+            "configs": {
+              "unified_vae_config": {
+                "levels": 2048,
+                "quantity_scale": 7.517722085208762,
+                "activation_checkpointing": true
+              },
+              "local_hint_config": {
+                "layout": "frame1",
+                "frame_ffn": 1536
+              },
+              "step": 128,
+              "lane": "both",
+              "hint_loss_config": {
+                "state": "complete",
+                "channel_mean": [
+                  0.9250172972679138,
+                  1.8531343936920166,
+                  1.5194728374481201,
+                  1.7943356037139893,
+                  -1.4503252506256104,
+                  2.4705286026000977,
+                  0.3860763907432556,
+                  1.8132270574569702,
+                  -0.06249728426337242,
+                  -0.31646180152893066,
+                  -0.07554971426725388,
+                  -0.5030801892280579,
+                  -0.9876208305358887,
+                  0.712155818939209,
+                  -0.4036191403865814,
+                  0.38522931933403015
+                ],
+                "channel_scale": [
+                  0.9728396534919739,
+                  1.4675811529159546,
+                  1.2437142133712769,
+                  2.314589500427246,
+                  1.4124771356582642,
+                  7.2413859367370605,
+                  1.2508740425109863,
+                  3.029496192932129,
+                  1.713751196861267,
+                  3.252234697341919,
+                  1.3342822790145874,
+                  1.5868194103240967,
+                  1.2489420175552368,
+                  2.3378970623016357,
+                  1.362396240234375,
+                  1.2974568605422974
+                ],
+                "amplitude_bounds": [
+                  106.1989974975586,
+                  492.50299072265625
+                ],
+                "hint_weight": 0.00014210892251719886,
+                "teacher_sha256": "542758346c8ed763dc4c04738eb7e9a0080c5959a164acefd4e7dff981dd19c6",
+                "training_indices": [
+                  0,
+                  872,
+                  1755,
+                  2639,
+                  3515,
+                  4394,
+                  5266,
+                  6152
+                ],
+                "base_mu_gradient_rms": 0.7122394079445133,
+                "raw_hint_mu_gradient_rms": 1252.9815076500806,
+                "ratio": 0.25,
+                "teacher_hash_unchanged": true,
+                "scope": "8 preselected trainingwindows only, nooptimizerupdates/nodevelopmentcalibration; teacherownnormalizer, FP32teacher/BF16student.",
+                "mid_weight": 0.5898305515425094,
+                "mid_gradient_norms": {
+                  "pre_guard_loss": 2.614252145220998,
+                  "mid_protection": 4.432208773154042
+                },
+                "mid_scope": "Fixed8trainingwindows,PriceDecodermidheadgradientRMSratio1.0,nooptimizerupdates"
+              },
+              "shape_mass_config": {
+                "layout": "frame1",
+                "frame_ffn": 1536,
+                "use_shape": true,
+                "use_mass": true,
+                "detach_price_geometry": true
+              },
+              "state_tensor_count": 245,
+              "state_scalars": 11736648
+            },
+            "saved_step_matches": true
+          },
+          "profile": {
+            "source": "recons/recall80_goal_20261027_235344/decoder_readout_pilot/both/step128_profiles.npz",
+            "source_sha256": "6b9cd3d29ac46e32e7c338972bccee1a48d04fc6e21bd0f56232e77d2a88d5c9",
+            "prediction_key": "prediction",
+            "source_shape": [
+              3,
+              256,
+              2,
+              2048,
+              2
+            ],
+            "selected_source_case": 0,
+            "minutes": [
+              0,
+              128,
+              255
+            ],
+            "indices": [
+              0,
+              235,
+              505
+            ],
+            "images": [
+              "best_0_btc.png",
+              "best_0_log.png",
+              "best_0_price.png"
+            ],
+            "full2048depth": true,
+            "not_population_evaluation": true
+          },
+          "evidence": "best_0_evidence.json"
+        }
+      ],
+      "status": "recorded_results"
+    },
+    {
+      "id": "context",
+      "name": "数量Decoder读取全窗Z上下文",
+      "candidates": 0,
+      "protocols": 0,
+      "winners": [],
+      "status": "no_trained_test_result"
+    },
+    {
+      "id": "direct",
+      "name": "GELU/Identity全分辨率逐档MLP",
+      "candidates": 10,
+      "protocols": 1,
+      "winners": [
+        {
+          "candidate": {
+            "family": "direct",
+            "cohort": "recons/recall80_goal_20261027_235344/direct_readout_activation_pilot_20261029",
+            "lane": "gelu",
+            "path": "recons/recall80_goal_20261027_235344/direct_readout_activation_pilot_20261029/gelu/step128_development.json",
+            "selector": "result",
+            "step": 128,
+            "epoch": null,
+            "price": 30.33501195158303,
+            "quantity": 2.075856641316893,
+            "recall": 0.7682242990654206,
+            "precision": 0.4633596392333709,
+            "F1": 0.5780590717299579,
+            "dynamics": 0.14424402133281433,
+            "windows": 16,
+            "count": 16777216,
+            "target_rms": 2.2170200567880882,
+            "indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "threshold100": {
+              "tp": 411,
+              "fp": 476,
+              "fn": 124,
+              "precision": 0.4633596392333709,
+              "recall": 0.7682242990654206
+            },
+            "window_minutes": 256,
+            "period": [
+              "2025-01-01",
+              "2025-04-01"
+            ],
+            "kind": "test",
+            "profile": "recons/recall80_goal_20261027_235344/direct_readout_activation_pilot_20261029/gelu/step128_profiles.npz",
+            "weight": "recons/recall80_goal_20261027_235344/direct_readout_activation_pilot_20261029/gelu/step128.pt",
+            "common_endpoint_step": 512,
+            "is_common_endpoint": false,
+            "protocol": "[256, [\"2025-01-01\", \"2025-04-01\"], 16, 16777216, 2.2170201]"
+          },
+          "checkpoint": {
+            "available": true,
+            "path": "recons/recall80_goal_20261027_235344/direct_readout_activation_pilot_20261029/gelu/step128.pt",
+            "sha256": "8fdc5d3a7f106632a104cf0e79dd9ea6c657c3bc916e595c9ebb5dfaae572b2b",
+            "bytes": 248399472,
+            "configs": {
+              "unified_vae_config": {
+                "levels": 2048,
+                "quantity_scale": 7.517722085208762,
+                "activation_checkpointing": true
+              },
+              "local_hint_config": {
+                "layout": "frame1",
+                "frame_ffn": 1536
+              },
+              "step": 128,
+              "lane": "gelu",
+              "hint_loss_config": {
+                "state": "complete",
+                "channel_mean": [
+                  0.9250172972679138,
+                  1.8531343936920166,
+                  1.5194728374481201,
+                  1.7943356037139893,
+                  -1.4503252506256104,
+                  2.4705286026000977,
+                  0.3860763907432556,
+                  1.8132270574569702,
+                  -0.06249728426337242,
+                  -0.31646180152893066,
+                  -0.07554971426725388,
+                  -0.5030801892280579,
+                  -0.9876208305358887,
+                  0.712155818939209,
+                  -0.4036191403865814,
+                  0.38522931933403015
+                ],
+                "channel_scale": [
+                  0.9728396534919739,
+                  1.4675811529159546,
+                  1.2437142133712769,
+                  2.314589500427246,
+                  1.4124771356582642,
+                  7.2413859367370605,
+                  1.2508740425109863,
+                  3.029496192932129,
+                  1.713751196861267,
+                  3.252234697341919,
+                  1.3342822790145874,
+                  1.5868194103240967,
+                  1.2489420175552368,
+                  2.3378970623016357,
+                  1.362396240234375,
+                  1.2974568605422974
+                ],
+                "amplitude_bounds": [
+                  106.1989974975586,
+                  492.50299072265625
+                ],
+                "hint_weight": 0.00014210892251719886,
+                "teacher_sha256": "542758346c8ed763dc4c04738eb7e9a0080c5959a164acefd4e7dff981dd19c6",
+                "training_indices": [
+                  0,
+                  872,
+                  1755,
+                  2639,
+                  3515,
+                  4394,
+                  5266,
+                  6152
+                ],
+                "base_mu_gradient_rms": 0.7122394079445133,
+                "raw_hint_mu_gradient_rms": 1252.9815076500806,
+                "ratio": 0.25,
+                "teacher_hash_unchanged": true,
+                "scope": "8 preselected trainingwindows only, nooptimizerupdates/nodevelopmentcalibration; teacherownnormalizer, FP32teacher/BF16student.",
+                "tail_weight": 0.04034386474777693,
+                "mid_weight": 0.8240454165997028,
+                "new_weights_state": "locked",
+                "new_gradient_rms": {
+                  "pre_guard_loss": 3.519685725838934,
+                  "tail_positive_huber": 87.2421556001989,
+                  "tail_false_positive_huber": 110.53622288473561,
+                  "tail_balanced": 152.3454995859868,
+                  "mid_protection": 4.271227841254646
+                },
+                "new_weight_scope": "8preselectedtrainwindows only; nooptimizerupdate; equalinitialmuheadgradientRMS1.0; notdevelopment-selected.",
+                "positive_fp_gradient_cosine": 0.17617753477665446,
+                "scope_new_weights": "8fixedtrainingwindows,positive-onlymu-gradientRMS1xbaseandmidRMS1xbase;commonall4,nooptimizerupdate/noQ2."
+              },
+              "regional_phase_config": {
+                "layout": "frame1",
+                "frame_ffn": 1536,
+                "use_shape": false,
+                "use_mass": false,
+                "readout_kernel": "linear"
+              },
+              "stratified_quantity_loss_config": {
+                "lower_BTC": [
+                  0.0,
+                  0.01,
+                  0.1,
+                  1.0,
+                  10.0,
+                  100.0
+                ],
+                "scales_BTC": [
+                  0.0044779047307967985,
+                  0.0472840202098522,
+                  0.4412717188339758,
+                  3.522815580004404,
+                  24.89547481913624,
+                  215.94657900798126
+                ],
+                "weight": 0.0,
+                "multiplier": 0.0
+              },
+              "mid_lowpass_loss_config": {
+                "weight": 0.0,
+                "multiplier": 0.0,
+                "kind": "mid_lowpass",
+                "chunks": [
+                  16,
+                  64,
+                  256
+                ]
+              },
+              "branch_precision_config": {
+                "encoder_fp32": true,
+                "decoders_fp32": true
+              },
+              "relative_detail_loss_config": {
+                "relative_enabled": true,
+                "detail_enabled": false,
+                "relative_weight": 0.13141036760364427,
+                "detail_weight": 0.0,
+                "epsilon_BTC": 0.0001,
+                "radii": [
+                  1,
+                  2,
+                  4,
+                  8
+                ],
+                "detail_RMS": [
+                  [
+                    3.3398533978083975,
+                    1.9911423466658287,
+                    2.4028968024686224,
+                    3.6778582566065494,
+                    5.403164714852515,
+                    7.252417799458921
+                  ],
+                  [
+                    3.386690419848797,
+                    2.0108467766612392,
+                    2.423846607693328,
+                    3.731398678944289,
+                    5.566561014275974,
+                    7.979593412640151
+                  ],
+                  [
+                    3.378195972597894,
+                    2.015644717078535,
+                    2.4331015387808184,
+                    3.706766817511218,
+                    5.498297567598686,
+                    7.828494133020023
+                  ],
+                  [
+                    3.360361959414919,
+                    2.0117003801308426,
+                    2.418240756585485,
+                    3.700888371724588,
+                    5.468387524643184,
+                    7.382823110720124
+                  ]
+                ],
+                "relative_count_power": 1.0
+              },
+              "direct_readout_config": {
+                "readout_activation": "gelu",
+                "readout_hidden": 2048,
+                "readout_seed": 42
+              },
+              "state_tensor_count": 250,
+              "state_scalars": 20692134
+            },
+            "saved_step_matches": true
+          },
+          "profile": {
+            "source": "recons/recall80_goal_20261027_235344/direct_readout_activation_pilot_20261029/gelu/step128_profiles.npz",
+            "source_sha256": "e74ebe850d1fd011aa112309096927e1cf3c761d6170ed591405088a3f234f23",
+            "prediction_key": "prediction",
+            "source_shape": [
+              3,
+              256,
+              2,
+              2048,
+              2
+            ],
+            "selected_source_case": 0,
+            "minutes": [
+              0,
+              128,
+              255
+            ],
+            "indices": [
+              0,
+              235,
+              505
+            ],
+            "images": [
+              "best_0_btc.png",
+              "best_0_log.png",
+              "best_0_price.png"
+            ],
+            "full2048depth": true,
+            "not_population_evaluation": true
+          },
+          "evidence": "best_0_evidence.json"
+        }
+      ],
+      "status": "recorded_results"
+    },
+    {
+      "id": "log_input",
+      "name": "数量log1p/physical-log输入适配",
+      "candidates": 28,
+      "protocols": 1,
+      "winners": [
+        {
+          "candidate": {
+            "family": "log_input",
+            "cohort": "recons/recall80_goal_20261027_235344/round_013_log_curvature_strength",
+            "lane": "quadratic_low",
+            "path": "recons/recall80_goal_20261027_235344/round_013_log_curvature_strength/quadratic_low/step1024_development.json",
+            "selector": "result",
+            "step": 1024,
+            "epoch": null,
+            "price": 36.932510091398655,
+            "quantity": 2.0978028206195396,
+            "recall": 0.7794392523364486,
+            "precision": 0.46179401993355484,
+            "F1": 0.5799721835883171,
+            "dynamics": 0.14379804542797048,
+            "windows": 16,
+            "count": 16777216,
+            "target_rms": 2.2170200567880882,
+            "indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "threshold100": {
+              "tp": 417,
+              "fp": 486,
+              "fn": 118,
+              "precision": 0.46179401993355484,
+              "recall": 0.7794392523364486
+            },
+            "window_minutes": 256,
+            "period": [
+              "2025-01-01",
+              "2025-04-01"
+            ],
+            "kind": "test",
+            "profile": "recons/recall80_goal_20261027_235344/round_013_log_curvature_strength/quadratic_low/step1024_profiles.npz",
+            "weight": "recons/recall80_goal_20261027_235344/round_013_log_curvature_strength/quadratic_low/step1024.pt",
+            "common_endpoint_step": 1024,
+            "is_common_endpoint": true,
+            "protocol": "[256, [\"2025-01-01\", \"2025-04-01\"], 16, 16777216, 2.2170201]"
+          },
+          "checkpoint": {
+            "available": true,
+            "path": "recons/recall80_goal_20261027_235344/round_013_log_curvature_strength/quadratic_low/step1024.pt",
+            "sha256": "91a2662a721c9cfc7a212f6d06c325d99650d233bd6b5de772a4e6e58a3cc532",
+            "bytes": 248407068,
+            "configs": {
+              "unified_vae_config": {
+                "levels": 2048,
+                "quantity_scale": 7.517722085208762,
+                "activation_checkpointing": true
+              },
+              "local_hint_config": {
+                "layout": "frame1",
+                "frame_ffn": 1536
+              },
+              "step": 1024,
+              "lane": "quadratic_low",
+              "hint_loss_config": {
+                "state": "complete",
+                "channel_mean": [
+                  0.9250172972679138,
+                  1.8531343936920166,
+                  1.5194728374481201,
+                  1.7943356037139893,
+                  -1.4503252506256104,
+                  2.4705286026000977,
+                  0.3860763907432556,
+                  1.8132270574569702,
+                  -0.06249728426337242,
+                  -0.31646180152893066,
+                  -0.07554971426725388,
+                  -0.5030801892280579,
+                  -0.9876208305358887,
+                  0.712155818939209,
+                  -0.4036191403865814,
+                  0.38522931933403015
+                ],
+                "channel_scale": [
+                  0.9728396534919739,
+                  1.4675811529159546,
+                  1.2437142133712769,
+                  2.314589500427246,
+                  1.4124771356582642,
+                  7.2413859367370605,
+                  1.2508740425109863,
+                  3.029496192932129,
+                  1.713751196861267,
+                  3.252234697341919,
+                  1.3342822790145874,
+                  1.5868194103240967,
+                  1.2489420175552368,
+                  2.3378970623016357,
+                  1.362396240234375,
+                  1.2974568605422974
+                ],
+                "amplitude_bounds": [
+                  106.1989974975586,
+                  492.50299072265625
+                ],
+                "hint_weight": 0.00014210892251719886,
+                "teacher_sha256": "542758346c8ed763dc4c04738eb7e9a0080c5959a164acefd4e7dff981dd19c6",
+                "training_indices": [
+                  0,
+                  872,
+                  1755,
+                  2639,
+                  3515,
+                  4394,
+                  5266,
+                  6152
+                ],
+                "base_mu_gradient_rms": 0.7122394079445133,
+                "raw_hint_mu_gradient_rms": 1252.9815076500806,
+                "ratio": 0.25,
+                "teacher_hash_unchanged": true,
+                "scope": "8 preselected trainingwindows only, nooptimizerupdates/nodevelopmentcalibration; teacherownnormalizer, FP32teacher/BF16student.",
+                "tail_weight": 0.04034386474777693,
+                "mid_weight": 0.8240454165997028,
+                "new_weights_state": "locked",
+                "new_gradient_rms": {
+                  "pre_guard_loss": 3.519685725838934,
+                  "tail_positive_huber": 87.2421556001989,
+                  "tail_false_positive_huber": 110.53622288473561,
+                  "tail_balanced": 152.3454995859868,
+                  "mid_protection": 4.271227841254646
+                },
+                "new_weight_scope": "8preselectedtrainwindows only; nooptimizerupdate; equalinitialmuheadgradientRMS1.0; notdevelopment-selected.",
+                "positive_fp_gradient_cosine": 0.17617753477665446,
+                "scope_new_weights": "8fixedtrainingwindows,positive-onlymu-gradientRMS1xbaseandmidRMS1xbase;commonall4,nooptimizerupdate/noQ2."
+              },
+              "regional_phase_config": {
+                "layout": "frame1",
+                "frame_ffn": 1536,
+                "use_shape": false,
+                "use_mass": false,
+                "readout_kernel": "linear"
+              },
+              "stratified_quantity_loss_config": {
+                "lower_BTC": [
+                  0.0,
+                  0.01,
+                  0.1,
+                  1.0,
+                  10.0,
+                  100.0
+                ],
+                "scales_BTC": [
+                  0.0044779047307967985,
+                  0.0472840202098522,
+                  0.4412717188339758,
+                  3.522815580004404,
+                  24.89547481913624,
+                  215.94657900798126
+                ],
+                "weight": 0.0,
+                "multiplier": 0.0
+              },
+              "mid_lowpass_loss_config": {
+                "weight": 0.0,
+                "multiplier": 0.0,
+                "kind": "mid_lowpass",
+                "chunks": [
+                  16,
+                  64,
+                  256
+                ]
+              },
+              "branch_precision_config": {
+                "encoder_fp32": true,
+                "decoders_fp32": true
+              },
+              "relative_detail_loss_config": {
+                "relative_enabled": true,
+                "detail_enabled": false,
+                "relative_weight": 0.031812476941390874,
+                "detail_weight": 0.0,
+                "epsilon_BTC": 0.0001,
+                "radii": [
+                  1,
+                  2,
+                  4,
+                  8
+                ],
+                "detail_RMS": [
+                  [
+                    3.3398533978083975,
+                    1.9911423466658287,
+                    2.4028968024686224,
+                    3.6778582566065494,
+                    5.403164714852515,
+                    7.252417799458921
+                  ],
+                  [
+                    3.386690419848797,
+                    2.0108467766612392,
+                    2.423846607693328,
+                    3.731398678944289,
+                    5.566561014275974,
+                    7.979593412640151
+                  ],
+                  [
+                    3.378195972597894,
+                    2.015644717078535,
+                    2.4331015387808184,
+                    3.706766817511218,
+                    5.498297567598686,
+                    7.828494133020023
+                  ],
+                  [
+                    3.360361959414919,
+                    2.0117003801308426,
+                    2.418240756585485,
+                    3.700888371724588,
+                    5.468387524643184,
+                    7.382823110720124
+                  ]
+                ],
+                "relative_count_power": 1.0,
+                "relative_point_loss": "quadratic"
+              },
+              "direct_readout_config": {
+                "readout_activation": "gelu",
+                "readout_hidden": 2048,
+                "readout_seed": 42
+              },
+              "log_quantity_input_config": {
+                "input_enabled": true,
+                "input_transform": "physical",
+                "input_epsilon": 0.0001
+              },
+              "state_tensor_count": 251,
+              "state_scalars": 20692550
+            },
+            "saved_step_matches": true
+          },
+          "profile": {
+            "source": "recons/recall80_goal_20261027_235344/round_013_log_curvature_strength/quadratic_low/step1024_profiles.npz",
+            "source_sha256": "4e15d7c36e2592f1a927ccb37769eab878d3d0d4059ff55519c82a7078bf3398",
+            "prediction_key": "prediction",
+            "source_shape": [
+              3,
+              256,
+              2,
+              2048,
+              2
+            ],
+            "selected_source_case": 0,
+            "minutes": [
+              0,
+              128,
+              255
+            ],
+            "indices": [
+              0,
+              235,
+              505
+            ],
+            "images": [
+              "best_0_btc.png",
+              "best_0_log.png",
+              "best_0_price.png"
+            ],
+            "full2048depth": true,
+            "not_population_evaluation": true
+          },
+          "evidence": "best_0_evidence.json"
+        }
+      ],
+      "status": "recorded_results"
+    },
+    {
+      "id": "temporal_input",
+      "name": "按档位/真实价格对齐的时间数量输入",
+      "candidates": 0,
+      "protocols": 0,
+      "winners": [],
+      "status": "no_trained_test_result"
+    },
+    {
+      "id": "fourier",
+      "name": "独立Fourier/FNO全模型",
+      "candidates": 4,
+      "protocols": 1,
+      "winners": [
+        {
+          "candidate": {
+            "family": "fourier",
+            "cohort": "recons/recall80_goal_20261027_235344/round_014_spectral_quantity_decoder",
+            "lane": "off",
+            "path": "recons/recall80_goal_20261027_235344/round_014_spectral_quantity_decoder/off/step128_development.json",
+            "selector": "result",
+            "step": 128,
+            "epoch": null,
+            "price": 49.054216465655145,
+            "quantity": 2.1127411561349603,
+            "recall": 0.7570093457943925,
+            "precision": 0.4644495412844037,
+            "F1": 0.5756929637526652,
+            "dynamics": 0.13872643873260343,
+            "windows": 16,
+            "count": 16777216,
+            "target_rms": 2.2170200567880882,
+            "indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "threshold100": {
+              "tp": 405,
+              "fp": 467,
+              "fn": 130,
+              "precision": 0.4644495412844037,
+              "recall": 0.7570093457943925
+            },
+            "window_minutes": 256,
+            "period": [
+              "2025-01-01",
+              "2025-04-01"
+            ],
+            "kind": "test",
+            "profile": "recons/recall80_goal_20261027_235344/round_014_spectral_quantity_decoder/off/step128_profiles.npz",
+            "weight": "recons/recall80_goal_20261027_235344/round_014_spectral_quantity_decoder/off/step128.pt",
+            "common_endpoint_step": 128,
+            "is_common_endpoint": true,
+            "protocol": "[256, [\"2025-01-01\", \"2025-04-01\"], 16, 16777216, 2.2170201]"
+          },
+          "checkpoint": {
+            "available": true,
+            "path": "recons/recall80_goal_20261027_235344/round_014_spectral_quantity_decoder/off/step128.pt",
+            "sha256": "05a6482142e30f144fb080ddbb22f06111c4d355429fc4d8b4ab4833e01d24ea",
+            "bytes": 253143626,
+            "configs": {
+              "unified_vae_config": {
+                "levels": 2048,
+                "quantity_scale": 7.517722085208762,
+                "activation_checkpointing": true
+              },
+              "local_hint_config": {
+                "layout": "frame1",
+                "frame_ffn": 1536
+              },
+              "step": 128,
+              "lane": "off",
+              "hint_loss_config": {
+                "state": "complete",
+                "channel_mean": [
+                  0.9250172972679138,
+                  1.8531343936920166,
+                  1.5194728374481201,
+                  1.7943356037139893,
+                  -1.4503252506256104,
+                  2.4705286026000977,
+                  0.3860763907432556,
+                  1.8132270574569702,
+                  -0.06249728426337242,
+                  -0.31646180152893066,
+                  -0.07554971426725388,
+                  -0.5030801892280579,
+                  -0.9876208305358887,
+                  0.712155818939209,
+                  -0.4036191403865814,
+                  0.38522931933403015
+                ],
+                "channel_scale": [
+                  0.9728396534919739,
+                  1.4675811529159546,
+                  1.2437142133712769,
+                  2.314589500427246,
+                  1.4124771356582642,
+                  7.2413859367370605,
+                  1.2508740425109863,
+                  3.029496192932129,
+                  1.713751196861267,
+                  3.252234697341919,
+                  1.3342822790145874,
+                  1.5868194103240967,
+                  1.2489420175552368,
+                  2.3378970623016357,
+                  1.362396240234375,
+                  1.2974568605422974
+                ],
+                "amplitude_bounds": [
+                  106.1989974975586,
+                  492.50299072265625
+                ],
+                "hint_weight": 0.00014210892251719886,
+                "teacher_sha256": "542758346c8ed763dc4c04738eb7e9a0080c5959a164acefd4e7dff981dd19c6",
+                "training_indices": [
+                  0,
+                  872,
+                  1755,
+                  2639,
+                  3515,
+                  4394,
+                  5266,
+                  6152
+                ],
+                "base_mu_gradient_rms": 0.7122394079445133,
+                "raw_hint_mu_gradient_rms": 1252.9815076500806,
+                "ratio": 0.25,
+                "teacher_hash_unchanged": true,
+                "scope": "8 preselected trainingwindows only, nooptimizerupdates/nodevelopmentcalibration; teacherownnormalizer, FP32teacher/BF16student.",
+                "tail_weight": 0.04034386474777693,
+                "mid_weight": 0.8240454165997028,
+                "new_weights_state": "locked",
+                "new_gradient_rms": {
+                  "pre_guard_loss": 3.519685725838934,
+                  "tail_positive_huber": 87.2421556001989,
+                  "tail_false_positive_huber": 110.53622288473561,
+                  "tail_balanced": 152.3454995859868,
+                  "mid_protection": 4.271227841254646
+                },
+                "new_weight_scope": "8preselectedtrainwindows only; nooptimizerupdate; equalinitialmuheadgradientRMS1.0; notdevelopment-selected.",
+                "positive_fp_gradient_cosine": 0.17617753477665446,
+                "scope_new_weights": "8fixedtrainingwindows,positive-onlymu-gradientRMS1xbaseandmidRMS1xbase;commonall4,nooptimizerupdate/noQ2."
+              },
+              "regional_phase_config": {
+                "layout": "frame1",
+                "frame_ffn": 1536,
+                "use_shape": false,
+                "use_mass": false,
+                "readout_kernel": "linear"
+              },
+              "stratified_quantity_loss_config": {
+                "lower_BTC": [
+                  0.0,
+                  0.01,
+                  0.1,
+                  1.0,
+                  10.0,
+                  100.0
+                ],
+                "scales_BTC": [
+                  0.0044779047307967985,
+                  0.0472840202098522,
+                  0.4412717188339758,
+                  3.522815580004404,
+                  24.89547481913624,
+                  215.94657900798126
+                ],
+                "weight": 0.0,
+                "multiplier": 0.0
+              },
+              "mid_lowpass_loss_config": {
+                "weight": 0.0,
+                "multiplier": 0.0,
+                "kind": "mid_lowpass",
+                "chunks": [
+                  16,
+                  64,
+                  256
+                ]
+              },
+              "branch_precision_config": {
+                "encoder_fp32": true,
+                "decoders_fp32": true
+              },
+              "relative_detail_loss_config": {
+                "relative_enabled": true,
+                "detail_enabled": false,
+                "relative_weight": 0.13141036760364427,
+                "detail_weight": 0.0,
+                "epsilon_BTC": 0.0001,
+                "radii": [
+                  1,
+                  2,
+                  4,
+                  8
+                ],
+                "detail_RMS": [
+                  [
+                    3.3398533978083975,
+                    1.9911423466658287,
+                    2.4028968024686224,
+                    3.6778582566065494,
+                    5.403164714852515,
+                    7.252417799458921
+                  ],
+                  [
+                    3.386690419848797,
+                    2.0108467766612392,
+                    2.423846607693328,
+                    3.731398678944289,
+                    5.566561014275974,
+                    7.979593412640151
+                  ],
+                  [
+                    3.378195972597894,
+                    2.015644717078535,
+                    2.4331015387808184,
+                    3.706766817511218,
+                    5.498297567598686,
+                    7.828494133020023
+                  ],
+                  [
+                    3.360361959414919,
+                    2.0117003801308426,
+                    2.418240756585485,
+                    3.700888371724588,
+                    5.468387524643184,
+                    7.382823110720124
+                  ]
+                ],
+                "relative_count_power": 1.0,
+                "relative_point_loss": "huber"
+              },
+              "direct_readout_config": {
+                "readout_activation": "gelu",
+                "readout_hidden": 2048,
+                "readout_seed": 42
+              },
+              "log_quantity_input_config": {
+                "input_enabled": true,
+                "input_transform": "physical",
+                "input_epsilon": 0.0001
+              },
+              "spectral_quantity_config": {
+                "spectral_mode": "off",
+                "spectral_width": 16,
+                "spectral_layers": 2,
+                "spectral_low_modes": 64,
+                "spectral_padding": 256,
+                "spectral_chunk_size": 32,
+                "spectral_seed": 42
+              },
+              "state_tensor_count": 261,
+              "state_scalars": 21874311
+            },
+            "saved_step_matches": true
+          },
+          "profile": {
+            "source": "recons/recall80_goal_20261027_235344/round_014_spectral_quantity_decoder/off/step128_profiles.npz",
+            "source_sha256": "20f6062934280b078e11a96276248aff07b256d093126862d22b44074b9158a5",
+            "prediction_key": "prediction",
+            "source_shape": [
+              3,
+              256,
+              2,
+              2048,
+              2
+            ],
+            "selected_source_case": 0,
+            "minutes": [
+              0,
+              128,
+              255
+            ],
+            "indices": [
+              0,
+              235,
+              505
+            ],
+            "images": [
+              "best_0_btc.png",
+              "best_0_log.png",
+              "best_0_price.png"
+            ],
+            "full2048depth": true,
+            "not_population_evaluation": true
+          },
+          "evidence": "best_0_evidence.json"
+        }
+      ],
+      "status": "recorded_results"
+    },
+    {
+      "id": "sparse",
+      "name": "显式稀疏地址：非原生Gaussian诊断",
+      "candidates": 6,
+      "protocols": 1,
+      "winners": [
+        {
+          "candidate": {
+            "family": "sparse",
+            "cohort": "recons/recall80_goal_20261027_235344/sparse_address_diagnostic",
+            "lane": "m3072",
+            "path": "recons/recall80_goal_20261027_235344/sparse_address_diagnostic/m3072/step0_development.json",
+            "selector": "result",
+            "step": 0,
+            "epoch": null,
+            "price": 75.59410961018544,
+            "quantity": 0.9906768194086147,
+            "recall": 1.0,
+            "precision": 1.0,
+            "F1": 1.0,
+            "dynamics": 0.38578223734751865,
+            "windows": 16,
+            "count": 16777216,
+            "target_rms": 2.2170200567880882,
+            "indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "threshold100": {
+              "tp": 535,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0
+            },
+            "window_minutes": 256,
+            "period": [
+              "2025-01-01",
+              "2025-04-01"
+            ],
+            "kind": "diagnostic",
+            "profile": "recons/recall80_goal_20261027_235344/sparse_address_diagnostic/m3072/step0_profiles.npz",
+            "weight": "recons/recall80_goal_20261027_235344/sparse_address_diagnostic/m3072/model.pt",
+            "common_endpoint_step": 0,
+            "is_common_endpoint": true,
+            "protocol": "[256, [\"2025-01-01\", \"2025-04-01\"], 16, 16777216, 2.2170201]"
+          },
+          "checkpoint": {
+            "available": true,
+            "path": "recons/recall80_goal_20261027_235344/sparse_address_diagnostic/m3072/model.pt",
+            "sha256": "1a2aa768f3207594f7a1bc4e775c9bb31a20ed7f2a81487947d5b19a1f28ecdc",
+            "bytes": 47016265,
+            "configs": {
+              "unified_vae_config": {
+                "levels": 2048,
+                "quantity_scale": 7.517722085208762,
+                "activation_checkpointing": true
+              },
+              "sparse_address_config": {
+                "peak_slots": 3072,
+                "use_addresses": true,
+                "frame_ffn": 1536
+              },
+              "step": 0,
+              "state_tensor_count": 244,
+              "state_scalars": 11730238
+            },
+            "saved_step_matches": true
+          },
+          "profile": {
+            "source": "recons/recall80_goal_20261027_235344/sparse_address_diagnostic/m3072/step0_profiles.npz",
+            "source_sha256": "85f2f3765603cabfd56abb5ac4670f683b2d77ef9308e1653ee4f509928c76e0",
+            "prediction_key": "prediction",
+            "source_shape": [
+              3,
+              256,
+              2,
+              2048,
+              2
+            ],
+            "selected_source_case": 0,
+            "minutes": [
+              0,
+              128,
+              255
+            ],
+            "indices": [
+              0,
+              235,
+              505
+            ],
+            "images": [
+              "best_0_btc.png",
+              "best_0_log.png",
+              "best_0_price.png"
+            ],
+            "full2048depth": true,
+            "not_population_evaluation": true
+          },
+          "evidence": "best_0_evidence.json"
+        }
+      ],
+      "status": "recorded_results"
+    }
+  ]
+}

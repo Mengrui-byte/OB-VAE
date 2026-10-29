@@ -1,0 +1,103 @@
+{
+  "parent": "/home/mengrui/e2e_strategy/OBreconstuction/checkpoints/frame_residual_20261026_010323",
+  "experiment": "Full256minute dual-branch reconstruction",
+  "seed": 42,
+  "window_size": 256,
+  "stride": 256,
+  "train": [
+    "2022-01-01",
+    "2025-01-01"
+  ],
+  "development": [
+    "2025-01-01",
+    "2025-04-01"
+  ],
+  "independent_test_untouched": [
+    "2025-04-01",
+    "2025-07-01"
+  ],
+  "fit_windows": 64,
+  "evaluation_windows": 16,
+  "seen_windows": 8,
+  "basis_windows": 32,
+  "basis_width": 256,
+  "matrix_shape": [
+    16,
+    1024
+  ],
+  "input_shape": [
+    1,
+    256,
+    2,
+    2048,
+    2
+  ],
+  "batch_size": 1,
+  "accumulation": 4,
+  "encoder_lr": 1e-05,
+  "decoder_lr": 1e-05,
+  "linear_lr": 1e-05,
+  "residual_lr": 0.0001,
+  "checkpoints": [
+    32,
+    128,
+    256,
+    512
+  ],
+  "steps": 512,
+  "max_seconds": 43200,
+  "labels": {
+    "reference": "256\u5206\u949f\u00b7\u672a\u538b\u7f29\u53c2\u8003",
+    "shared_mlp": "\u5171\u4eab\u7f16\u7801\u5668\u00b7\u6d45\u5c42\u538b\u7f29",
+    "shared_res2": "\u5171\u4eab\u7f16\u7801\u5668\u00b7\u6b8b\u5dee\u538b\u7f29",
+    "tower_res2": "\u4ef7\u683c/\u6302\u91cf\u53cc\u5854\u00b7\u6b8b\u5dee\u538b\u7f29"
+  },
+  "default_variant": "shared_res2",
+  "lanes": {
+    "reference": {
+      "branch_mode": "shared",
+      "compress": false,
+      "codec_kind": "nonlinear",
+      "codec_depth": 0
+    },
+    "shared_mlp": {
+      "branch_mode": "shared",
+      "compress": true,
+      "codec_kind": "nonlinear",
+      "codec_depth": 0
+    },
+    "shared_res2": {
+      "branch_mode": "shared",
+      "compress": true,
+      "codec_kind": "residual",
+      "codec_depth": 2
+    },
+    "tower_res2": {
+      "branch_mode": "tower",
+      "compress": true,
+      "codec_kind": "residual",
+      "codec_depth": 2
+    }
+  },
+  "source_initialization": "Known Cross weights trained on16minute inputs are initialization only. Every train/eval window here has256frames; all modules are trained. No claim of starting from a256minute-trained source.",
+  "method": "Full256frame encoders and Cross; trainable4160->256 channel projection; flatten16 consecutive channel vectors to4096 and learn4096->1024 for each of16matrix rows; inverse learned maps restore256frames. Full-window source temporal context precedes grouping. No16minute independent encoder calls or anchor resets.",
+  "initialization": "Channel projection PCA fitted only on32complete256minute training windows; temporal projection starts as4DCT time modes per256channels. Both projections remain trainable; residual outputs start at zero.",
+  "comparison": "Reference and shared groups share source weights; same-width compressed groups initially equal. Modality gates and two-source fusion alter tower initial outputs, which are reported separately.",
+  "precision": "BF16 training with activation checkpointing; FP32 evaluation; both TF32 flags off",
+  "objective": {
+    "price": 1.0,
+    "volume_log": 1.0,
+    "volume_linear": 0.05,
+    "gap_log": 0.05,
+    "spread_log": 0.05,
+    "mid": 0.1,
+    "volume_tail": 0.25,
+    "temporal_quantity": 0.5,
+    "temporal_price": 0.1,
+    "latent_mse": 0.01,
+    "kl": 0.0
+  },
+  "no_quantization": true,
+  "no_future_returns": true,
+  "selection": "All declared checkpoints and fixed512step endpoints on the same16development windows; seed42only;2026 is not used for fitting or selection."
+}

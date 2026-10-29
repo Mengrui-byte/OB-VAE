@@ -1,0 +1,34 @@
+{
+  "available": true,
+  "path": "checkpoints/dual256_20261026_090533/reference/step512.pt",
+  "sha256": "ba310dfc02262f3b1ce528e69e44ae5d48530ded1bf3ac5006a44902b61f1927",
+  "bytes": 59298229,
+  "configs": {
+    "model_config": {
+      "levels": 2048,
+      "quantity_scale": 1.0,
+      "global_dim": 64,
+      "local_dim": 16,
+      "causal": false,
+      "gap_activation": "softplus",
+      "detach_price": false,
+      "fix_first_mid": true
+    },
+    "window_matrix_config": {
+      "window_size": 256,
+      "matrix_rows": 16,
+      "matrix_dim": 1024,
+      "frame_dim": 256,
+      "codec_kind": "nonlinear",
+      "codec_depth": 0,
+      "codec_hidden": 512,
+      "branch_mode": "shared",
+      "compress": false,
+      "activation_checkpoint": true
+    },
+    "step": 512,
+    "state_tensor_count": 313,
+    "state_scalars": 4906316
+  },
+  "saved_step_matches": true
+}

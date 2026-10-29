@@ -1,0 +1,5 @@
+{
+  "model/experimental/dual_fusion.py": "6e7f4d8c7498d4717bda644ec3a891408789b059d9ee646e82d13a90ec99d4d9",
+  "model/encoders/dual_tower.py": "75f9ba38537506c6eee0c1b4d61246cce1825755c94f8ac24c73f1b4c8065e54",
+  "model/layers/cross_latent.py": "d9521f4520efdc9a1e40e90af7685613ca41b725212f7850b674fe6134d70e22"
+}

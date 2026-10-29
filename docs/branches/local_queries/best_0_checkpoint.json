@@ -1,0 +1,27 @@
+{
+  "available": true,
+  "path": "checkpoints/btc_patch_quantity_v5_20261018_205710/window-anchor/best_quantity.pt",
+  "sha256": "d0fbbbba232d15c48583230624bdb55502c04f3cf760b88e4e242114ce5f3c65",
+  "bytes": 17905443,
+  "configs": {
+    "epoch": 18,
+    "model_config": {
+      "architecture": "ae_local_queries_patch_residual_v5",
+      "latent_dim": 64,
+      "spatial_queries": 8,
+      "features_per_query": 8,
+      "spatial_regions": "2 sides x 4 contiguous depth bands",
+      "decoder": "local region projection and spatial-query cross-attention",
+      "bottleneck": "per-time local spatial attention; no temporal mixing or input token-channel flattening",
+      "latent_shape_per_sample": [
+        16,
+        64
+      ],
+      "quantity_mode": "patch-residual",
+      "quantity_decoder": "baseline plus zero-initialized short patch decoder from latent-expanded features; no input bypass"
+    },
+    "state_tensor_count": 116,
+    "state_scalars": 1479971
+  },
+  "epoch_and_saved_quantity_metric_match": true
+}

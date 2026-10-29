@@ -14,6 +14,8 @@
 
 模型分支与研究演进见[完整谱系文档](docs/MODEL_LINEAGE.md)和[交互HTML谱系](docs/model_lineage.html)。本仓库围绕唯一Gaussian8192约束；完整256分钟未压缩Cross使用约106万latent标量，重建质量更高，作为不同容量的参考单列。
 
+[各分支最佳实验、模型结构与重建图](docs/branches/README.md) · [可视化总览](docs/branches/index.html)
+
 ## 已有结果
 
 相同16个2025Q1测试窗口，完整256分钟、双侧2048档；seed42。

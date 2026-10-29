@@ -1,0 +1,58 @@
+{
+  "seed": 42,
+  "steps": 96,
+  "physical_batch": 8,
+  "effective_batch": 64,
+  "lr": 3e-05,
+  "evaluation_windows": 128,
+  "wall_clock_limit_seconds": 1200,
+  "initial_checkpoint": "/home/mengrui/e2e_strategy/OBreconstuction/checkpoints/dual_12h_20261024_004600/runs/volume_s42/evaluation_step_0001200.pt",
+  "initial_training_step": 1200,
+  "train": [
+    "2022-01-01",
+    "2025-01-01"
+  ],
+  "development": [
+    "2025-01-01",
+    "2025-04-01"
+  ],
+  "test_untouched": [
+    "2025-04-01",
+    "2025-07-01"
+  ],
+  "example_indices": [
+    0,
+    5229,
+    63
+  ],
+  "loss": {
+    "price": 1.0,
+    "volume_log": 1.0,
+    "volume_linear": 0.0,
+    "gap_log": 0.1,
+    "spread_log": 0.1,
+    "mid": 0.1,
+    "beta_global": 0.0001,
+    "beta_local": 0.0001,
+    "price_slope": 0.012255924722983856,
+    "price_temporal": 5.531006151533404e-07,
+    "volume_tail": 0.017251201184748016
+  },
+  "hypotheses": {
+    "cross": "Global/local cross attention can improve coordinated price and quantity generation",
+    "tower_mean": "Separate geometry/quantity inputs may reduce encoder gradient interference",
+    "tower_cross": "Cross attention may recover cross-modality relationships lost by separating towers"
+  },
+  "primary_metrics": [
+    "quantity_btc.rmse",
+    "tail_log_rmse",
+    "spatial_slope_64_levels_usdt_per_level.rmse",
+    "temporal_mid_1_minutes_usdt_per_minute.rmse"
+  ],
+  "guardrails": {
+    "price_max_vs_control": 1.2,
+    "quantity_max_vs_control": 1.1
+  },
+  "caveat": "Single-seed screening; modality separation changes initial outputs, so initial metrics must be retained",
+  "previous_failed_attempt": "/home/mengrui/e2e_strategy/OBreconstuction/checkpoints/dual_fusion_20261024_113046"
+}

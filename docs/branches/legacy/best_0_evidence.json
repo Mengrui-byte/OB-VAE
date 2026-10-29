@@ -1,0 +1,39 @@
+{
+  "source_path": "checkpoints/btc_norm_ab_spatial16x64_20261018_173307/window-anchor/metrics.jsonl",
+  "selector": "line:23:validation",
+  "source_sha256": "c930003d94e7742643fee8bd9583c6953529193d41c3e17f7aead6ae40aa5707",
+  "record": {
+    "epoch": 23,
+    "optimizer_steps": 1472,
+    "train_mse": 0.5744072327425507,
+    "val_mse": 0.05277655027828565,
+    "train": {
+      "price_mse_scaled": 0.1776253180370837,
+      "quantity_mse_scaled": 0.9711891474480177,
+      "price_rmse_usdt": 147.84257412265333,
+      "quantity_rmse": 7.167752850239405,
+      "price_rmse_bps": 38.744979435210396,
+      "spread_rmse_usdt": 17.12497990964269,
+      "adjacent_gap_rmse_usdt": 120.44411553441455,
+      "near_10_price_rmse_usdt": 91.78195654464986,
+      "valid_levels": 17177243275,
+      "samples": 16384,
+      "masking": "level_counts",
+      "price_normalization": "window-anchor"
+    },
+    "validation": {
+      "price_mse_scaled": 0.017671486631105154,
+      "quantity_mse_scaled": 0.08788161392546615,
+      "price_rmse_usdt": 123.87979572105962,
+      "quantity_rmse": 2.1561557242873923,
+      "price_rmse_bps": 12.220797373521329,
+      "spread_rmse_usdt": 34.74384539721554,
+      "adjacent_gap_rmse_usdt": 35.815325281007276,
+      "near_10_price_rmse_usdt": 185.65068634459342,
+      "valid_levels": 727684864,
+      "samples": 694,
+      "masking": "level_counts",
+      "price_normalization": "window-anchor"
+    }
+  }
+}

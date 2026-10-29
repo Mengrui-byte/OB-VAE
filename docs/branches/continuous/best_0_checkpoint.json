@@ -1,0 +1,29 @@
+{
+  "available": true,
+  "path": "checkpoints/pca_state_20261024_222656/d512/final.pt",
+  "sha256": "67cf684ad1b91b402b855cf918aabe2788e95918a0e2e1b030bd0b8710577306",
+  "bytes": 147939459,
+  "configs": {
+    "model_config": {
+      "levels": 2048,
+      "quantity_scale": 1.0,
+      "global_dim": 64,
+      "local_dim": 16,
+      "causal": false,
+      "gap_activation": "softplus",
+      "detach_price": false,
+      "fix_first_mid": true
+    },
+    "fusion_variant": "cross",
+    "step": 256,
+    "pca_state_config": {
+      "state_dim": 512,
+      "global_components": 93,
+      "window_size": 16,
+      "pca_seed": 42
+    },
+    "state_tensor_count": 319,
+    "state_scalars": 32594252
+  },
+  "saved_step_matches": true
+}

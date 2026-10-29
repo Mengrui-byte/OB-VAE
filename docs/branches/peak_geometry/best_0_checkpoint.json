@@ -1,0 +1,63 @@
+{
+  "available": true,
+  "path": "checkpoints/btc_v8_corrected_2022_2024_val2025q1_20261021_142435/model/best_quantity.pt",
+  "sha256": "dfeb9edbf52a1fe5122fb1b3b0947a6d003cca7bf075d9068fbcf8faca5c6159",
+  "bytes": 16431011,
+  "configs": {
+    "epoch": 6,
+    "model_config": {
+      "architecture": "ae_peak_geometry_v8",
+      "latent_dim": 64,
+      "spatial_queries": 8,
+      "features_per_query": 8,
+      "spatial_regions": "2 sides x 4 contiguous depth bands",
+      "decoder": "local region projection and spatial-query cross-attention",
+      "bottleneck": "per-time local spatial attention; no temporal mixing or input token-channel flattening",
+      "latent_shape_per_sample": [
+        16,
+        64
+      ],
+      "quantity_mode": "patch-residual",
+      "quantity_decoder": "main full-latent decoder plus patch residual from 32 peak latent features; no raw input bypass",
+      "conv_order": "alternating",
+      "encoder_convolutions": "S0,T0,S1,T1,S2,T2,S3,T3,S4",
+      "decoder_convolutions": "inverse S4,T3,S3,T2,S2,T1,S1,T0,S0",
+      "temporal_stage_channels": [
+        32,
+        64,
+        96,
+        128
+      ],
+      "decoder_temporal_stage_channels": [
+        128,
+        96,
+        64,
+        32
+      ],
+      "peak_mode": "none",
+      "book_structure": "price-aligned",
+      "local_peak_slots": 4,
+      "peak_placement": "encoder-only metadata merged after each spatial stride; all 2048 levels per side",
+      "peak_selection": "native local maxima q>=left and q>right; strongest K per merged cell; no price NMS",
+      "peak_descriptors": [
+        "relative_price_to_cell_center",
+        "original_scaled_quantity",
+        "native_rank_offset",
+        "present"
+      ],
+      "background_descriptors": [
+        "mean_price",
+        "mean_quantity",
+        "unselected_quantity_per_valid_level",
+        "valid_fraction"
+      ],
+      "temporal_alignment": "nearest past feature cell by price; zero outside observed range; no future or cross-side matches",
+      "temporal_geometry": "stride anchors 2*j+1; final 16*j+15; raw descriptors at anchor only",
+      "latent_layout": "8 local regions x (4 background + 4 peak features); 32+32 learned features per time",
+      "limitations": "nearest cell alignment is not individual order tracking; selected input peaks are not guaranteed reconstructed peaks"
+    },
+    "state_tensor_count": 168,
+    "state_scalars": 1351669
+  },
+  "epoch_and_saved_quantity_metric_match": true
+}

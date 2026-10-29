@@ -1,0 +1,480 @@
+{
+  "train": [
+    "2022-01-01",
+    "2025-01-01"
+  ],
+  "development": [
+    "2025-01-01",
+    "2025-04-01"
+  ],
+  "independent_test_untouched": [
+    "2025-04-01",
+    "2025-07-01"
+  ],
+  "normalization": {
+    "price_scale": 104.2454906668734,
+    "quantity_scale": 7.517722085208762,
+    "tick_size": 0.01,
+    "fit_windows": 64,
+    "fit_split": "64 selected training windows only,2022-2024",
+    "valid_values": 67108864,
+    "mean_quantity": 1.2229372905278826,
+    "median_gap_ticks": 10.15625,
+    "median_spread_ticks": 9.9609375
+  },
+  "model_config": {
+    "levels": 2048,
+    "quantity_scale": 7.517722085208762,
+    "activation_checkpointing": true
+  },
+  "objective": {
+    "price_weight": 1.0,
+    "quantity_weight": 1.0,
+    "log_weight": 1.0,
+    "pair_weight": 0.25,
+    "topk": 16,
+    "shape_weight": 1.0,
+    "mass_weight": 1.0,
+    "w1_weight": 0.5099078269962694,
+    "multiscale_weight": 1.0099852172963266,
+    "multiscale_groups": [
+      8,
+      64
+    ]
+  },
+  "window_size": 256,
+  "stride": 256,
+  "input_shape": [
+    1,
+    256,
+    2,
+    2048,
+    2
+  ],
+  "latent_shape": [
+    1,
+    64,
+    128
+  ],
+  "output_shape": [
+    1,
+    256,
+    2,
+    2048
+  ],
+  "batch_size": 1,
+  "accumulation": 4,
+  "lr": 0.0001,
+  "weight_decay": 0.0,
+  "clip_grad": 1.0,
+  "experiment": "FrozenEncoderdecoderreadoutpilot2x2",
+  "labels": {
+    "control": "\u539f\u6570\u91cf\u8bfb\u51fa\uff0c\u4ef7\u683c\u51bb\u7ed3",
+    "quantity": "\u6570\u91cf\u5f62\u72b6\uff0b\u603b\u91cf\u4fee\u6b63\uff0c\u4ef7\u683c\u51bb\u7ed3",
+    "price": "\u539f\u6570\u91cf\u8bfb\u51fa\uff0b\u4ef7\u683c\u72ec\u7acb\u5fae\u8c03",
+    "both": "\u6570\u91cf\u4fee\u6b63\uff0b\u4ef7\u683c\u72ec\u7acb\u5fae\u8c03"
+  },
+  "lanes": {
+    "control": {
+      "hint": false,
+      "augmentation": false,
+      "use_shape": false,
+      "use_mass": false,
+      "frozen_modules": [
+        "encoder",
+        "price_decoder"
+      ]
+    },
+    "quantity": {
+      "hint": false,
+      "augmentation": false,
+      "use_shape": true,
+      "use_mass": true,
+      "frozen_modules": [
+        "encoder",
+        "price_decoder"
+      ]
+    },
+    "price": {
+      "hint": false,
+      "augmentation": false,
+      "use_shape": false,
+      "use_mass": false,
+      "frozen_modules": [
+        "encoder"
+      ]
+    },
+    "both": {
+      "hint": false,
+      "augmentation": false,
+      "use_shape": true,
+      "use_mass": true,
+      "frozen_modules": [
+        "encoder"
+      ]
+    }
+  },
+  "source": "/home/mengrui/e2e_strategy/OBreconstuction/recons/local_hint_20261027_202957/augmentation/step8192.pt",
+  "teacher_source": "/home/mengrui/e2e_strategy/OBreconstuction/checkpoints/dual256_20261026_090533/reference/final.pt",
+  "source_steps": 12288,
+  "fit_windows": 32,
+  "steps": 512,
+  "checkpoints": [
+    128,
+    256,
+    512
+  ],
+  "seen_windows": 8,
+  "unseen_windows": 32,
+  "evaluation_windows": 16,
+  "max_seconds": 600,
+  "setup_max_seconds": 3600,
+  "gpu_workers": [
+    [
+      2,
+      "control"
+    ],
+    [
+      3,
+      "hint"
+    ],
+    [
+      4,
+      "augmentation"
+    ],
+    [
+      5,
+      "both"
+    ]
+  ],
+  "seed": 42,
+  "beta": 0.0,
+  "sample": false,
+  "local_hint_config": {
+    "layout": "frame1",
+    "frame_ffn": 1536
+  },
+  "hint_calibration": {
+    "windows": 8,
+    "encoder_mu_gradient_ratio": 0.25,
+    "channel_std_floor": 0.001
+  },
+  "augmentation": {
+    "probability": 0.5,
+    "events": 2,
+    "durations": [
+      1,
+      4,
+      16,
+      32
+    ],
+    "seed": 42,
+    "amplitude_quantiles": [
+      0.1,
+      0.9
+    ]
+  },
+  "controls": "All4QuantityDecoders train; Encoderfrozen;pricegeometrydetachedinall4;all546newheads existandzero. Quantityheadactivation x PriceDecodertrainability. Samedata/loss/midweight/Adam/RNG/seed42,augmentationoff/teacherabsent. Notasinglefactorcomparisonagainstprevious1024-windowmaintraining.",
+  "teacher_rules": "Teacherfrozen/no_grad/ownnormalizer. Localtargetshape[B,256,2,128,16], read onlyfortrainingobjective. Teacheronaugmentedinput isrecomputed, neverreuseoriginaltargetcache. Hintheadreadsstudentpost-Zquantityseed, not Encoder pre-Z features. No teacher atstudentinference.",
+  "budget": "Fixed512updatesperarm,batch1accum4,10mintrainingceiling; checkpoints128/256/512. SameoriginalAdam+RNG,new32-windowpopulationatanewepochboundary,accountingremappedtoactualindices. Onlycommoncompleteddeclaredcheckpointsarematchedcomparisons.",
+  "primary": "Same-rank100BTCprecisionANDrecall/FP,quantityRMSE and1minlogquantitydynamics. Jointprice guard<=1.10BOTH sharedinitial andsamebudgetcontrol. Report seen8,student-training-unseen32 anddev16 separately.2025Q2/2026 untouched. Teacherhistoricaltrainmayincludestudent-unseen32; thisisnot anindependenttest.",
+  "preview_descriptions": {
+    "control": "\u5b8c\u6574256\u5206\u949f\u3001\u552f\u4e008192\u795e\u7ecfZ\u3002\u5f53\u524d\u53ea\u752832\u8bad\u7ec3\u7a97\u5fae\u8c03Decoder\uff0cEncoder\u51bb\u7ed3\u300216\u4e2a2025Q1\u5f00\u53d1\u7a97\u5df2\u7528\u4e8e\u7814\u7a76\uff0c\u4e0d\u662f\u6700\u7ec8\u72ec\u7acb\u6d4b\u8bd5\u3002",
+    "quantity": "\u5b8c\u6574256\u5206\u949f\u3001\u552f\u4e008192\u795e\u7ecfZ\u3002\u5f53\u524d\u53ea\u752832\u8bad\u7ec3\u7a97\u5fae\u8c03Decoder\uff0cEncoder\u51bb\u7ed3\u300216\u4e2a2025Q1\u5f00\u53d1\u7a97\u5df2\u7528\u4e8e\u7814\u7a76\uff0c\u4e0d\u662f\u6700\u7ec8\u72ec\u7acb\u6d4b\u8bd5\u3002",
+    "price": "\u5b8c\u6574256\u5206\u949f\u3001\u552f\u4e008192\u795e\u7ecfZ\u3002\u5f53\u524d\u53ea\u752832\u8bad\u7ec3\u7a97\u5fae\u8c03Decoder\uff0cEncoder\u51bb\u7ed3\u300216\u4e2a2025Q1\u5f00\u53d1\u7a97\u5df2\u7528\u4e8e\u7814\u7a76\uff0c\u4e0d\u662f\u6700\u7ec8\u72ec\u7acb\u6d4b\u8bd5\u3002",
+    "both": "\u5b8c\u6574256\u5206\u949f\u3001\u552f\u4e008192\u795e\u7ecfZ\u3002\u5f53\u524d\u53ea\u752832\u8bad\u7ec3\u7a97\u5fae\u8c03Decoder\uff0cEncoder\u51bb\u7ed3\u300216\u4e2a2025Q1\u5f00\u53d1\u7a97\u5df2\u7528\u4e8e\u7814\u7a76\uff0c\u4e0d\u662f\u6700\u7ec8\u72ec\u7acb\u6d4b\u8bd5\u3002"
+  },
+  "original_parameter_names": [
+    "encoder.input_proj.weight",
+    "encoder.input_proj.bias",
+    "encoder.down.0.weight",
+    "encoder.down.0.bias",
+    "encoder.down.1.weight",
+    "encoder.down.1.bias",
+    "encoder.down.2.weight",
+    "encoder.down.2.bias",
+    "encoder.down.3.weight",
+    "encoder.down.3.bias",
+    "encoder.spatial.0.norms.0.weight",
+    "encoder.spatial.0.norms.0.bias",
+    "encoder.spatial.0.norms.1.weight",
+    "encoder.spatial.0.norms.1.bias",
+    "encoder.spatial.0.convs.0.weight",
+    "encoder.spatial.0.convs.0.bias",
+    "encoder.spatial.0.convs.1.weight",
+    "encoder.spatial.0.convs.1.bias",
+    "encoder.spatial.1.norms.0.weight",
+    "encoder.spatial.1.norms.0.bias",
+    "encoder.spatial.1.norms.1.weight",
+    "encoder.spatial.1.norms.1.bias",
+    "encoder.spatial.1.convs.0.weight",
+    "encoder.spatial.1.convs.0.bias",
+    "encoder.spatial.1.convs.1.weight",
+    "encoder.spatial.1.convs.1.bias",
+    "encoder.spatial.2.norms.0.weight",
+    "encoder.spatial.2.norms.0.bias",
+    "encoder.spatial.2.norms.1.weight",
+    "encoder.spatial.2.norms.1.bias",
+    "encoder.spatial.2.convs.0.weight",
+    "encoder.spatial.2.convs.0.bias",
+    "encoder.spatial.2.convs.1.weight",
+    "encoder.spatial.2.convs.1.bias",
+    "encoder.spatial.3.norms.0.weight",
+    "encoder.spatial.3.norms.0.bias",
+    "encoder.spatial.3.norms.1.weight",
+    "encoder.spatial.3.norms.1.bias",
+    "encoder.spatial.3.convs.0.weight",
+    "encoder.spatial.3.convs.0.bias",
+    "encoder.spatial.3.convs.1.weight",
+    "encoder.spatial.3.convs.1.bias",
+    "encoder.position.side.weight",
+    "encoder.position_proj.weight",
+    "encoder.position_proj.bias",
+    "encoder.cross_norm.weight",
+    "encoder.cross_norm.bias",
+    "encoder.cross.in_proj_weight",
+    "encoder.cross.in_proj_bias",
+    "encoder.cross.out_proj.weight",
+    "encoder.cross.out_proj.bias",
+    "encoder.cross_ffn.0.weight",
+    "encoder.cross_ffn.0.bias",
+    "encoder.cross_ffn.1.weight",
+    "encoder.cross_ffn.1.bias",
+    "encoder.cross_ffn.3.weight",
+    "encoder.cross_ffn.3.bias",
+    "encoder.region.0.weight",
+    "encoder.region.0.bias",
+    "encoder.region.1.weight",
+    "encoder.region.1.bias",
+    "encoder.frame.0.weight",
+    "encoder.frame.0.bias",
+    "encoder.frame.1.weight",
+    "encoder.frame.1.bias",
+    "encoder.patch.weight",
+    "encoder.patch.bias",
+    "encoder.temporal.layers.0.self_attn.in_proj_weight",
+    "encoder.temporal.layers.0.self_attn.in_proj_bias",
+    "encoder.temporal.layers.0.self_attn.out_proj.weight",
+    "encoder.temporal.layers.0.self_attn.out_proj.bias",
+    "encoder.temporal.layers.0.linear1.weight",
+    "encoder.temporal.layers.0.linear1.bias",
+    "encoder.temporal.layers.0.linear2.weight",
+    "encoder.temporal.layers.0.linear2.bias",
+    "encoder.temporal.layers.0.norm1.weight",
+    "encoder.temporal.layers.0.norm1.bias",
+    "encoder.temporal.layers.0.norm2.weight",
+    "encoder.temporal.layers.0.norm2.bias",
+    "encoder.temporal.layers.1.self_attn.in_proj_weight",
+    "encoder.temporal.layers.1.self_attn.in_proj_bias",
+    "encoder.temporal.layers.1.self_attn.out_proj.weight",
+    "encoder.temporal.layers.1.self_attn.out_proj.bias",
+    "encoder.temporal.layers.1.linear1.weight",
+    "encoder.temporal.layers.1.linear1.bias",
+    "encoder.temporal.layers.1.linear2.weight",
+    "encoder.temporal.layers.1.linear2.bias",
+    "encoder.temporal.layers.1.norm1.weight",
+    "encoder.temporal.layers.1.norm1.bias",
+    "encoder.temporal.layers.1.norm2.weight",
+    "encoder.temporal.layers.1.norm2.bias",
+    "encoder.mu.weight",
+    "encoder.mu.bias",
+    "encoder.logvar.weight",
+    "encoder.logvar.bias",
+    "price_decoder.temporal.mlp.0.weight",
+    "price_decoder.temporal.mlp.0.bias",
+    "price_decoder.temporal.mlp.2.weight",
+    "price_decoder.temporal.mlp.2.bias",
+    "price_decoder.temporal.refine.norms.0.weight",
+    "price_decoder.temporal.refine.norms.0.bias",
+    "price_decoder.temporal.refine.norms.1.weight",
+    "price_decoder.temporal.refine.norms.1.bias",
+    "price_decoder.temporal.refine.convs.0.weight",
+    "price_decoder.temporal.refine.convs.0.bias",
+    "price_decoder.temporal.refine.convs.1.weight",
+    "price_decoder.temporal.refine.convs.1.bias",
+    "price_decoder.spatial.seed.weight",
+    "price_decoder.spatial.seed.bias",
+    "price_decoder.spatial.position.side.weight",
+    "price_decoder.spatial.proj.weight",
+    "price_decoder.spatial.proj.bias",
+    "price_decoder.spatial.up.0.conv.weight",
+    "price_decoder.spatial.up.0.conv.bias",
+    "price_decoder.spatial.up.0.res.norms.0.weight",
+    "price_decoder.spatial.up.0.res.norms.0.bias",
+    "price_decoder.spatial.up.0.res.norms.1.weight",
+    "price_decoder.spatial.up.0.res.norms.1.bias",
+    "price_decoder.spatial.up.0.res.convs.0.weight",
+    "price_decoder.spatial.up.0.res.convs.0.bias",
+    "price_decoder.spatial.up.0.res.convs.1.weight",
+    "price_decoder.spatial.up.0.res.convs.1.bias",
+    "price_decoder.spatial.up.1.conv.weight",
+    "price_decoder.spatial.up.1.conv.bias",
+    "price_decoder.spatial.up.1.res.norms.0.weight",
+    "price_decoder.spatial.up.1.res.norms.0.bias",
+    "price_decoder.spatial.up.1.res.norms.1.weight",
+    "price_decoder.spatial.up.1.res.norms.1.bias",
+    "price_decoder.spatial.up.1.res.convs.0.weight",
+    "price_decoder.spatial.up.1.res.convs.0.bias",
+    "price_decoder.spatial.up.1.res.convs.1.weight",
+    "price_decoder.spatial.up.1.res.convs.1.bias",
+    "price_decoder.spatial.up.2.conv.weight",
+    "price_decoder.spatial.up.2.conv.bias",
+    "price_decoder.spatial.up.2.res.norms.0.weight",
+    "price_decoder.spatial.up.2.res.norms.0.bias",
+    "price_decoder.spatial.up.2.res.norms.1.weight",
+    "price_decoder.spatial.up.2.res.norms.1.bias",
+    "price_decoder.spatial.up.2.res.convs.0.weight",
+    "price_decoder.spatial.up.2.res.convs.0.bias",
+    "price_decoder.spatial.up.2.res.convs.1.weight",
+    "price_decoder.spatial.up.2.res.convs.1.bias",
+    "price_decoder.spatial.up.3.conv.weight",
+    "price_decoder.spatial.up.3.conv.bias",
+    "price_decoder.spatial.up.3.res.norms.0.weight",
+    "price_decoder.spatial.up.3.res.norms.0.bias",
+    "price_decoder.spatial.up.3.res.norms.1.weight",
+    "price_decoder.spatial.up.3.res.norms.1.bias",
+    "price_decoder.spatial.up.3.res.convs.0.weight",
+    "price_decoder.spatial.up.3.res.convs.0.bias",
+    "price_decoder.spatial.up.3.res.convs.1.weight",
+    "price_decoder.spatial.up.3.res.convs.1.bias",
+    "price_decoder.mid_spread.0.weight",
+    "price_decoder.mid_spread.0.bias",
+    "price_decoder.mid_spread.2.weight",
+    "price_decoder.mid_spread.2.bias",
+    "price_decoder.gap.weight",
+    "price_decoder.gap.bias",
+    "volume_decoder.temporal.mlp.0.weight",
+    "volume_decoder.temporal.mlp.0.bias",
+    "volume_decoder.temporal.mlp.2.weight",
+    "volume_decoder.temporal.mlp.2.bias",
+    "volume_decoder.temporal.refine.norms.0.weight",
+    "volume_decoder.temporal.refine.norms.0.bias",
+    "volume_decoder.temporal.refine.norms.1.weight",
+    "volume_decoder.temporal.refine.norms.1.bias",
+    "volume_decoder.temporal.refine.convs.0.weight",
+    "volume_decoder.temporal.refine.convs.0.bias",
+    "volume_decoder.temporal.refine.convs.1.weight",
+    "volume_decoder.temporal.refine.convs.1.bias",
+    "volume_decoder.position.side.weight",
+    "volume_decoder.geometry.0.weight",
+    "volume_decoder.geometry.0.bias",
+    "volume_decoder.geometry.2.weight",
+    "volume_decoder.geometry.2.bias",
+    "volume_decoder.spatial.seed.weight",
+    "volume_decoder.spatial.seed.bias",
+    "volume_decoder.spatial.position.side.weight",
+    "volume_decoder.spatial.proj.weight",
+    "volume_decoder.spatial.proj.bias",
+    "volume_decoder.spatial.fuse.weight",
+    "volume_decoder.spatial.fuse.bias",
+    "volume_decoder.spatial.up.0.conv.weight",
+    "volume_decoder.spatial.up.0.conv.bias",
+    "volume_decoder.spatial.up.0.fuse.weight",
+    "volume_decoder.spatial.up.0.fuse.bias",
+    "volume_decoder.spatial.up.0.res.norms.0.weight",
+    "volume_decoder.spatial.up.0.res.norms.0.bias",
+    "volume_decoder.spatial.up.0.res.norms.1.weight",
+    "volume_decoder.spatial.up.0.res.norms.1.bias",
+    "volume_decoder.spatial.up.0.res.convs.0.weight",
+    "volume_decoder.spatial.up.0.res.convs.0.bias",
+    "volume_decoder.spatial.up.0.res.convs.1.weight",
+    "volume_decoder.spatial.up.0.res.convs.1.bias",
+    "volume_decoder.spatial.up.1.conv.weight",
+    "volume_decoder.spatial.up.1.conv.bias",
+    "volume_decoder.spatial.up.1.fuse.weight",
+    "volume_decoder.spatial.up.1.fuse.bias",
+    "volume_decoder.spatial.up.1.res.norms.0.weight",
+    "volume_decoder.spatial.up.1.res.norms.0.bias",
+    "volume_decoder.spatial.up.1.res.norms.1.weight",
+    "volume_decoder.spatial.up.1.res.norms.1.bias",
+    "volume_decoder.spatial.up.1.res.convs.0.weight",
+    "volume_decoder.spatial.up.1.res.convs.0.bias",
+    "volume_decoder.spatial.up.1.res.convs.1.weight",
+    "volume_decoder.spatial.up.1.res.convs.1.bias",
+    "volume_decoder.spatial.up.2.conv.weight",
+    "volume_decoder.spatial.up.2.conv.bias",
+    "volume_decoder.spatial.up.2.fuse.weight",
+    "volume_decoder.spatial.up.2.fuse.bias",
+    "volume_decoder.spatial.up.2.res.norms.0.weight",
+    "volume_decoder.spatial.up.2.res.norms.0.bias",
+    "volume_decoder.spatial.up.2.res.norms.1.weight",
+    "volume_decoder.spatial.up.2.res.norms.1.bias",
+    "volume_decoder.spatial.up.2.res.convs.0.weight",
+    "volume_decoder.spatial.up.2.res.convs.0.bias",
+    "volume_decoder.spatial.up.2.res.convs.1.weight",
+    "volume_decoder.spatial.up.2.res.convs.1.bias",
+    "volume_decoder.spatial.up.3.conv.weight",
+    "volume_decoder.spatial.up.3.conv.bias",
+    "volume_decoder.spatial.up.3.fuse.weight",
+    "volume_decoder.spatial.up.3.fuse.bias",
+    "volume_decoder.spatial.up.3.res.norms.0.weight",
+    "volume_decoder.spatial.up.3.res.norms.0.bias",
+    "volume_decoder.spatial.up.3.res.norms.1.weight",
+    "volume_decoder.spatial.up.3.res.norms.1.bias",
+    "volume_decoder.spatial.up.3.res.convs.0.weight",
+    "volume_decoder.spatial.up.3.res.convs.0.bias",
+    "volume_decoder.spatial.up.3.res.convs.1.weight",
+    "volume_decoder.spatial.up.3.res.convs.1.bias",
+    "volume_decoder.quantity.weight",
+    "volume_decoder.quantity.bias"
+  ],
+  "initial_model_sha256": "0fde09ad3366236027bd25a7d022fc8dc40c1cc83e34707f1b737819acce0a8f",
+  "student_parameters": 11735716,
+  "auxiliary_parameters": 272,
+  "loss_variant": "readout_mid_guard",
+  "sequences": [
+    [
+      2,
+      [
+        "control",
+        "price"
+      ]
+    ],
+    [
+      4,
+      [
+        "quantity",
+        "both"
+      ]
+    ]
+  ],
+  "checkpoint_extras": {
+    "control": {
+      "shape_mass_config": {
+        "layout": "frame1",
+        "frame_ffn": 1536,
+        "use_shape": false,
+        "use_mass": false,
+        "detach_price_geometry": true
+      }
+    },
+    "quantity": {
+      "shape_mass_config": {
+        "layout": "frame1",
+        "frame_ffn": 1536,
+        "use_shape": true,
+        "use_mass": true,
+        "detach_price_geometry": true
+      }
+    },
+    "price": {
+      "shape_mass_config": {
+        "layout": "frame1",
+        "frame_ffn": 1536,
+        "use_shape": false,
+        "use_mass": false,
+        "detach_price_geometry": true
+      }
+    },
+    "both": {
+      "shape_mass_config": {
+        "layout": "frame1",
+        "frame_ffn": 1536,
+        "use_shape": true,
+        "use_mass": true,
+        "detach_price_geometry": true
+      }
+    }
+  },
+  "mid_weight_pending": true
+}

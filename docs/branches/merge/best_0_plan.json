@@ -1,0 +1,109 @@
+{
+  "parent": "/home/mengrui/e2e_strategy/OBreconstuction/checkpoints/dual256_20261026_090533",
+  "experiment": "Global information into same-size Local; no independent Global decoder input",
+  "seed": 42,
+  "window_size": 256,
+  "stride": 256,
+  "train": [
+    "2022-01-01",
+    "2025-01-01"
+  ],
+  "development": [
+    "2025-01-01",
+    "2025-04-01"
+  ],
+  "independent_test_untouched": [
+    "2025-04-01",
+    "2025-07-01"
+  ],
+  "fit_windows": 64,
+  "evaluation_windows": 16,
+  "seen_windows": 8,
+  "input_shape": [
+    1,
+    256,
+    2,
+    2048,
+    2
+  ],
+  "batch_size": 1,
+  "accumulation": 4,
+  "encoder_lr": 1e-05,
+  "decoder_lr": 1e-05,
+  "linear_lr": 1e-05,
+  "residual_lr": 0.0001,
+  "checkpoints": [
+    32,
+    128,
+    256,
+    512
+  ],
+  "steps": 512,
+  "max_seconds": 43200,
+  "labels": {
+    "reference": "\u539fGlobal\uff0bLocal\u53c2\u8003",
+    "local": "\u539fCross-Local\uff0b\u5b66\u4e60\u8bfb\u51fa",
+    "residual": "Global\u6b8b\u5dee\u5199\u5165Local",
+    "attention": "Global\u6ce8\u610f\u529b\u5199\u5165Local"
+  },
+  "default_variant": "residual",
+  "lanes": {
+    "reference": {
+      "merge_mode": "reference"
+    },
+    "local": {
+      "merge_mode": "local"
+    },
+    "residual": {
+      "merge_mode": "residual"
+    },
+    "attention": {
+      "merge_mode": "attention"
+    }
+  },
+  "source_initialization": "Completed256minute reference/final.pt at512steps. All groups share these weights; source is now256minute-trained. Old16minute runs are not this experiment.",
+  "method": "Full256minute encoder+Cross produce G/L; write G into unchanged L[256,2,128,16]; decoder accepts only merged L. Internal Global condition is read from2sides x4spatial-band means of merged L plus fixed relative-time encoding. No original G, raw book, or per-frame anchor is passed to Local-only decoder.",
+  "comparison": "Same64training windows,16development windows,seed42,full-book batch1 accumulation4 and512end-to-end updates. Three candidates have equal extra warmup; reference has none. Report prewarm,postwarm and all declared endpoints.",
+  "precision": "BF16 training with activation checkpointing; FP32 evaluation; both TF32 flags off",
+  "objective": {
+    "price": 1.0,
+    "volume_log": 1.0,
+    "volume_linear": 0.05,
+    "gap_log": 0.05,
+    "spread_log": 0.05,
+    "mid": 0.1,
+    "volume_tail": 0.25,
+    "temporal_quantity": 0.5,
+    "temporal_price": 0.1,
+    "latent_mse": 0.01,
+    "kl": 0.0
+  },
+  "no_quantization": true,
+  "no_future_returns": true,
+  "selection": "All declared checkpoints and fixed512step endpoints on the same16development windows; seed42only;2026 is not used for fitting or selection.",
+  "local_shape": [
+    256,
+    2,
+    128,
+    16
+  ],
+  "warmup_steps": 256,
+  "warmup_batch": 4,
+  "warmup_lr": 0.001,
+  "merger_lr": 0.0001,
+  "global_distill_weight": 0.1,
+  "global_scale_floor": 0.05,
+  "local_scale_floor": 0.05,
+  "warmup": "Candidates only:256steps on cached training G/L to reconstruct frozen-teacher G, plus0.01 normalized Local-shift penalty; no development data, no generator updates. Cost is additional and reported separately.",
+  "objective_extra": "All groups receive0.1 standardized Global-condition distillation to the same frozen256minute teacher during full-book training. Native book loss remains unchanged; candidate native latent_mse penalizes the Local write residual.",
+  "acceptance": {
+    "price_rmse_max_vs_reference": 1.1,
+    "quantity_rmse_max_vs_reference": 1.1,
+    "quantity_dynamics_correlation_drop_max": 0.02,
+    "recall100_drop_max": 0.05
+  },
+  "scope": "Isolate single-Local fusion before further16x1024 compression. Same-size Local is an intermediate bottleneck, not fulfillment of the final16384element state target.",
+  "viewer_source_label": "\u672c\u8f6e\u8d77\u70b9\u00b7\u5df2\u8bad\u7ec3256\u5206\u949f\u53c2\u8003",
+  "viewer_description": "\u5b8c\u6574256\u5206\u949fGlobal\u5408\u5e76Local\u5b9e\u9a8c\uff1a\u8bad\u7ec32022\u20132024\uff0c\u5c55\u793a2025Q1\u5f00\u53d1\u7a97\u53e3\u3002\u4e09\u4e2a\u5019\u9009\u4ec5\u4fdd\u7559Local[256,2,128,16]\uff0c\u5176\u89e3\u7801\u5668\u9700\u8981\u7684\u5185\u90e8Global\u6761\u4ef6\u4e5f\u5b8c\u5168\u7531Local\u8ba1\u7b97\u3002\u539fGlobal\uff0bLocal\u662f\u5bf9\u7167\u3002\u6ca1\u6709\u9010\u5e27\u771f\u5b9e\u4e2d\u95f4\u4ef7\u65c1\u8def\u3002\u672c\u8f6e\u5c1a\u672a\u8fdb\u4e00\u6b65\u538b\u621016\u00d71024\u3002",
+  "viewer_step_note": "\u5b8c\u6574256\u5206\u949f\uff1b\u4e09\u4e2a\u5019\u9009\u4e3a\u5355\u4e00Local\u74f6\u9888\uff0c\u672a\u8ffd\u52a016\u00d71024\u538b\u7f29\u3002"
+}

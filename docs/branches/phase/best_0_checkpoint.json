@@ -1,0 +1,21 @@
+{
+  "available": true,
+  "path": "recons/phase_encoder_20261026_231213/joint_independent/step2048.pt",
+  "sha256": "d1d98e373208edac2208626746ac709cd475a8934e11e86e85448e1dd49b9412",
+  "bytes": 140223038,
+  "configs": {
+    "unified_vae_config": {
+      "levels": 2048,
+      "quantity_scale": 7.517722085208762,
+      "activation_checkpointing": true
+    },
+    "phase_decoder_config": {
+      "detail_mode": "independent"
+    },
+    "step": 2048,
+    "lane": "joint_independent",
+    "state_tensor_count": 242,
+    "state_scalars": 11655654
+  },
+  "saved_step_matches": true
+}

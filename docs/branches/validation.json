@@ -1,0 +1,13 @@
+{
+  "branches": 25,
+  "branches_with_recorded_result": 23,
+  "branches_without_trained_result": 2,
+  "architecture_svgs": 25,
+  "reconstruction_cases": 20,
+  "reconstruction_pngs": 60,
+  "evidence_checks": 25,
+  "all_relative_links_valid": true,
+  "exact_minima_per_protocol": true,
+  "plotted_data_equal_saved_predictions": true,
+  "no_synthetic_pilot_in_test_pool": true
+}

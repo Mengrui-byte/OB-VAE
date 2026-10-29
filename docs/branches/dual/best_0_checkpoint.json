@@ -1,0 +1,21 @@
+{
+  "available": true,
+  "path": "checkpoints/dual_12h_20261024_004600/runs/volume_s42/evaluation_step_0001200.pt",
+  "sha256": "ef82f8384b19f9fe03a18d4a81732ee99c94261681b6dddfad0cd8791dddce96",
+  "bytes": 19576632,
+  "configs": {
+    "model_config": {
+      "levels": 2048,
+      "quantity_scale": 1.0,
+      "global_dim": 64,
+      "local_dim": 16,
+      "causal": false,
+      "gap_activation": "softplus",
+      "detach_price": false,
+      "fix_first_mid": true
+    },
+    "epoch": 4,
+    "state_tensor_count": 289,
+    "state_scalars": 4861004
+  }
+}

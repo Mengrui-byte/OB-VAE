@@ -1,0 +1,21 @@
+{
+  "available": true,
+  "path": "checkpoints/btc_norm_ab_spatial16x64_20261018_173307/window-anchor/best_val.pt",
+  "sha256": "399af87db3b701a25b7129717e5f9467efaa79610716bc416be60e5727911047",
+  "bytes": 15954973,
+  "configs": {
+    "epoch": 23,
+    "model_config": {
+      "architecture": "ae_spatial_pool_v3",
+      "latent_dim": 64,
+      "bottleneck": "per-time spatial attention pooling; no temporal mixing or token-channel flattening",
+      "latent_shape_per_sample": [
+        16,
+        64
+      ]
+    },
+    "state_tensor_count": 106,
+    "state_scalars": 1318658
+  },
+  "epoch_and_saved_quantity_metric_match": true
+}

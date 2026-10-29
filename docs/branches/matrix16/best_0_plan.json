@@ -1,0 +1,138 @@
+{
+  "parent": "/home/mengrui/e2e_strategy/OBreconstuction/checkpoints/frame_matrix_20261025_154358",
+  "initial_checkpoint": "/home/mengrui/e2e_strategy/OBreconstuction/checkpoints/paired_matrix_20261025_135139/initial.pt",
+  "seed": 42,
+  "fit_windows": 512,
+  "train": [
+    "2022-01-01",
+    "2025-01-01"
+  ],
+  "development": [
+    "2025-01-01",
+    "2025-04-01"
+  ],
+  "independent_test_untouched": [
+    "2025-04-01",
+    "2025-07-01"
+  ],
+  "matrix_shape": [
+    16,
+    1024
+  ],
+  "packed_shape": [
+    16,
+    4160
+  ],
+  "source_global_shape": [
+    16,
+    64
+  ],
+  "source_local_shape": [
+    16,
+    2,
+    128,
+    16
+  ],
+  "lanes": {
+    "frozen_long": {
+      "kind": "nonlinear",
+      "mode": "joint",
+      "steps": 2048
+    },
+    "e2e": {
+      "kind": "nonlinear",
+      "mode": "all",
+      "steps": 2048
+    },
+    "e2e_fast": {
+      "kind": "nonlinear",
+      "mode": "all",
+      "steps": 2048,
+      "encoder_lr": 0.0001,
+      "linear_lr": 0.0001,
+      "decoder_lr": 0.0001
+    },
+    "e2e_smallfit": {
+      "kind": "nonlinear",
+      "mode": "all",
+      "steps": 2048,
+      "train_windows": 32
+    }
+  },
+  "evaluation_windows": 64,
+  "seen_evaluation_windows": 64,
+  "example_indices": [
+    0,
+    5229,
+    63
+  ],
+  "batch_size": 4,
+  "accumulation": 2,
+  "linear_lr": 1e-05,
+  "residual_lr": 0.001,
+  "decoder_lr": 1e-05,
+  "matrix_dim": 1024,
+  "hidden_dim": 512,
+  "pca_oversample": 64,
+  "pca_iterations": 3,
+  "no_quantization": true,
+  "no_semantic_constraints": true,
+  "no_future_returns": true,
+  "hypothesis": "The frozen encoder/Cross did not adapt to the1024-row bottleneck; complete-model reconstruction training may preserve details without changing the latent shape.",
+  "initialization": "All groups restart from the same best source and same train-only PCA basis, with zero nonlinear residual outputs. No optimizer-reset continuation from512-step weights.",
+  "objective": {
+    "price": 1.0,
+    "volume_log": 1.0,
+    "volume_linear": 0.05,
+    "gap_log": 0.05,
+    "spread_log": 0.05,
+    "mid": 0.1,
+    "volume_tail": 0.25,
+    "temporal_quantity": 0.5,
+    "temporal_price": 0.1,
+    "latent_mse": 0.01,
+    "kl": 0.0
+  },
+  "comparison": "Use checkpoints within each recovered trajectory for duration comparisons. Preserve and disclose historical cross-run control drift; retain strict inference replay checks against the exact saved checkpoint.",
+  "storage": "16384float32 elements=64KiB/window vs66560elements=260KiB effective source. This is continuous latent compression, not discrete quantization or a single1024-dimensional window vector.",
+  "experiment": "Full-model16x1024 end-to-end training",
+  "encoder_lr": 1e-05,
+  "checkpoints": [
+    128,
+    256,
+    512,
+    1024,
+    2048
+  ],
+  "save_training_checkpoints": true,
+  "strict_replay_control": null,
+  "method": "Main end-to-end groups recompute encoder and Cross on every raw training batch and backpropagate through them, compression/decompression and both generators. Frozen-source duration control alone uses immutable cached source latents. No detached source or stale latent targets in end-to-end groups.",
+  "selection": "Report all predeclared checkpoints and fixed2048-step final endpoints; no future-return selection or independent-Q2 evaluation.",
+  "training_mode_note": "Deterministic posterior means, KL0, reconstruction-only objectives. All trainable encoder/Cross parameters are enabled; logvariance-only outputs unused by deterministic means may have zero gradient.",
+  "original_frozen_pilot": "/home/mengrui/e2e_strategy/OBreconstuction/checkpoints/frame_matrix_20261025_154358",
+  "recovery_parent": "/home/mengrui/e2e_strategy/OBreconstuction/checkpoints/frame_matrix_e2e_20261025_160416",
+  "resume_checkpoints": {
+    "frozen_long": {
+      "checkpoint_step": 512,
+      "last_logged_step": 512,
+      "source": "/home/mengrui/e2e_strategy/OBreconstuction/checkpoints/frame_matrix_e2e_20261025_160416/frozen_long/step512.pt"
+    },
+    "e2e": {
+      "checkpoint_step": 256,
+      "last_logged_step": 448,
+      "source": "/home/mengrui/e2e_strategy/OBreconstuction/checkpoints/frame_matrix_e2e_20261025_160416/e2e/step256.pt"
+    },
+    "e2e_fast": {
+      "checkpoint_step": 256,
+      "last_logged_step": 448,
+      "source": "/home/mengrui/e2e_strategy/OBreconstuction/checkpoints/frame_matrix_e2e_20261025_160416/e2e_fast/step256.pt"
+    },
+    "e2e_smallfit": {
+      "checkpoint_step": 256,
+      "last_logged_step": 448,
+      "source": "/home/mengrui/e2e_strategy/OBreconstuction/checkpoints/frame_matrix_e2e_20261025_160416/e2e_smallfit/step256.pt"
+    }
+  },
+  "recovery_reason": "Historical independent-run512-step trajectory check failed, supervisor stopped other jobs. Restore full model/Adam/epoch-boundary sampler and RNG from saved checkpoints.",
+  "resume_sampler": "At epoch boundaries split worker-seed RNG from saved RandomSampler RNG, avoiding an extra new-loader base-seed draw that would alter the next epoch permutation."
+}

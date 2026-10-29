@@ -1,0 +1,4 @@
+{
+  "model/autoencoder/direct_readout_vae.py": "800025fb8bec1872d922c0120cbe5eb9b952b362194c1117b33ebe3d76a0336c",
+  "model/layers/direct_quantity_readout.py": "201b3d71fe9ad78784b372c62ba8ecce7bd4a85d942831c95d3b5a3edeeccc6d"
+}

@@ -1,0 +1,185 @@
+{
+  "train": [
+    "2022-01-01",
+    "2025-01-01"
+  ],
+  "development": [
+    "2025-01-01",
+    "2025-04-01"
+  ],
+  "independent_test_untouched": [
+    "2025-04-01",
+    "2025-07-01"
+  ],
+  "normalization": {
+    "price_scale": 104.2454906668734,
+    "quantity_scale": 7.517722085208762,
+    "tick_size": 0.01,
+    "fit_windows": 64,
+    "fit_split": "64 selected training windows only,2022-2024",
+    "valid_values": 67108864,
+    "mean_quantity": 1.2229372905278826,
+    "median_gap_ticks": 10.15625,
+    "median_spread_ticks": 9.9609375
+  },
+  "model_config": {
+    "levels": 2048,
+    "quantity_scale": 7.517722085208762,
+    "activation_checkpointing": true
+  },
+  "objective": {
+    "price_weight": 1.0,
+    "quantity_weight": 1.0,
+    "log_weight": 1.0,
+    "pair_weight": 0.25,
+    "topk": 16,
+    "shape_weight": 1.0,
+    "mass_weight": 1.0,
+    "w1_weight": 0.5099078269962694,
+    "multiscale_weight": 1.0099852172963266,
+    "multiscale_groups": [
+      8,
+      64
+    ]
+  },
+  "window_size": 256,
+  "stride": 256,
+  "input_shape": [
+    1,
+    256,
+    2,
+    2048,
+    2
+  ],
+  "latent_shape": [
+    1,
+    64,
+    128
+  ],
+  "output_shape": [
+    1,
+    256,
+    2,
+    2048
+  ],
+  "fit_windows": 1024,
+  "seen_windows": 8,
+  "evaluation_windows": 16,
+  "batch_size": 1,
+  "accumulation": 4,
+  "lr": 0.0001,
+  "weight_decay": 0.0,
+  "clip_grad": 1.0,
+  "parent": "/home/mengrui/e2e_strategy/OBreconstuction/recons/decoder_isolation_recovery_20261027_112135",
+  "experiment": "Fresh end-to-end time layout x pre-Softplus quantity supervision2x2",
+  "labels": {
+    "patch_huber": "\u56db\u5e27\u6253\u5305\u00b7\u539f\u6570\u91cf\u76d1\u7763",
+    "patch_logit": "\u56db\u5e27\u6253\u5305\u00b7logit\u76d1\u7763",
+    "frame_huber": "\u6bcf\u5e2732\u7ef4\u00b7\u539f\u6570\u91cf\u76d1\u7763",
+    "frame_logit": "\u6bcf\u5e2732\u7ef4\u00b7logit\u76d1\u7763"
+  },
+  "lanes": {
+    "patch_huber": {
+      "layout": "patch4",
+      "use_logit": false
+    },
+    "patch_logit": {
+      "layout": "patch4",
+      "use_logit": true
+    },
+    "frame_huber": {
+      "layout": "frame1",
+      "use_logit": false
+    },
+    "frame_logit": {
+      "layout": "frame1",
+      "use_logit": true
+    }
+  },
+  "steps": 4096,
+  "checkpoints": [
+    128,
+    512,
+    1024,
+    2048,
+    4096
+  ],
+  "max_seconds": 21600,
+  "seed": 42,
+  "beta": 0.0,
+  "sample": false,
+  "inline_evaluation": true,
+  "time_layout_config": {
+    "frame_ffn": 1536
+  },
+  "quantity_floor": 0.0001,
+  "gpu_workers": [
+    [
+      2,
+      "patch_huber"
+    ],
+    [
+      3,
+      "patch_logit"
+    ],
+    [
+      4,
+      "frame_huber"
+    ],
+    [
+      5,
+      "frame_logit"
+    ]
+  ],
+  "pilot": {
+    "steps": 256,
+    "checkpoints": [
+      128,
+      256
+    ],
+    "windows": 4,
+    "reset_after": true,
+    "quantity": "Synthetic valid background0.02BTC, one moving peak per side at200/400BTC, alternating16frame on/off; preserve training-template prices/masks.",
+    "note": "Training-only fit diagnosis, not real-market evaluation. No pilotweights orAdamstate enter maintraining. No development-based groupselection."
+  },
+  "initialization": "Fresh seed42 models, not historical weights. Same-layout loss pairs share byte-identical initial checkpoints. Shared shape-compatible spatial/side/price/volume parameters match acrosslayouts. Zero output weights andsame training-only gap/spread/quantity biases give identical initial price/quantity functions.",
+  "coordinate_factor": "Replace only all-valid andTop16 normalized-quantityHuber with Huber(rawlogit - inverseSoftplus(max(q/q0,1e-4))). Keep price,logquantity,fineKL,mass,allcoefficients unchanged. No newW1,multiscaleKL,auxiliarylocation orlarge-only weighting.",
+  "temporal_factor": "patch4:64tokens128channels. frame1:256time-attended32channel means/logvars serialized to64x128; decode byinverse reshape into256frames. Encoder temporalFFN1536 vs1024 andframe decoderMLP32->2048->256 vs128->512->1024 keep totalparameters close. Whole temporal organization isone architecture factor; no claim of isolatingreshapealone.",
+  "control_contract": "Allmodules train end-to-end, same256frames,unique8192Gaussian,mask/noEncoderbypass,seed42,data/order,normalization,4096real updates,batch1accum4,AdamW1e-4,clip1. Four256update synthetic pilots discarded before reset. BF16neural/FP32loss+evaluation,TF32off,6hour ceiling.",
+  "primary": "Fixed4096realupdateendpoint quantityRMSE,actual10/100BTCprecision/recall/FP,dynamics on16development+8seen; allcheckpoints retained. Report priceRMSE tradeoff andrequire<=1.10matched baseline forunqualified jointreconstruction gain.",
+  "selection": "Exploratory seed42only; reused2025Q1development,2025Q2 and2026 untouched. Synthetic pilot isnot a development score.",
+  "authorization": "User requested proposed temporal organization x preactivation supervision factorial; bounded4GPUs2\u20135,each256discardedpilot+4096realupdates.",
+  "report": {
+    "title": "\u7aef\u5230\u7aef\u91cd\u8bad\uff1a\u65f6\u95f4\u7ec4\u7ec7 \u00d7 \u6fc0\u6d3b\u524d\u6570\u91cf\u76d1\u7763",
+    "scope": "\u552f\u4e0064\u00d7128Gaussian\uff0cEncoder\u4e0e\u4ef7\u683c/\u6570\u91cfDecoder\u5168\u90e8\u8bad\u7ec3\u3002",
+    "introduction": "\u56db\u7ec4\u4ece\u5934\u521d\u59cb\u5316\uff0c\u5b8c\u6574256\u5206\u949f\u3002\u5148\u505a\u76f8\u540c256\u6b65\u79fb\u52a8\u5cf0\u5c0f\u6837\u672c\u8bca\u65ad\uff0c\u518d\u4e22\u5f03\u8bca\u65ad\u6743\u91cd\u53caAdam\u72b6\u6001\uff0c\u91cd\u65b0\u4ece\u521d\u59cb\u6a21\u578b\u8bad\u7ec34096\u6b65\u771f\u5b9e\u6570\u636e\u3002\u4e24\u9879\u56e0\u7d20\u4e3a\u65f6\u95f4\u74f6\u9888\u7ec4\u7ec7\u548c\u6570\u91cfHuber\u7684\u76d1\u7763\u5750\u6807\u3002",
+    "hardware": "GPU2\u20135\u5404\u4e00\u7ec4\uff0c\u56fa\u5b9aseed42\u30011024\u8bad\u7ec3\u7a97\u3001\u6709\u6548batch4\u3001\u6700\u591a6\u5c0f\u65f6\u3002",
+    "reference_note": "\u8fd9\u662f\u4ece\u5934\u8bad\u7ec3\u7684\u65b0\u5bf9\u7167\uff0c\u521d\u59cb\u91cf\u4ef7\u4e3a\u76f8\u540c\u7684\u8bad\u7ec3\u7edf\u8ba1\u57fa\u7ebf\uff1b\u672a\u52a0\u8f7d\u5386\u53f2\u6a21\u578b\u6743\u91cd\u3002",
+    "future": "\u6bcf\u5e2732\u7ef4\u5148\u6574\u7a97\u6ce8\u610f\u529b\u518d\u5f62\u6210posterior\uff0c\u4e4b\u540e\u65e0\u635f\u91cd\u6392\u4e3a64\u00d7128\uff0c\u4e0d\u589e\u52a0latent\u6570\u91cf\u3002logit\u76ee\u6807\u5bf9\u96f6\u91cf\u4f7f\u7528\u56fa\u5b9a\u5f52\u4e00\u5316\u4e0b\u96501e-4\uff0c\u6700\u7ec8\u8f93\u51fa\u4ecd\u4e3aq0\u00b7Softplus\u3002"
+  },
+  "initial_contracts": {
+    "patch4": {
+      "parameters": 11651156,
+      "model_sha256": "70037d1ab3722c53c9a3c09ca35973272a60583afa6e66086ac8930084c8a546",
+      "shared_modules": {
+        "encoder_space": "e88f8f316c349101a3e6304efb673cd2a06e0122b9fe030acf3b22fd80aae5e2",
+        "encoder_cross": "0e56aa6378d03ac105985759f6af51b3c2b4a2e5a2fc9841d88d3df8c584a352",
+        "encoder_frame": "a3aadce9c6eadbcbb270e660bea9016fd5ee486f80791a59ba574463c634d390",
+        "price_space": "da8417c40addbcce188f2a0e227fe33bb36834a536d68a63b2bde0879ab5087b",
+        "volume_space": "cf396a21df2553adc35f1482c9c3d9d86c292f2909e54f5a43d2861505914ff2"
+      }
+    },
+    "frame1": {
+      "parameters": 11735444,
+      "model_sha256": "7a47f8f436fc3830958a9904ff6fe341b0efc7a96d1f28b3cd3544d3c01abbb4",
+      "shared_modules": {
+        "encoder_space": "e88f8f316c349101a3e6304efb673cd2a06e0122b9fe030acf3b22fd80aae5e2",
+        "encoder_cross": "0e56aa6378d03ac105985759f6af51b3c2b4a2e5a2fc9841d88d3df8c584a352",
+        "encoder_frame": "a3aadce9c6eadbcbb270e660bea9016fd5ee486f80791a59ba574463c634d390",
+        "price_space": "da8417c40addbcce188f2a0e227fe33bb36834a536d68a63b2bde0879ab5087b",
+        "volume_space": "cf396a21df2553adc35f1482c9c3d9d86c292f2909e54f5a43d2861505914ff2"
+      }
+    }
+  },
+  "parameters_relative_difference": 0.007234303617598137
+}

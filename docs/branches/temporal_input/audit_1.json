@@ -1,0 +1,16 @@
+{
+  "state": "queued_verified_wait_current_curvature_cohort",
+  "queue_pid": 49397,
+  "current_parent_pid": 45471,
+  "production_training_started": false,
+  "functional_GPU_probe_started": false,
+  "tests_passed": 24,
+  "execution_tests": 17,
+  "previous_compatibility_tests": 7,
+  "exact_full_parameter_CPU_optimizer_restore": true,
+  "runtime_source_files": 394,
+  "source_snapshot": "round_014_temporal_quantity_input/source_snapshot",
+  "training_source_unchanged": true,
+  "independent_test_used": false,
+  "goal_achieved": false
+}

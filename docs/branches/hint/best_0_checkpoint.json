@@ -1,0 +1,95 @@
+{
+  "available": true,
+  "path": "recons/recall80_goal_20261027_235344/round_002_fp_rule/smooth/step2048.pt",
+  "sha256": "6ecdb1ad0766aa858d2a0c24e3a1f8a2dfb4e491cee9e7c72b6cbb191af36ed9",
+  "bytes": 141203668,
+  "configs": {
+    "unified_vae_config": {
+      "levels": 2048,
+      "quantity_scale": 7.517722085208762,
+      "activation_checkpointing": true
+    },
+    "local_hint_config": {
+      "layout": "frame1",
+      "frame_ffn": 1536
+    },
+    "step": 2048,
+    "lane": "smooth",
+    "hint_loss_config": {
+      "state": "complete",
+      "channel_mean": [
+        0.9250172972679138,
+        1.8531343936920166,
+        1.5194728374481201,
+        1.7943356037139893,
+        -1.4503252506256104,
+        2.4705286026000977,
+        0.3860763907432556,
+        1.8132270574569702,
+        -0.06249728426337242,
+        -0.31646180152893066,
+        -0.07554971426725388,
+        -0.5030801892280579,
+        -0.9876208305358887,
+        0.712155818939209,
+        -0.4036191403865814,
+        0.38522931933403015
+      ],
+      "channel_scale": [
+        0.9728396534919739,
+        1.4675811529159546,
+        1.2437142133712769,
+        2.314589500427246,
+        1.4124771356582642,
+        7.2413859367370605,
+        1.2508740425109863,
+        3.029496192932129,
+        1.713751196861267,
+        3.252234697341919,
+        1.3342822790145874,
+        1.5868194103240967,
+        1.2489420175552368,
+        2.3378970623016357,
+        1.362396240234375,
+        1.2974568605422974
+      ],
+      "amplitude_bounds": [
+        106.1989974975586,
+        492.50299072265625
+      ],
+      "hint_weight": 0.00014210892251719886,
+      "teacher_sha256": "542758346c8ed763dc4c04738eb7e9a0080c5959a164acefd4e7dff981dd19c6",
+      "training_indices": [
+        0,
+        872,
+        1755,
+        2639,
+        3515,
+        4394,
+        5266,
+        6152
+      ],
+      "base_mu_gradient_rms": 0.7122394079445133,
+      "raw_hint_mu_gradient_rms": 1252.9815076500806,
+      "ratio": 0.25,
+      "teacher_hash_unchanged": true,
+      "scope": "8 preselected trainingwindows only, nooptimizerupdates/nodevelopmentcalibration; teacherownnormalizer, FP32teacher/BF16student.",
+      "tail_weight": 0.04034386474777693,
+      "mid_weight": 0.8240454165997028,
+      "new_weights_state": "locked",
+      "new_gradient_rms": {
+        "pre_guard_loss": 3.519685725838934,
+        "tail_positive_huber": 87.2421556001989,
+        "tail_false_positive_huber": 110.53622288473561,
+        "tail_balanced": 152.3454995859868,
+        "mid_protection": 4.271227841254646
+      },
+      "new_weight_scope": "8preselectedtrainwindows only; nooptimizerupdate; equalinitialmuheadgradientRMS1.0; notdevelopment-selected.",
+      "positive_fp_gradient_cosine": 0.17617753477665446,
+      "scope_new_weights": "8fixedtrainingwindows,positive-onlymu-gradientRMS1xbaseandmidRMS1xbase;commonall4,nooptimizerupdate/noQ2."
+    },
+    "state_tensor_count": 242,
+    "state_scalars": 11736102
+  },
+  "saved_step_matches": true
+}

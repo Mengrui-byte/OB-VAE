@@ -1,0 +1,150 @@
+{
+  "run_id": "btc_v8_corrected_2022_2024_val2025q1_20261021_142435",
+  "state": "stopped_by_user",
+  "created": "2026-10-21T14:24:35.782492+08:00",
+  "architecture": "ae_peak_geometry_v8",
+  "book_structure": "price-aligned",
+  "quantity_mode": "patch-residual",
+  "conv_order": "alternating",
+  "peak_mode": "none",
+  "local_peak_slots": 4,
+  "train": [
+    "2022-01-01",
+    "2025-01-01"
+  ],
+  "validation": [
+    "2025-01-01",
+    "2025-04-01"
+  ],
+  "date_semantics": "UTC, half-open intervals; windows stay entirely within their split",
+  "train_minutes": 1577799,
+  "train_windows": 24610,
+  "validation_minutes": 129600,
+  "validation_windows": 2022,
+  "epochs": 30,
+  "window_size": 256,
+  "stride": 64,
+  "global_batch_size": 256,
+  "gpu_ids": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "precision": "bf16",
+  "activation_checkpointing": true,
+  "lr": 0.0001,
+  "weight_decay": 0.01,
+  "seed": 42,
+  "initialization": "fresh seeded initialization; no historical checkpoint warm start",
+  "loss": "unchanged masked price/quantity MSE",
+  "price_normalization": "window-anchor",
+  "quantity_normalization": "train-only linear RMS",
+  "original_npz": "/home/mengrui/e2e_strategy/OBreconstuction/.local/barsapi2_rebuild_20261021/dataset/BTCUSDT.npz",
+  "pinned_npz": "/home/mengrui/e2e_strategy/OBreconstuction/checkpoints/btc_v8_corrected_2022_2024_val2025q1_20261021_142435/data/BTCUSDT.npz",
+  "data_pin": "hard link to verified inode",
+  "npz_bytes": 119352754778,
+  "npz_mtime_ns": 1792562410756720668,
+  "dataset_input_hash": "56ab4e65d559bba402c4e0bb88c0e3bfd63857982a7eb62fd2a4a4f5530efb9c",
+  "snapshot_asof": "at-or-before-local-v1",
+  "dataset_verification": {
+    "status": "verified",
+    "input_hash": "56ab4e65d559bba402c4e0bb88c0e3bfd63857982a7eb62fd2a4a4f5530efb9c",
+    "asset": "binance-futures/BTCUSDT",
+    "rows": 3640877,
+    "days": 2529,
+    "shape": [
+      3640877,
+      2,
+      2048,
+      2
+    ],
+    "dtype": "float32",
+    "first_time_utc": "2019-11-17T00:00:59.780341",
+    "last_time_utc": "2026-10-19T23:59:57.722442",
+    "bytes": 119352754778,
+    "all_payload_chunks_crc": "passed",
+    "zip_member_crcs": "passed",
+    "dataset_mapping": "passed",
+    "verification_seconds": 70.64640034548938,
+    "verified_before_publish": true,
+    "path": "/home/mengrui/e2e_strategy/OBreconstuction/.local/barsapi2_rebuild_20261021/dataset/BTCUSDT.npz",
+    "snapshot_asof": "at-or-before-local-v1",
+    "engine_archive_proof": "/home/mengrui/e2e_strategy/OBreconstuction/.local/barsapi2_rebuild_20261021/runtime_proof.json",
+    "recovered_after_runtime_change": true,
+    "recovery_seconds": 72.98442505672574
+  },
+  "source_sha256": {
+    "train.py": "fd73f8e0e9513424037f967377a7f0e6c882935bc4a82dcffe2b3e8e87ad2e76",
+    "model/conv.py": "becf3e1847b2acc2366043f830fca8918737fa7920c91f326aa4cc73d8f33ba0",
+    "model/encoder.py": "bd9412eaff76b2caabc3664cc128cef83fe9af0d6a97e3980b551dfcd61f1896",
+    "model/decoder.py": "fffd0bf2343d041311759fd743494175814d2cbd5ff77affc24e5d01561fd3ff",
+    "model/ae.py": "476df084072533b750df03f344dca25d86e4670141398bfee68ab3d54838ba35",
+    "model/quantity.py": "7cc1e6c04525d7d228706582b2cd25405d08407d727eb7e4316c75a2a1a1cbeb",
+    "model/peaks.py": "ba665e8041d210d9d080a374ebdb5ce3133ad7ceef1282a120eb3bd2c29711e9",
+    "model/geometry.py": "2138d84177a09668696293835472ad3da9ebf14504a92def6886633eab6be460",
+    "util/dataset.py": "0e6bbc816fd4cee745762ebf841521f1b37ed1e70c8f3bc70d06b522ec22496e",
+    "util/scaling.py": "9ddd8db0e5a1f3f5d3d5353a75bba449370ccc55c10669f5e68515fd7a9890f1",
+    "util/export_parallel.py": "1a8ea225cb8db0d9e44fb8c25cb2ea5877e41d1669510566c01a916ff35ea72a",
+    "util/normalization.py": "3781f96cafd7e69444802a343e6452aa931d4273bb9107fdd68e34e91ee43162",
+    "util/npz_direct.py": "b01b7bc080b3053d1dcd33314ec2593c0fa5793c11ee69f7d4212bbdddb022b4",
+    "runs/train.sh": "02f3f7bb4809a777b5d84c1fe81fb5fb75cf9ea883b99b452771d2c03025f109"
+  },
+  "parameters": 1351669,
+  "latent_shape": [
+    16,
+    64
+  ],
+  "primary_metric": "Q1 2025 validation quantity RMSE in BTC",
+  "limitations": [
+    "single seed; validation is for development and checkpoint selection",
+    "new data and split prevent attributing differences solely to model architecture"
+  ],
+  "train_only_linear_scales": [
+    96.22974480220505,
+    8.275036238096039
+  ],
+  "scale_fit_seconds": 92.57292389310896,
+  "gpu_host": "172.16.30.89",
+  "log": "/home/mengrui/e2e_strategy/OBreconstuction/.crossssh/logs/btc_v8_corrected_2022_2024_val2025q1_20261021_142435.log",
+  "submission": {
+    "session": "btc_v8_corrected_2022_2024_val2025q1_20261021_142435",
+    "gpu": 2,
+    "cmd": "bash checkpoints/btc_v8_corrected_2022_2024_val2025q1_20261021_142435/worker.sh btc_v8_corrected_2022_2024_val2025q1_20261021_142435",
+    "local_dir": "/home/mengrui/e2e_strategy/OBreconstuction",
+    "remote_mp": "/home/u503/crossssh_mnt/OBreconstuction-4a85ce6e",
+    "host": "172.16.30.89",
+    "started": "2026-10-21 14:28:14",
+    "log": "/home/mengrui/e2e_strategy/OBreconstuction/.crossssh/logs/btc_v8_corrected_2022_2024_val2025q1_20261021_142435.log",
+    "data": null
+  },
+  "cache_transport": {
+    "original": "scales.json",
+    "remote": "scales.remote.json",
+    "reason": "SSHFS exposes second-resolution mtime; member CRCs and 16 snapshot hashes verified"
+  },
+  "previous_attempts": [
+    {
+      "state": "preflight_failed_before_training",
+      "log": "attempt1_preflight.log",
+      "reason": "SSHFS mtime precision differs from local nanoseconds"
+    }
+  ],
+  "worker_sha256": "fd389287a5f6a9d15c79d271e48606c8dc8877e50d3555e3e38045404c3fb305",
+  "startup_verified": "2026-10-21T14:31:43.557773+08:00",
+  "startup_progress": {
+    "epoch": 1,
+    "epochs": 30,
+    "completed_batches": 8,
+    "batches_per_epoch": 96
+  },
+  "startup_checks": [
+    "correct rebuilt NPZ and exact date split in actual run_config",
+    "all frozen training/model/util hashes match",
+    "remote archive identities and 16 snapshot hashes match",
+    "scales fitted on 2022-2024 only; fresh initialization",
+    "four-rank training completed multiple optimizer steps with finite loss"
+  ],
+  "stopped": "2026-10-21T16:18:49.155247+08:00",
+  "last_completed_epoch": 6
+}

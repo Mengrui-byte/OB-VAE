@@ -1,0 +1,5 @@
+{
+  "model/autoencoder/unified_book_vae.py": "a919afc85aa1aba6b2404d7b00064f53a4a1e1d47f6e3af511c412ef11bc1538",
+  "model/encoders/unified_book.py": "316590ad03d8ce82ab4294ce9144de99977625cb5858b024b6214f51d553b00b",
+  "model/decoders/unified_book.py": "08ec22cc32de6eee56441cbe1f33b3701fa26c53a004f9a7a54243b5a0d53518"
+}

@@ -1,0 +1,111 @@
+{
+  "run_id": "btc_peak_v7_20261018_235000",
+  "created": "2026-10-18T23:49:46.016886+08:00",
+  "state": "training",
+  "hypothesis": "Native-depth peak features improve large-wall reconstruction; distance Soft-NMS improves regional local-peak Top-K at a fixed1024-scalar latent budget.",
+  "architecture": "ae_peak_features_v7",
+  "execution_order": [
+    "soft-nms",
+    "topk",
+    "zero"
+  ],
+  "peak_modes": [
+    "soft-nms",
+    "topk",
+    "zero"
+  ],
+  "baseline": "zero extra input channels, identical parameters and exact shared initial weights",
+  "quantity_mode": "patch-residual",
+  "conv_order": "alternating",
+  "latent_shape": [
+    16,
+    64
+  ],
+  "asset": "binance-futures/BTCUSDT",
+  "train": [
+    "2023-01-01",
+    "2025-01-01"
+  ],
+  "validation": [
+    "2025-01-01",
+    "2025-02-01"
+  ],
+  "npz_dir": "/mnt/Data/mengrui/2048_snapshot_dataset/.training/btc_ddp4_bs256_s64_linear_rms_20261018_152715",
+  "train_windows": 16416,
+  "epochs_per_arm": 30,
+  "seed": 42,
+  "global_batch_size": 256,
+  "per_rank_batch_size": 64,
+  "gpu_ids": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "precision": "bf16",
+  "activation_checkpointing": true,
+  "lr": 0.0001,
+  "weight_decay": 0.01,
+  "stride": 64,
+  "window_size": 256,
+  "loss": "unchanged valid-level price/quantity MSE",
+  "normalization": "same verified training-only linear scales and first-minute price anchor",
+  "price_scale": 91.93121085832657,
+  "quantity_scale": 7.273293477755877,
+  "peak_settings": {
+    "regions_per_side": 4,
+    "per_region": 8,
+    "candidates_per_region": 32,
+    "radius_bps": 0.5,
+    "sigma": 0.5,
+    "decay": "exp(-max(1-distance_bps/radius,0)^2/sigma)",
+    "features": [
+      "selected",
+      "original_scaled_quantity",
+      "original_scaled_price",
+      "half_height_width_over9"
+    ]
+  },
+  "parameter_count": 1166115,
+  "initial_weights_sha256": "0ba7d960bd9b77feb13a999201206a1368ac6ad8b23a69df77f60a112369d543",
+  "initial_model_state_sha256": "c983029f5ec47aab5996ea8a6422b071c63627f58d8aa0bf8f637eb3c5ebe4f9",
+  "source_sha256": {
+    "train.py": "2589d613ac8c622fb097249012acf1959206668b51fe6db0f70005d249062400",
+    "model/conv.py": "58e76c6ebaee30094213f235941699062782779a8903207f58989ec104739d12",
+    "model/encoder.py": "44baeeeba278c20f12ecad73d261fc9c5bf164332bec034beed31f779eb92980",
+    "model/decoder.py": "535427077e9550388044afaccfb7f869ca210b9bd719303aec6f3a4db4042dd6",
+    "model/ae.py": "a65977169dbbce7573d7cc6223bdc58ecc300dc50bf9598c4069e6e97ad6303d",
+    "model/quantity.py": "70410bc2ebc2fc85d3db98c553b55b291c5540f2edc1f07a567b9f851a6cd123",
+    "model/peaks.py": "ba665e8041d210d9d080a374ebdb5ce3133ad7ceef1282a120eb3bd2c29711e9",
+    "util/dataset.py": "0e6bbc816fd4cee745762ebf841521f1b37ed1e70c8f3bc70d06b522ec22496e",
+    "util/scaling.py": "9ddd8db0e5a1f3f5d3d5353a75bba449370ccc55c10669f5e68515fd7a9890f1",
+    "util/export_parallel.py": "1a8ea225cb8db0d9e44fb8c25cb2ea5877e41d1669510566c01a916ff35ea72a",
+    "util/normalization.py": "3781f96cafd7e69444802a343e6452aa931d4273bb9107fdd68e34e91ee43162",
+    "runs/train.sh": "02f3f7bb4809a777b5d84c1fe81fb5fb75cf9ea883b99b452771d2c03025f109",
+    "runs/train_peak_arm.sh": "48d5e8611036c8c691462ff43f6aedece610a0246247bda6816e052058a144de",
+    "tools/start_peak_experiments.py": "1d70d8bb0775c84b356af40996b65d9459cdc45d3318d03003e7db34a231cbf3",
+    "tools/evaluate_peak_reconstruction.py": "e223a8094ce6a75ddc9d2b0e117d89f74e396d30aae7e458e7fea70131a76e7a",
+    "tools/diagnose_quantity_reconstruction.py": "1b05380e92ecb6d6f758ce9b201363b0eb2f0183f3a8182cea6ac7017e2219ae"
+  },
+  "primary_metric": "Full January2025 valid-level quantity RMSE BTC at matched epochs",
+  "secondary_metrics": "Prespecified16 equally spaced validation windows: >=10/100BTC local-peak one-to-one precision/recall, height error, matching tolerance0.1bps on input price grid",
+  "limitations": [
+    "Single-seed exploratory screening; repeat successful comparisons with>=3seeds before robustness claims",
+    "January2025 is existing validation, not a new untouched test",
+    "Gaussian distance-based score decay is a one-dimensional adaptation, not original box-IoU Soft-NMS",
+    "Fixed top32 candidate preselection and8 proposals per512-level region can omit smaller real peaks",
+    "Input-price-grid peak diagnostics do not establish accurate reconstructed prices"
+  ],
+  "wait_session": "",
+  "sessions": {
+    "soft-nms": "btc_peak_v7_20261018_235000_soft_nms",
+    "topk": "btc_peak_v7_20261018_235000_topk",
+    "zero": "btc_peak_v7_20261018_235000_zero"
+  },
+  "submitted": "2026-10-18T23:49:49.284428+08:00",
+  "active_arm": "soft-nms",
+  "queued_arms": [
+    "topk",
+    "zero"
+  ]
+}

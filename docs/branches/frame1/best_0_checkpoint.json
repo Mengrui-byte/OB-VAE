@@ -1,0 +1,22 @@
+{
+  "available": true,
+  "path": "recons/time_logit_20261027_124432/frame_huber/step4096.pt",
+  "sha256": "df02bc4c2fd9a171b17f7dbb53b9370cef8992dd41216692c2b71dd8c0c46763",
+  "bytes": 141173862,
+  "configs": {
+    "unified_vae_config": {
+      "levels": 2048,
+      "quantity_scale": 7.517722085208762,
+      "activation_checkpointing": true
+    },
+    "time_layout_config": {
+      "layout": "frame1",
+      "frame_ffn": 1536
+    },
+    "step": 4096,
+    "lane": "frame_huber",
+    "state_tensor_count": 240,
+    "state_scalars": 11735830
+  },
+  "saved_step_matches": true
+}

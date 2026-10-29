@@ -1,0 +1,22 @@
+{
+  "available": true,
+  "path": "recons/probability_shape_20261026_181628/both/step2048.pt",
+  "sha256": "f7699d4ff127170c6d7b150bf45878bed9d493fa85544dd92512a74dcedf6cd9",
+  "bytes": 140158182,
+  "configs": {
+    "unified_vae_config": {
+      "levels": 2048,
+      "quantity_scale": 7.517722085208762,
+      "activation_checkpointing": true
+    },
+    "step": 2048,
+    "lane": "both",
+    "gradient_route_config": {
+      "detach_quantity_latent": false,
+      "detach_quantity_geometry": false
+    },
+    "state_tensor_count": 240,
+    "state_scalars": 11651542
+  },
+  "saved_step_matches": true
+}

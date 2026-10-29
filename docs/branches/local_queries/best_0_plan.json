@@ -1,0 +1,82 @@
+{
+  "run_id": "btc_patch_quantity_v5_20261018_205710",
+  "created": "2026-10-18T20:57:10.911707+08:00",
+  "state": "queued",
+  "baseline": "btc_local_queries_v4_20261018_193330",
+  "wait_session": "btc_local_queries_v4_20261018_193330",
+  "npz_dir": "/mnt/Data/mengrui/2048_snapshot_dataset/.training/btc_ddp4_bs256_s64_linear_rms_20261018_152715",
+  "hypothesis": "A short quantity decoder from latent-expanded features improves quantity reconstruction at equal latent size and unchanged normalization/MSE.",
+  "architecture": "ae_local_queries_patch_residual_v5",
+  "baseline_architecture": "ae_local_queries_v4",
+  "latent_shape": [
+    16,
+    64
+  ],
+  "spatial_queries": 8,
+  "features_per_query": 8,
+  "regions": "bid four contiguous depth bands, then ask four contiguous depth bands",
+  "train": [
+    "2023-01-01",
+    "2025-01-01"
+  ],
+  "validation": [
+    "2025-01-01",
+    "2025-02-01"
+  ],
+  "seed": 42,
+  "epochs": 30,
+  "stride": 64,
+  "window_size": 256,
+  "global_batch_size": 256,
+  "per_rank_batch_size": 64,
+  "gpu_ids": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "lr": 0.0001,
+  "weight_decay": 0.01,
+  "precision": "bf16",
+  "activation_checkpointing": true,
+  "normalization": "window-anchor price and training-only linear quantity RMS",
+  "mask_invalid_levels": true,
+  "loss": "unchanged valid-level MSE",
+  "primary_metric": "full validation quantity_rmse in BTC, compared at matched epochs",
+  "diagnostics": [
+    "zero-quantity baseline",
+    "quantity correlation",
+    "prediction and target standard deviations",
+    "errors in fixed quantity magnitude bins",
+    "price RMSE in USDT"
+  ],
+  "limitations": [
+    "single seed is exploratory",
+    "fixed diagnostic windows are not full validation",
+    "encoder and corresponding decoder are changed together; separate component attribution is not established",
+    "Extra decoder parameters and a shorter gradient path change together; their effects are not separately established"
+  ],
+  "source_sha256": {
+    "train.py": "3e42ac11b0c116da07d70e441de11070b55ca61d46fa40b5f4cba5bd98ad7bea",
+    "util/dataset.py": "0e6bbc816fd4cee745762ebf841521f1b37ed1e70c8f3bc70d06b522ec22496e",
+    "util/scaling.py": "9ddd8db0e5a1f3f5d3d5353a75bba449370ccc55c10669f5e68515fd7a9890f1",
+    "util/export_parallel.py": "1a8ea225cb8db0d9e44fb8c25cb2ea5877e41d1669510566c01a916ff35ea72a",
+    "util/normalization.py": "3781f96cafd7e69444802a343e6452aa931d4273bb9107fdd68e34e91ee43162",
+    "model/conv.py": "784caf1149ec2258e9e6b16b682b68be973a1b64c93c3134155b13017a64e520",
+    "model/encoder.py": "084d71c6e61987b6a03799589ea744c1d0f28b75e0d901a30864f3c986421e94",
+    "model/decoder.py": "58ab54df13e76979fbe9438b19e12458d1c8feeff7c08575dd0bd971d8d9f3f2",
+    "model/ae.py": "137ddcbf028b69608c47afb304f2e8db1f6bc837ece4fb3898052bcb4f73bf16",
+    "model/quantity.py": "70410bc2ebc2fc85d3db98c553b55b291c5540f2edc1f07a567b9f851a6cd123",
+    "runs/train.sh": "7ea24869efc150b2e358f3024c3c710cc1bb27471e0993bd5a8c70087b24ca8c",
+    "runs/train_btc_local_queries.sh": "4fbe87b2f910a37336f44f857007db61600b4c3d13f76ec8fd13146fd6dd5361",
+    "tools/diagnose_quantity_reconstruction.py": "c8bedf357059b1aea2de9a97ef578c09a5eafbdfeff7c66a11cadc2c6091fc59"
+  },
+  "quantity_mode": "patch-residual",
+  "queued": "2026-10-18T20:58:05.244578+08:00",
+  "initialization": "fresh seed42; zero-initialized quantity residual keeps common initial outputs",
+  "pilot": "checkpoints/btc_quantity_overfit_20261018_patch_residual_1200",
+  "pilot_rmse": 3.797599867564533,
+  "pilot_correlation": 0.8958695625289788,
+  "pilot_is_training_only": true,
+  "not_before": "existing v4 experiment completes"
+}

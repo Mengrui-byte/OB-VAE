@@ -1,0 +1,179 @@
+{
+  "train": [
+    "2022-01-01",
+    "2025-01-01"
+  ],
+  "development": [
+    "2025-01-01",
+    "2025-04-01"
+  ],
+  "independent_test_untouched": [
+    "2025-04-01",
+    "2025-07-01"
+  ],
+  "normalization": {
+    "price_scale": 104.2454906668734,
+    "quantity_scale": 7.517722085208762,
+    "tick_size": 0.01,
+    "fit_windows": 64,
+    "fit_split": "64 selected training windows only,2022-2024",
+    "valid_values": 67108864,
+    "mean_quantity": 1.2229372905278826,
+    "median_gap_ticks": 10.15625,
+    "median_spread_ticks": 9.9609375
+  },
+  "model_config": {
+    "levels": 2048,
+    "quantity_scale": 7.517722085208762,
+    "activation_checkpointing": true
+  },
+  "objective": {
+    "price_weight": 1.0,
+    "quantity_weight": 1.0,
+    "log_weight": 1.0,
+    "pair_weight": 0.25,
+    "topk": 16,
+    "shape_weight": 1.0,
+    "mass_weight": 1.0,
+    "w1_weight": 0.5099078269962694,
+    "multiscale_weight": 1.0099852172963266,
+    "multiscale_groups": [
+      8,
+      64
+    ]
+  },
+  "window_size": 256,
+  "stride": 256,
+  "input_shape": [
+    1,
+    256,
+    2,
+    2048,
+    2
+  ],
+  "latent_shape": [
+    1,
+    64,
+    128
+  ],
+  "output_shape": [
+    1,
+    256,
+    2,
+    2048
+  ],
+  "fit_windows": 1024,
+  "seen_windows": 8,
+  "evaluation_windows": 16,
+  "batch_size": 1,
+  "accumulation": 4,
+  "steps": 2048,
+  "checkpoints": [
+    128,
+    512,
+    1024,
+    2048
+  ],
+  "max_seconds": 14400,
+  "lr": 0.0001,
+  "weight_decay": 0.0,
+  "clip_grad": 1.0,
+  "beta": 0.0,
+  "sample": false,
+  "parent": "/home/mengrui/e2e_strategy/OBreconstuction/recons/peak_aux_20261027_002331",
+  "experiment": "FixedZ full decoder comparison plus fixedDecoder latent fitting",
+  "seed": 42,
+  "labels": {
+    "original_warm": "\u539fDecoder\u00b7\u9884\u8bad\u7ec3\u53c2\u8003",
+    "original_fresh": "\u539fDecoder\u00b7\u91cd\u65b0\u521d\u59cb\u5316",
+    "query_fresh": "\u975e\u7ebf\u6027\u67e5\u8be2Decoder\u00b7\u91cd\u65b0\u521d\u59cb\u5316"
+  },
+  "lanes": {
+    "original_warm": {
+      "kind": "original",
+      "fresh": false
+    },
+    "original_fresh": {
+      "kind": "original",
+      "fresh": true
+    },
+    "query_fresh": {
+      "kind": "query",
+      "fresh": true
+    }
+  },
+  "diagnostic_labels": {
+    "latent_fit": "\u56fa\u5b9aDecoder\u00b7\u76f4\u63a5\u4f18\u5316Z\uff08\u8bad\u7ec3\u62df\u5408\u8bca\u65ad\uff09"
+  },
+  "preview_descriptions": {
+    "latent_fit": "\u8fd94\u4e2a\u8bad\u7ec3\u7a97\u53e3\u7684\u76ee\u6807\u5df2\u53c2\u4e0e\u76f4\u63a5\u4f18\u5316Z\uff1b\u5c55\u793a\u7684\u662f\u56fa\u5b9aDecoder\u7684\u62df\u5408\u8bca\u65ad\uff0c\u4e0d\u662fEncoder\u6b63\u5e38\u8f93\u51fa\uff0c\u4e5f\u4e0d\u662f\u6837\u672c\u5916\u7ed3\u679c\u3002"
+  },
+  "freeze": [
+    "encoder",
+    "price_decoder"
+  ],
+  "inline_evaluation": true,
+  "source_checkpoint": "probability_shape_20261026_181628/baseline/step1024.pt",
+  "query_config": {
+    "frame_hidden": 1408
+  },
+  "parameter_counts": {
+    "original": 2804769,
+    "query": 2787969,
+    "relative_difference_percent": -0.598979809032401
+  },
+  "gpu_workers": [
+    [
+      2,
+      "original_warm"
+    ],
+    [
+      3,
+      "original_fresh"
+    ],
+    [
+      4,
+      "query_fresh"
+    ],
+    [
+      5,
+      "latent_fit"
+    ]
+  ],
+  "precision": "Decoder training BF16 neural/FP32 loss; all evaluation FP32. Direct latent optimization uses fullFP32 to avoid BF16 obscuring smallZ updates; TF32off throughout.",
+  "initialization": "All use identical frozen sourceEncoder andPriceDecoder. Matched fresh pair starts seed42 with identical temporal/position/geometry parameters, zero output weights andsame training-only meanquantity bias; freshAdam. Warm original retains sourceQuantityDecoder andoriginalAdam as extra historical reference, notmatched fresh-init control.",
+  "decoder_contract": "Fresh original vs fresh query is primary architecture comparison: samefixedZ,loss,indices/order,seed42,2048updates,effectivebatch4,AdamW1e-4,clip1. Query count is0.60%smaller, notlarger. No old spatial feature orEncoder bypass inquery. Compare against warmreference beforeclaiming useful gain.",
+  "primary": "Fixed2048endpoint quantityRMSE, actual10/100BTCprecision/recall/FP,dynamics on16development+8seen. Retain checkpoints andprice metrics. Query must improve againstfresh original ANDnot merely beat a degradedfresh baseline relative towarm original.",
+  "latent_diagnostic": {
+    "steps": 1024,
+    "checkpoints": [
+      32,
+      128,
+      512,
+      1024
+    ],
+    "indices_file": "latent_fit_indices.npy",
+    "training_indices": [
+      0,
+      2050,
+      4101,
+      6152
+    ],
+    "lr": 0.05,
+    "clip_grad": 1.0,
+    "precision": "fp32",
+    "initialization": "Source Encoder posterior means, no random restarts",
+    "objective": "Same original shape_mass price+quantity+Top16+mass objective, beta0; noZpenalty. Only4*8192 freeZscalars receiveupdates; ALL modelparameters/buffers fixed.",
+    "price_guard_ratio": 1.1,
+    "interpretation": "Training-target-assisted expressibility diagnosis, not production/OOS inference. Report eachwindow andpooled priceguard plusZnorm/drift. Improvement withhuge off-manifoldZ orprice degradation isnot a successful full-book reconstruction. Failure tofit isnot proof of structural impossibility."
+  },
+  "selection": "seed42only; reused2025Q1 development fordecoder controls;2025Q2 and2026 untouched. DirectZ diagnostic usesonly4predeclaredtrainingwindows.",
+  "authorization": "User explicitly requested both decoder-isolation experiments. Three2048update decoder lanes plusone1024cycle four-window latent-fit lane; GPUs2\u20135;4hour ceiling.",
+  "report": {
+    "title": "Decoder\u9694\u79bb\u5b9e\u9a8c\uff1a\u56fa\u5b9aZ\u8bfb\u51fa\u5bf9\u7167\u4e0e\u76f4\u63a5\u4f18\u5316Z",
+    "scope": "\u4e0a\u8868\u6bd4\u8f83\u4e09\u79cd\u56fa\u5b9aEncoder/\u4ef7\u683cDecoder\u7684\u8bad\u7ec3\uff1b\u4e0b\u65b9\u72ec\u7acb\u5c55\u793a4\u4e2a\u8bad\u7ec3\u7a97\u7684\u76f4\u63a5Z\u62df\u5408\u3002",
+    "introduction": "\u4e3b\u5bf9\u7167\u4e3a\u91cd\u65b0\u521d\u59cb\u5316\u7684\u539fDecoder\u4e0e\u975e\u7ebf\u6027\u5750\u6807\u67e5\u8be2Decoder\uff0c\u53c2\u6570\u91cf\u76f8\u5dee0.60%\uff0c\u521d\u59cb\u6570\u91cf\u5747\u4e3a\u540c\u4e00\u4e2a\u8bad\u7ec3\u5747\u503c\u5e38\u6570\u3002\u4e24\u7ec4\u91c7\u7528\u76f8\u540c\u8bad\u7ec3\u9884\u7b97\u4e0e\u65b0Adam\u72b6\u6001\uff1b\u9884\u8bad\u7ec3\u539fDecoder\u4fdd\u7559\u4f5c\u989d\u5916\u8d28\u91cf\u53c2\u8003\u3002",
+    "hardware": "GPU2\u539f\u9884\u8bad\u7ec3\u53c2\u8003\u3001GPU3\u539fDecoder\u91cd\u65b0\u521d\u59cb\u5316\u3001GPU4\u67e5\u8be2Decoder\u91cd\u65b0\u521d\u59cb\u5316\u3001GPU5\u56fa\u5b9aDecoder\u76f4\u63a5\u62df\u54084\u4e2a\u8bad\u7ec3\u7a97\u53e3\u7684Z\u3002",
+    "future": "\u76f4\u63a5\u4f18\u5316Z\u4f7f\u7528\u771f\u5b9e\u76ee\u6807\uff0c\u53ea\u662f\u53ef\u8868\u8fbe\u6027\u8bca\u65ad\uff0c\u4e0d\u80fd\u4f5c\u4e3a\u6b63\u5e38\u63a8\u7406\u6216\u5f00\u53d1\u96c6\u6210\u7ee9\u3002\u539fDecoder\u62df\u5408\u5931\u8d25\u4ecd\u53ef\u80fd\u6765\u81ea\u4f18\u5316\u4e0d\u5145\u5206\uff1b\u65b0Decoder\u672a\u80dc\u51fa\u4e5f\u4e0d\u80fd\u76f4\u63a5\u8bc1\u660elatent\u4fe1\u606f\u4e22\u5931\u3002"
+  }
+}

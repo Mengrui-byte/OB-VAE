@@ -1,0 +1,18 @@
+{
+  "available": true,
+  "path": "recons/decoder_isolation_20261027_105856/original_warm/step128.pt",
+  "sha256": "3b8be3b6bd3d0750c57c9e5326041e454f3f6c6b7e71b5be15a910f858fa2658",
+  "bytes": 140171942,
+  "configs": {
+    "unified_vae_config": {
+      "levels": 2048,
+      "quantity_scale": 7.517722085208762,
+      "activation_checkpointing": true
+    },
+    "step": 128,
+    "lane": "original_warm",
+    "state_tensor_count": 240,
+    "state_scalars": 11651542
+  },
+  "saved_step_matches": true
+}

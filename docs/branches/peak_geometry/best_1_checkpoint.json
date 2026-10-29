@@ -1,0 +1,57 @@
+{
+  "available": true,
+  "path": "checkpoints/btc_peak_v7_20261018_235000/zero/best_quantity.pt",
+  "sha256": "1aedd187690878cab0e8a2362079c229126f417eb577da7400df005acf52b59e",
+  "bytes": 14140323,
+  "configs": {
+    "epoch": 30,
+    "model_config": {
+      "architecture": "ae_peak_features_v7",
+      "latent_dim": 64,
+      "spatial_queries": 8,
+      "features_per_query": 8,
+      "spatial_regions": "2 sides x 4 contiguous depth bands",
+      "decoder": "local region projection and spatial-query cross-attention",
+      "bottleneck": "per-time local spatial attention; no temporal mixing or input token-channel flattening",
+      "latent_shape_per_sample": [
+        16,
+        64
+      ],
+      "quantity_mode": "patch-residual",
+      "quantity_decoder": "baseline plus zero-initialized short patch decoder from latent-expanded features; no input bypass",
+      "conv_order": "alternating",
+      "encoder_convolutions": "S0,T0,S1,T1,S2,T2,S3,T3,S4",
+      "decoder_convolutions": "inverse S4,T3,S3,T2,S2,T1,S1,T0,S0",
+      "temporal_stage_channels": [
+        32,
+        64,
+        96,
+        128
+      ],
+      "decoder_temporal_stage_channels": [
+        128,
+        96,
+        64,
+        32
+      ],
+      "peak_mode": "zero",
+      "peak_features": [
+        "selected",
+        "original_scaled_quantity",
+        "original_scaled_price",
+        "clipped_half_height_width_over9"
+      ],
+      "peak_placement": "input native2048 levels, before first spatial downsampling",
+      "peak_regions_per_side": 4,
+      "peak_per_region": 8,
+      "peak_candidates": 32,
+      "peak_radius_bps": 0.5,
+      "peak_sigma": 0.5,
+      "peak_score_decay": "exp(-max(1-distance_bps/radius,0)^2/sigma)",
+      "peak_input_projection": "zero initial extra input weights; original price/quantity channels preserved"
+    },
+    "state_tensor_count": 116,
+    "state_scalars": 1166115
+  },
+  "epoch_and_saved_quantity_metric_match": true
+}

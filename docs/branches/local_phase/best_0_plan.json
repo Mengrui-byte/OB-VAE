@@ -1,0 +1,688 @@
+{
+  "train": [
+    "2022-01-01",
+    "2025-01-01"
+  ],
+  "development": [
+    "2025-01-01",
+    "2025-04-01"
+  ],
+  "independent_test_untouched": [
+    "2025-04-01",
+    "2025-07-01"
+  ],
+  "window_size": 256,
+  "stride": 256,
+  "normalization": {
+    "price_scale": 104.2454906668734,
+    "quantity_scale": 7.517722085208762,
+    "tick_size": 0.01,
+    "fit_windows": 64,
+    "fit_split": "64 selected training windows only,2022-2024",
+    "valid_values": 67108864,
+    "mean_quantity": 1.2229372905278826,
+    "median_gap_ticks": 10.15625,
+    "median_spread_ticks": 9.9609375
+  },
+  "model_config": {
+    "levels": 2048,
+    "quantity_scale": 7.517722085208762,
+    "activation_checkpointing": true
+  },
+  "local_hint_config": {
+    "layout": "frame1",
+    "frame_ffn": 1536
+  },
+  "original_parameter_names": [
+    "encoder.input_proj.weight",
+    "encoder.input_proj.bias",
+    "encoder.down.0.weight",
+    "encoder.down.0.bias",
+    "encoder.down.1.weight",
+    "encoder.down.1.bias",
+    "encoder.down.2.weight",
+    "encoder.down.2.bias",
+    "encoder.down.3.weight",
+    "encoder.down.3.bias",
+    "encoder.spatial.0.norms.0.weight",
+    "encoder.spatial.0.norms.0.bias",
+    "encoder.spatial.0.norms.1.weight",
+    "encoder.spatial.0.norms.1.bias",
+    "encoder.spatial.0.convs.0.weight",
+    "encoder.spatial.0.convs.0.bias",
+    "encoder.spatial.0.convs.1.weight",
+    "encoder.spatial.0.convs.1.bias",
+    "encoder.spatial.1.norms.0.weight",
+    "encoder.spatial.1.norms.0.bias",
+    "encoder.spatial.1.norms.1.weight",
+    "encoder.spatial.1.norms.1.bias",
+    "encoder.spatial.1.convs.0.weight",
+    "encoder.spatial.1.convs.0.bias",
+    "encoder.spatial.1.convs.1.weight",
+    "encoder.spatial.1.convs.1.bias",
+    "encoder.spatial.2.norms.0.weight",
+    "encoder.spatial.2.norms.0.bias",
+    "encoder.spatial.2.norms.1.weight",
+    "encoder.spatial.2.norms.1.bias",
+    "encoder.spatial.2.convs.0.weight",
+    "encoder.spatial.2.convs.0.bias",
+    "encoder.spatial.2.convs.1.weight",
+    "encoder.spatial.2.convs.1.bias",
+    "encoder.spatial.3.norms.0.weight",
+    "encoder.spatial.3.norms.0.bias",
+    "encoder.spatial.3.norms.1.weight",
+    "encoder.spatial.3.norms.1.bias",
+    "encoder.spatial.3.convs.0.weight",
+    "encoder.spatial.3.convs.0.bias",
+    "encoder.spatial.3.convs.1.weight",
+    "encoder.spatial.3.convs.1.bias",
+    "encoder.position.side.weight",
+    "encoder.position_proj.weight",
+    "encoder.position_proj.bias",
+    "encoder.cross_norm.weight",
+    "encoder.cross_norm.bias",
+    "encoder.cross.in_proj_weight",
+    "encoder.cross.in_proj_bias",
+    "encoder.cross.out_proj.weight",
+    "encoder.cross.out_proj.bias",
+    "encoder.cross_ffn.0.weight",
+    "encoder.cross_ffn.0.bias",
+    "encoder.cross_ffn.1.weight",
+    "encoder.cross_ffn.1.bias",
+    "encoder.cross_ffn.3.weight",
+    "encoder.cross_ffn.3.bias",
+    "encoder.region.0.weight",
+    "encoder.region.0.bias",
+    "encoder.region.1.weight",
+    "encoder.region.1.bias",
+    "encoder.frame.0.weight",
+    "encoder.frame.0.bias",
+    "encoder.frame.1.weight",
+    "encoder.frame.1.bias",
+    "encoder.patch.weight",
+    "encoder.patch.bias",
+    "encoder.temporal.layers.0.self_attn.in_proj_weight",
+    "encoder.temporal.layers.0.self_attn.in_proj_bias",
+    "encoder.temporal.layers.0.self_attn.out_proj.weight",
+    "encoder.temporal.layers.0.self_attn.out_proj.bias",
+    "encoder.temporal.layers.0.linear1.weight",
+    "encoder.temporal.layers.0.linear1.bias",
+    "encoder.temporal.layers.0.linear2.weight",
+    "encoder.temporal.layers.0.linear2.bias",
+    "encoder.temporal.layers.0.norm1.weight",
+    "encoder.temporal.layers.0.norm1.bias",
+    "encoder.temporal.layers.0.norm2.weight",
+    "encoder.temporal.layers.0.norm2.bias",
+    "encoder.temporal.layers.1.self_attn.in_proj_weight",
+    "encoder.temporal.layers.1.self_attn.in_proj_bias",
+    "encoder.temporal.layers.1.self_attn.out_proj.weight",
+    "encoder.temporal.layers.1.self_attn.out_proj.bias",
+    "encoder.temporal.layers.1.linear1.weight",
+    "encoder.temporal.layers.1.linear1.bias",
+    "encoder.temporal.layers.1.linear2.weight",
+    "encoder.temporal.layers.1.linear2.bias",
+    "encoder.temporal.layers.1.norm1.weight",
+    "encoder.temporal.layers.1.norm1.bias",
+    "encoder.temporal.layers.1.norm2.weight",
+    "encoder.temporal.layers.1.norm2.bias",
+    "encoder.mu.weight",
+    "encoder.mu.bias",
+    "encoder.logvar.weight",
+    "encoder.logvar.bias",
+    "price_decoder.temporal.mlp.0.weight",
+    "price_decoder.temporal.mlp.0.bias",
+    "price_decoder.temporal.mlp.2.weight",
+    "price_decoder.temporal.mlp.2.bias",
+    "price_decoder.temporal.refine.norms.0.weight",
+    "price_decoder.temporal.refine.norms.0.bias",
+    "price_decoder.temporal.refine.norms.1.weight",
+    "price_decoder.temporal.refine.norms.1.bias",
+    "price_decoder.temporal.refine.convs.0.weight",
+    "price_decoder.temporal.refine.convs.0.bias",
+    "price_decoder.temporal.refine.convs.1.weight",
+    "price_decoder.temporal.refine.convs.1.bias",
+    "price_decoder.spatial.seed.weight",
+    "price_decoder.spatial.seed.bias",
+    "price_decoder.spatial.position.side.weight",
+    "price_decoder.spatial.proj.weight",
+    "price_decoder.spatial.proj.bias",
+    "price_decoder.spatial.up.0.conv.weight",
+    "price_decoder.spatial.up.0.conv.bias",
+    "price_decoder.spatial.up.0.res.norms.0.weight",
+    "price_decoder.spatial.up.0.res.norms.0.bias",
+    "price_decoder.spatial.up.0.res.norms.1.weight",
+    "price_decoder.spatial.up.0.res.norms.1.bias",
+    "price_decoder.spatial.up.0.res.convs.0.weight",
+    "price_decoder.spatial.up.0.res.convs.0.bias",
+    "price_decoder.spatial.up.0.res.convs.1.weight",
+    "price_decoder.spatial.up.0.res.convs.1.bias",
+    "price_decoder.spatial.up.1.conv.weight",
+    "price_decoder.spatial.up.1.conv.bias",
+    "price_decoder.spatial.up.1.res.norms.0.weight",
+    "price_decoder.spatial.up.1.res.norms.0.bias",
+    "price_decoder.spatial.up.1.res.norms.1.weight",
+    "price_decoder.spatial.up.1.res.norms.1.bias",
+    "price_decoder.spatial.up.1.res.convs.0.weight",
+    "price_decoder.spatial.up.1.res.convs.0.bias",
+    "price_decoder.spatial.up.1.res.convs.1.weight",
+    "price_decoder.spatial.up.1.res.convs.1.bias",
+    "price_decoder.spatial.up.2.conv.weight",
+    "price_decoder.spatial.up.2.conv.bias",
+    "price_decoder.spatial.up.2.res.norms.0.weight",
+    "price_decoder.spatial.up.2.res.norms.0.bias",
+    "price_decoder.spatial.up.2.res.norms.1.weight",
+    "price_decoder.spatial.up.2.res.norms.1.bias",
+    "price_decoder.spatial.up.2.res.convs.0.weight",
+    "price_decoder.spatial.up.2.res.convs.0.bias",
+    "price_decoder.spatial.up.2.res.convs.1.weight",
+    "price_decoder.spatial.up.2.res.convs.1.bias",
+    "price_decoder.spatial.up.3.conv.weight",
+    "price_decoder.spatial.up.3.conv.bias",
+    "price_decoder.spatial.up.3.res.norms.0.weight",
+    "price_decoder.spatial.up.3.res.norms.0.bias",
+    "price_decoder.spatial.up.3.res.norms.1.weight",
+    "price_decoder.spatial.up.3.res.norms.1.bias",
+    "price_decoder.spatial.up.3.res.convs.0.weight",
+    "price_decoder.spatial.up.3.res.convs.0.bias",
+    "price_decoder.spatial.up.3.res.convs.1.weight",
+    "price_decoder.spatial.up.3.res.convs.1.bias",
+    "price_decoder.mid_spread.0.weight",
+    "price_decoder.mid_spread.0.bias",
+    "price_decoder.mid_spread.2.weight",
+    "price_decoder.mid_spread.2.bias",
+    "price_decoder.gap.weight",
+    "price_decoder.gap.bias",
+    "volume_decoder.temporal.mlp.0.weight",
+    "volume_decoder.temporal.mlp.0.bias",
+    "volume_decoder.temporal.mlp.2.weight",
+    "volume_decoder.temporal.mlp.2.bias",
+    "volume_decoder.temporal.refine.norms.0.weight",
+    "volume_decoder.temporal.refine.norms.0.bias",
+    "volume_decoder.temporal.refine.norms.1.weight",
+    "volume_decoder.temporal.refine.norms.1.bias",
+    "volume_decoder.temporal.refine.convs.0.weight",
+    "volume_decoder.temporal.refine.convs.0.bias",
+    "volume_decoder.temporal.refine.convs.1.weight",
+    "volume_decoder.temporal.refine.convs.1.bias",
+    "volume_decoder.position.side.weight",
+    "volume_decoder.geometry.0.weight",
+    "volume_decoder.geometry.0.bias",
+    "volume_decoder.geometry.2.weight",
+    "volume_decoder.geometry.2.bias",
+    "volume_decoder.spatial.seed.weight",
+    "volume_decoder.spatial.seed.bias",
+    "volume_decoder.spatial.position.side.weight",
+    "volume_decoder.spatial.proj.weight",
+    "volume_decoder.spatial.proj.bias",
+    "volume_decoder.spatial.fuse.weight",
+    "volume_decoder.spatial.fuse.bias",
+    "volume_decoder.spatial.up.0.conv.weight",
+    "volume_decoder.spatial.up.0.conv.bias",
+    "volume_decoder.spatial.up.0.fuse.weight",
+    "volume_decoder.spatial.up.0.fuse.bias",
+    "volume_decoder.spatial.up.0.res.norms.0.weight",
+    "volume_decoder.spatial.up.0.res.norms.0.bias",
+    "volume_decoder.spatial.up.0.res.norms.1.weight",
+    "volume_decoder.spatial.up.0.res.norms.1.bias",
+    "volume_decoder.spatial.up.0.res.convs.0.weight",
+    "volume_decoder.spatial.up.0.res.convs.0.bias",
+    "volume_decoder.spatial.up.0.res.convs.1.weight",
+    "volume_decoder.spatial.up.0.res.convs.1.bias",
+    "volume_decoder.spatial.up.1.conv.weight",
+    "volume_decoder.spatial.up.1.conv.bias",
+    "volume_decoder.spatial.up.1.fuse.weight",
+    "volume_decoder.spatial.up.1.fuse.bias",
+    "volume_decoder.spatial.up.1.res.norms.0.weight",
+    "volume_decoder.spatial.up.1.res.norms.0.bias",
+    "volume_decoder.spatial.up.1.res.norms.1.weight",
+    "volume_decoder.spatial.up.1.res.norms.1.bias",
+    "volume_decoder.spatial.up.1.res.convs.0.weight",
+    "volume_decoder.spatial.up.1.res.convs.0.bias",
+    "volume_decoder.spatial.up.1.res.convs.1.weight",
+    "volume_decoder.spatial.up.1.res.convs.1.bias",
+    "volume_decoder.spatial.up.2.conv.weight",
+    "volume_decoder.spatial.up.2.conv.bias",
+    "volume_decoder.spatial.up.2.fuse.weight",
+    "volume_decoder.spatial.up.2.fuse.bias",
+    "volume_decoder.spatial.up.2.res.norms.0.weight",
+    "volume_decoder.spatial.up.2.res.norms.0.bias",
+    "volume_decoder.spatial.up.2.res.norms.1.weight",
+    "volume_decoder.spatial.up.2.res.norms.1.bias",
+    "volume_decoder.spatial.up.2.res.convs.0.weight",
+    "volume_decoder.spatial.up.2.res.convs.0.bias",
+    "volume_decoder.spatial.up.2.res.convs.1.weight",
+    "volume_decoder.spatial.up.2.res.convs.1.bias",
+    "volume_decoder.spatial.up.3.conv.weight",
+    "volume_decoder.spatial.up.3.conv.bias",
+    "volume_decoder.spatial.up.3.fuse.weight",
+    "volume_decoder.spatial.up.3.fuse.bias",
+    "volume_decoder.spatial.up.3.res.norms.0.weight",
+    "volume_decoder.spatial.up.3.res.norms.0.bias",
+    "volume_decoder.spatial.up.3.res.norms.1.weight",
+    "volume_decoder.spatial.up.3.res.norms.1.bias",
+    "volume_decoder.spatial.up.3.res.convs.0.weight",
+    "volume_decoder.spatial.up.3.res.convs.0.bias",
+    "volume_decoder.spatial.up.3.res.convs.1.weight",
+    "volume_decoder.spatial.up.3.res.convs.1.bias",
+    "volume_decoder.quantity.weight",
+    "volume_decoder.quantity.bias"
+  ],
+  "objective": {
+    "price_weight": 1.0,
+    "quantity_weight": 1.0,
+    "log_weight": 1.0,
+    "pair_weight": 0.25,
+    "topk": 16,
+    "shape_weight": 1.0,
+    "mass_weight": 1.0,
+    "w1_weight": 0.5099078269962694,
+    "multiscale_weight": 1.0099852172963266,
+    "multiscale_groups": [
+      8,
+      64
+    ]
+  },
+  "source_FP_rule": {
+    "fp_normalization": "positive",
+    "fp_error": "margin_excess",
+    "fp_weight": 0.25
+  },
+  "augmentation": {
+    "probability": 0.5,
+    "events": 2,
+    "durations": [
+      1,
+      4,
+      16,
+      32
+    ],
+    "seed": 42,
+    "amplitude_quantiles": [
+      0.1,
+      0.9
+    ]
+  },
+  "lr": 0.0001,
+  "weight_decay": 0.0,
+  "clip_grad": 1.0,
+  "batch_size": 1,
+  "accumulation": 4,
+  "seed": 42,
+  "beta": 0.0,
+  "sample": false,
+  "input_shape": [
+    1,
+    256,
+    2,
+    2048,
+    2
+  ],
+  "latent_shape": [
+    1,
+    64,
+    128
+  ],
+  "output_shape": [
+    1,
+    256,
+    2,
+    2048
+  ],
+  "experiment": "\u56fa\u5b9a\u6765\u6e90\u65b0\u589e\u5355\u4e00\u8f85\u52a9\u91cd\u5efa\u76ee\u6807\u7cfb\u6570\u5bf9\u7167",
+  "labels": {
+    "control": "\u9644\u52a0\u635f\u5931\u00d70",
+    "quarter": "\u9644\u52a0\u635f\u5931\u00d70.25",
+    "unit": "\u9644\u52a0\u635f\u5931\u00d71",
+    "four": "\u9644\u52a0\u635f\u5931\u00d74"
+  },
+  "lanes": {
+    "control": {
+      "hint": true,
+      "augmentation": false,
+      "protect_mid": true,
+      "use_tail": true,
+      "mid_delta_weight": 64.0,
+      "fp_normalization": "positive",
+      "fp_error": "margin_excess",
+      "fp_weight": 0.25,
+      "use_shape": false,
+      "use_mass": false,
+      "gradient_module_flags": {},
+      "gradient_parameter_flags": {
+        "local_readout.shape_weight": false,
+        "local_readout.shape_bias": false,
+        "local_readout.mass_weight": false,
+        "local_readout.mass_bias": false
+      },
+      "stratified_multiplier": 0.0
+    },
+    "quarter": {
+      "hint": true,
+      "augmentation": false,
+      "protect_mid": true,
+      "use_tail": true,
+      "mid_delta_weight": 64.0,
+      "fp_normalization": "positive",
+      "fp_error": "margin_excess",
+      "fp_weight": 0.25,
+      "use_shape": false,
+      "use_mass": false,
+      "gradient_module_flags": {},
+      "gradient_parameter_flags": {
+        "local_readout.shape_weight": false,
+        "local_readout.shape_bias": false,
+        "local_readout.mass_weight": false,
+        "local_readout.mass_bias": false
+      },
+      "stratified_multiplier": 0.0
+    },
+    "unit": {
+      "hint": true,
+      "augmentation": false,
+      "protect_mid": true,
+      "use_tail": true,
+      "mid_delta_weight": 64.0,
+      "fp_normalization": "positive",
+      "fp_error": "margin_excess",
+      "fp_weight": 0.25,
+      "use_shape": false,
+      "use_mass": false,
+      "gradient_module_flags": {},
+      "gradient_parameter_flags": {
+        "local_readout.shape_weight": false,
+        "local_readout.shape_bias": false,
+        "local_readout.mass_weight": false,
+        "local_readout.mass_bias": false
+      },
+      "stratified_multiplier": 0.0
+    },
+    "four": {
+      "hint": true,
+      "augmentation": false,
+      "protect_mid": true,
+      "use_tail": true,
+      "mid_delta_weight": 64.0,
+      "fp_normalization": "positive",
+      "fp_error": "margin_excess",
+      "fp_weight": 0.25,
+      "use_shape": false,
+      "use_mass": false,
+      "gradient_module_flags": {},
+      "gradient_parameter_flags": {
+        "local_readout.shape_weight": false,
+        "local_readout.shape_bias": false,
+        "local_readout.mass_weight": false,
+        "local_readout.mass_bias": false
+      },
+      "stratified_multiplier": 0.0
+    }
+  },
+  "source_selection": {
+    "lane": "no_aug",
+    "step": 2048,
+    "checkpoint": "/home/u503/crossssh_mnt/OBreconstuction-4a85ce6e/recons/recall80_goal_20261027_235344/round_007_quantity_factorial/no_aug/step2048.pt",
+    "evaluation": "/home/u503/crossssh_mnt/OBreconstuction-4a85ce6e/recons/recall80_goal_20261027_235344/round_007_quantity_factorial/no_aug/step2048_development.json",
+    "user_criteria_pass": false,
+    "quality_guard_pass": false,
+    "equal_window_count": true,
+    "score": 0.7345794392523365,
+    "recall100": 0.7345794392523365,
+    "precision100": 0.458041958041958,
+    "false_positives": 465,
+    "price_rmse": 40.62698027597515,
+    "price_limit": 82.17456597783033,
+    "mid_delta_rmse": 12.284351199545764,
+    "mid_delta_limit": 22.040599589131354,
+    "quantity_rmse": 2.1275238606748306,
+    "quantity_limit": 2.3973941907786807,
+    "note": "Developmentgateonly. Completionadditionally requiresactual8192/no-bypassarchitectureaudit andfrozen-candidateconfirmation; trainingfitcannotcount.",
+    "pass": false
+  },
+  "selection_common_endpoint": 2048,
+  "source_sha256": "deca8330aaf936f66f7c7374af17bd2a9678ab40ca80b97539df18aa639c1c24",
+  "source_steps": 24576,
+  "source_evaluation_relative": "../round_007_quantity_factorial/no_aug/step2048_development.json",
+  "source_checkpoint_relative": "round_007_quantity_factorial/no_aug/step2048.pt",
+  "initial_model_sha256": "2d7ce68679337d07e10fe695996410376ed3b94902240edbd96a13f697b27622",
+  "auxiliary_kind": "mid_lowpass",
+  "base_stratified_weight": 0.0,
+  "checkpoint_extras": {
+    "control": {
+      "regional_phase_config": {
+        "layout": "frame1",
+        "frame_ffn": 1536,
+        "use_shape": false,
+        "use_mass": false,
+        "readout_kernel": "linear"
+      },
+      "stratified_quantity_loss_config": {
+        "lower_BTC": [
+          0.0,
+          0.01,
+          0.1,
+          1.0,
+          10.0,
+          100.0
+        ],
+        "scales_BTC": [
+          0.0044779047307967985,
+          0.0472840202098522,
+          0.4412717188339758,
+          3.522815580004404,
+          24.89547481913624,
+          215.94657900798126
+        ],
+        "weight": 0.0,
+        "multiplier": 0.0
+      },
+      "training_numeric_policy": {
+        "cudnn_deterministic": true,
+        "cudnn_benchmark": false,
+        "tf32": false
+      },
+      "inference_numeric_policy": {
+        "cudnn_deterministic": true,
+        "cudnn_benchmark": false,
+        "tf32": false
+      },
+      "mid_lowpass_loss_config": {
+        "weight": 0.0,
+        "multiplier": 0.0,
+        "kind": "mid_lowpass",
+        "chunks": [
+          16,
+          64,
+          256
+        ]
+      }
+    },
+    "quarter": {
+      "regional_phase_config": {
+        "layout": "frame1",
+        "frame_ffn": 1536,
+        "use_shape": false,
+        "use_mass": false,
+        "readout_kernel": "linear"
+      },
+      "stratified_quantity_loss_config": {
+        "lower_BTC": [
+          0.0,
+          0.01,
+          0.1,
+          1.0,
+          10.0,
+          100.0
+        ],
+        "scales_BTC": [
+          0.0044779047307967985,
+          0.0472840202098522,
+          0.4412717188339758,
+          3.522815580004404,
+          24.89547481913624,
+          215.94657900798126
+        ],
+        "weight": 0.0,
+        "multiplier": 0.0
+      },
+      "training_numeric_policy": {
+        "cudnn_deterministic": true,
+        "cudnn_benchmark": false,
+        "tf32": false
+      },
+      "inference_numeric_policy": {
+        "cudnn_deterministic": true,
+        "cudnn_benchmark": false,
+        "tf32": false
+      },
+      "mid_lowpass_loss_config": {
+        "weight": 5.167638744317654,
+        "multiplier": 0.25,
+        "kind": "mid_lowpass",
+        "chunks": [
+          16,
+          64,
+          256
+        ]
+      }
+    },
+    "unit": {
+      "regional_phase_config": {
+        "layout": "frame1",
+        "frame_ffn": 1536,
+        "use_shape": false,
+        "use_mass": false,
+        "readout_kernel": "linear"
+      },
+      "stratified_quantity_loss_config": {
+        "lower_BTC": [
+          0.0,
+          0.01,
+          0.1,
+          1.0,
+          10.0,
+          100.0
+        ],
+        "scales_BTC": [
+          0.0044779047307967985,
+          0.0472840202098522,
+          0.4412717188339758,
+          3.522815580004404,
+          24.89547481913624,
+          215.94657900798126
+        ],
+        "weight": 0.0,
+        "multiplier": 0.0
+      },
+      "training_numeric_policy": {
+        "cudnn_deterministic": true,
+        "cudnn_benchmark": false,
+        "tf32": false
+      },
+      "inference_numeric_policy": {
+        "cudnn_deterministic": true,
+        "cudnn_benchmark": false,
+        "tf32": false
+      },
+      "mid_lowpass_loss_config": {
+        "weight": 20.670554977270616,
+        "multiplier": 1.0,
+        "kind": "mid_lowpass",
+        "chunks": [
+          16,
+          64,
+          256
+        ]
+      }
+    },
+    "four": {
+      "regional_phase_config": {
+        "layout": "frame1",
+        "frame_ffn": 1536,
+        "use_shape": false,
+        "use_mass": false,
+        "readout_kernel": "linear"
+      },
+      "stratified_quantity_loss_config": {
+        "lower_BTC": [
+          0.0,
+          0.01,
+          0.1,
+          1.0,
+          10.0,
+          100.0
+        ],
+        "scales_BTC": [
+          0.0044779047307967985,
+          0.0472840202098522,
+          0.4412717188339758,
+          3.522815580004404,
+          24.89547481913624,
+          215.94657900798126
+        ],
+        "weight": 0.0,
+        "multiplier": 0.0
+      },
+      "training_numeric_policy": {
+        "cudnn_deterministic": true,
+        "cudnn_benchmark": false,
+        "tf32": false
+      },
+      "inference_numeric_policy": {
+        "cudnn_deterministic": true,
+        "cudnn_benchmark": false,
+        "tf32": false
+      },
+      "mid_lowpass_loss_config": {
+        "weight": 82.68221990908246,
+        "multiplier": 4.0,
+        "kind": "mid_lowpass",
+        "chunks": [
+          16,
+          64,
+          256
+        ]
+      }
+    }
+  },
+  "steps": 2048,
+  "checkpoints": [
+    256,
+    512,
+    1024,
+    2048
+  ],
+  "max_seconds": 43200,
+  "gpu_workers": [
+    [
+      2,
+      "control"
+    ],
+    [
+      3,
+      "quarter"
+    ],
+    [
+      4,
+      "unit"
+    ],
+    [
+      5,
+      "four"
+    ]
+  ],
+  "worker_module": "train_dual.experiments.auxiliary_reconstruction_run",
+  "loss_variant": "single_auxiliary_mid_lowpass",
+  "new_model_parameters": 0,
+  "quantity_strata_metrics_schema": 2,
+  "inherited_strata_scale_policy": "Original baseline RMS preserved exactly; only diagnostic memberships are corrected to match the unchanged Torch loss.",
+  "parent_price_rmse_USDT": 40.62698027597515,
+  "parent_price_limit_USDT": 44.68967830357267,
+  "controls": "One selected source/optimizer/RNG/data/augmentation/teacher/oldloss/LR/budget across4arms. Only one new auxiliary coefficient0/.25/1/4 varies. No architecture or upsampling changes.",
+  "original_goal_contract_unchanged": true,
+  "preview_descriptions": {
+    "control": "\u5b8c\u6574256\u5206\u949f\u3001\u552f\u4e008192Gaussian\uff1b\u56fa\u5b9a\u540c\u4e00\u6765\u6e90\uff0c\u53ea\u6bd4\u8f83\u65b0\u589e\u8f85\u52a9\u635f\u5931\u7cfb\u6570\u3002Q1\u5df2\u7528\u4e8e\u9009\u578b\uff0c\u975e\u72ec\u7acb\u6d4b\u8bd5\u3002",
+    "quarter": "\u5b8c\u6574256\u5206\u949f\u3001\u552f\u4e008192Gaussian\uff1b\u56fa\u5b9a\u540c\u4e00\u6765\u6e90\uff0c\u53ea\u6bd4\u8f83\u65b0\u589e\u8f85\u52a9\u635f\u5931\u7cfb\u6570\u3002Q1\u5df2\u7528\u4e8e\u9009\u578b\uff0c\u975e\u72ec\u7acb\u6d4b\u8bd5\u3002",
+    "unit": "\u5b8c\u6574256\u5206\u949f\u3001\u552f\u4e008192Gaussian\uff1b\u56fa\u5b9a\u540c\u4e00\u6765\u6e90\uff0c\u53ea\u6bd4\u8f83\u65b0\u589e\u8f85\u52a9\u635f\u5931\u7cfb\u6570\u3002Q1\u5df2\u7528\u4e8e\u9009\u578b\uff0c\u975e\u72ec\u7acb\u6d4b\u8bd5\u3002",
+    "four": "\u5b8c\u6574256\u5206\u949f\u3001\u552f\u4e008192Gaussian\uff1b\u56fa\u5b9a\u540c\u4e00\u6765\u6e90\uff0c\u53ea\u6bd4\u8f83\u65b0\u589e\u8f85\u52a9\u635f\u5931\u7cfb\u6570\u3002Q1\u5df2\u7528\u4e8e\u9009\u578b\uff0c\u975e\u72ec\u7acb\u6d4b\u8bd5\u3002"
+  }
+}
